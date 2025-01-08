@@ -1,0 +1,67 @@
+@media screen and (min-width: 800px) and  (max-width: 1200px) {
+    #phone{
+     margin-left: 2px;
+    }
+    .contactN {
+        text-align: left;  
+        height: 40px !important;
+        font-size: small;
+    }
+
+}
+
+
+
+
+
+
+.top-section{
+    display: flex;
+}
+
+.header-container div{
+}
+.logoAndCallUsSection{
+    width: 30%;
+    margin-top: 20px;
+    height: 60px;
+    margin-left: 5px;
+    display: flex;
+    border-right: 1px solid rgb(230, 230, 230);
+}
+.contactEmailSection{
+    margin-top: 20px;
+    display: flex;
+    width: 25%;
+    border-right: 1px solid rgb(230, 230, 230);
+    text-align: left;
+}
+.contactEmailSection img{
+    height: 40px;
+}
+.contactEmailSection div{
+    margin-top: 2px;
+}
+#messageIcon{
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.phoneCall{
+    margin-top: 5px;
+    display: flex;
+}
+#logo {
+    margin-top: 5px;
+    width: 150px;
+    height: 40px;
+}
+#phone{
+    height: 40px;
+    margin-left: 20px;
+}
+
+.contactN {
+    text-align: left;  
+    height: 65px;
+}
+
