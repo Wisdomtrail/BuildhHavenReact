@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header";
+import Header from "./header/Header";
 
-import '../../styles/LandingPage.css';
-import ContructionImg from '../../assets/img/Contruction.jpg';
-import EngineerImg from '../../assets/img/EngineerImg.jpg';
-import tallBuildingImg from '../../assets/img/tallBuilding.jpg';
+import '../styles/LandingPage.css';
+import ContructionImg from '../assets/img/Contruction.jpg';
+import EngineerImg from '../assets/img/EngineerImg.jpg';
+import tallBuildingImg from '../assets/img/tallBuilding.jpg';
 
 const LandingPage = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);

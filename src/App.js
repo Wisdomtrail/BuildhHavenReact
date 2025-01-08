@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/header/Header';
+import Header from './components/header/Header.jsx'
+import LandingPage from './components/LandingPage';
+
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <LandingPage/>
     </div>
   );
 }
