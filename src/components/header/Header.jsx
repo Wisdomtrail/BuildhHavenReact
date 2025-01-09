@@ -1,46 +1,64 @@
-import React, { useState, useEffect } from "react";
-import Header from "./Header";
-
-import '../../styles/LandingPage.css';
-import ContructionImg from '../../assets/img/Contruction.jpg';
-import EngineerImg from '../../assets/img/EngineerImg.jpg';
-import tallBuildingImg from '../../assets/img/tallBuilding.jpg';
-
-const LandingPage = () => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-    // Array of image URLs for the banner
-    const images = [
-        ContructionImg,
-        EngineerImg,
-        tallBuildingImg,
-    ];
-
-    // Change the image every 5 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, []);
-
-    return (
-        <>
-            <Header />
-            <div className="LandingPage-container">
-                <div className="banner">
-                    <div className="image-container">
-                        <img
-                            src={images[currentImageIndex]}
-                            alt="Banner"
-                            className="zoom-image"
-                        />
-                    </div>
-                    <div className="dark-overlay"></div>
-                </div>
+import React from "react";
+import "../../styles/Header.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faEnvelope, faLocationDot, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import  logo from '../../assets/img/Logo.png';
+import phoneIcon from '../../assets/img/phoneIcon.png'
+import messageIcon from '../../assets/img/messageIcon.png'
+const Header = () => {
+  return (
+    <header>
+      {/* Top Section */}
+      <div className="top-section">
+        {/* Logo and Call Us Section */}
+        <div className="logoAndCallUsSection">
+          <img id="logo" src={logo} alt="Build Haven Logo" />
+          <div className="phoneCall">
+            <img id="phone" src={phoneIcon} alt="Phone Icon" />
+            <div className="contactN">
+              <p>Call Us 24/7</p>
+              <p>+234 816 538 5299</p>
             </div>
-        </>
-    );
+          </div>
+        </div>
+
+        {/* Email Section */}
+        <div className="contactEmailSection">
+            <img src={messageIcon} alt="" />
+          <div>
+            <p>Send Us Mail</p>
+            <p>contact@buildhavenhub.com</p>
+          </div>
+        </div>
+
+        {/* Location Section */}
+        <div className="locationSection">
+          <FontAwesomeIcon id="locationIcon" icon={faLocationDot} color="#CD0001" />
+          <div>
+            <p>Our Location</p>
+            <p>175, Abeokuta express way Iyana Ipaja Lagos</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="bottom-section">
+        <div>
+          <p>Home</p>
+          <p>About Us</p>
+          <p>Services</p>
+          <p>News</p>
+          <p>Contact Us</p>
+        </div>
+        <div className="sg">
+          <button className="quote-button">
+            Get a Quote
+            <FontAwesomeIcon className="arrow" icon={faArrowRight} />
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 };
 
-export default LandingPage;
+export default Header;

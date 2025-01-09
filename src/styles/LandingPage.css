@@ -9,28 +9,20 @@
 
 .banner {
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     position: relative;
 }
 
 .image-container {
     width: 100%;
     height: 100%;
-    overflow: hidden;
     position: relative;
 }
 
 .image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the container without distortion */
-    transition: transform 5s ease-in-out, opacity 1s ease-in-out; /* Smooth zoom and fade transition */
-    opacity: 0; /* Start with image hidden */
-}
-
-.zoom-image {
-    opacity: 1; /* Fade in the image when it is displayed */
-    transform: scale(1.1); /* Zoom in the image */
+    object-fit: cover;
 }
 
 .dark-overlay {
@@ -39,6 +31,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay stays stable */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
