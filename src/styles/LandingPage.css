@@ -9,7 +9,7 @@
 
 .banner {
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     position: relative;
 }
 
@@ -17,20 +17,188 @@
     width: 100%;
     height: 100%;
     position: relative;
+    overflow: hidden;
+    /* Ensure zoom effect stays within container */
 }
 
 .image-container img {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     object-fit: cover;
+    transition: opacity 1s ease-in-out, transform 10s ease-in-out;
+    /* Smooth transition */
+    opacity: 0;
+    transform: scale(1);
+    /* Reset scale by default */
+    z-index: 0;
+}
+
+/* First image: Zoom in effect on page load */
+.image-container img.first.visible {
+    opacity: 1;
+    transform: scale(1.1);
+    /* Zoom in slightly */
+    z-index: 2;
+}
+
+/* Reset for hidden first image */
+.image-container img.first.hidden {
+    opacity: 0;
+    transform: scale(1);
+    /* Reset scale */
+    z-index: 1;
+}
+
+/* Second and third images: Zoom out effect */
+.image-container img.zoom-out.visible {
+    opacity: 1;
+    transform: scale(0.9);
+    /* Zoom out slightly */
+    z-index: 2;
+}
+
+.image-container img.zoom-out.hidden {
+    opacity: 0;
+    transform: scale(1.1);
+    /* Initially zoomed in */
+    z-index: 1;
 }
 
 .dark-overlay {
     position: absolute;
+    display: flex;
     top: 0;
+    align-items: center;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+}
+
+.banner-text {
+    margin-left: 100px;
+}
+
+@media screen and (max-width: 1000px) {
+    .banner-text {
+        margin-left: 1px;
+    }
+
+    .banner-text div {
+        display: block;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .banner-text div {
+        display: flex;
+    }
+}
+
+.banner-text h1 {
+    font-size: 55px;
+    text-align: left;
+
+    color: white;
+}
+
+.banner p {
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+}
+
+
+.learn-button,
+.service-button {
+    position: relative;
+    overflow: hidden;
+    /* Prevent content from overflowing */
+    display: inline-block;
     z-index: 1;
+    color: white;
+    /* Default text color */
+    margin-right: 15px;
+    font-size: 16px;
+    width: 210px;
+    height: 50px;
+    border: none;
+    text-align: center;
+    line-height: 50px;
+    /* Center text vertically */
+    background-color: red;
+    transition: color 0.4s ease;
+}
+
+.service-button {
+    background-color: white;
+    color: black;
+}
+
+.service-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 0, 0);
+    z-index: -1;
+    /* Ensure the pseudo-element is below the text */
+    transition: left 0.4s ease;
+}
+
+.learn-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: -1;
+    /* Ensure the pseudo-element is below the text */
+    transition: left 0.4s ease;
+}
+
+.learn-button:hover::before,
+.service-button:hover::before {
+    left: 0;
+}
+
+.learn-button:hover {
+    /* Change text color on hover */
+    color: red;
+    cursor: pointer;
+}
+
+.service-button:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.learn-button .arrow {
+    margin-right: 8px;
+    /* Space between arrow and text */
+    font-size: 18px;
+    /* Arrow size */
+    margin-left: 10px;
+    transition: transform 0.4s ease;
+    /* Smooth rotation */
+}
+
+.learn-button:hover .arrow {
+    transform: rotate(360deg);
+    /* Rotate the arrow */
+}
+
+.learn-button:active {
+    background-color: #870054;
+    /* Darker color on click */
 }

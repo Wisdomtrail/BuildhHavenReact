@@ -12,8 +12,24 @@
 
 @media screen and (max-width: 1000px) {
     .top-section {
-
-        height: 60px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 60px !important; /* Adjust the height as needed */
+        padding: 0 20px !important; /* Optional: Adds padding to the sides */
+    }
+    
+    .nav-tools{
+        align-items: center;
+        justify-content: right;
+        text-align: right;
+        margin-top: 20px;
+        margin-right: 30px;
+        display: flex !important;
+        height: 100% !important;
+    }
+    #menuIcon{
+        margin-left: 15px;
     }
 
     .bottom-section div {
@@ -21,7 +37,8 @@
     }
 
     .bottom-section {
-        border-top: 2px solid red;
+        margin-top: 10px;
+        border-top: 1px solid rgb(230, 230, 230);
         height: 100px !important;
     }
 
@@ -47,17 +64,60 @@
     .locationSection {
         display: none !important;
     }
+
+    /* Base styles for the header sections */
+.top-section, .bottom-section {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Hide the top section by moving it up */
+  .top-section.hidden {
+    transform: translateY(-100%);
+  }
+  
+  /* Hide the bottom section by moving it down */
+  .bottom-section.hidden {
+    transform: translateY(100%);
+  }
+  
+  /* Fixed position for the top section in mobile view */
+  @media screen and (max-width: 1000px) {
+    .top-section {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+  
+    /* Adjust padding to prevent content overlap */
+    header {
+      padding-top: 60px; /* Adjust based on .top-section height */
+    }
+  }
+  
+}
+#tsb{
+    font-size: large;
+    font-weight: bold;
+}
+
+#tsh{
+    font-size: larger;
+}
+.sg input{
+    height: 25px;
+    margin-right: 20px;
+    margin-top: 30px;
 }
 
 .logoAndCallUsSection,
 .contactEmailSection,
 .locationSection {
     display: flex;
+    cursor: pointer;
     margin-top: 20px;
     align-items: center;
-    /* Align items vertically */
     gap: 10px;
-    /* Add spacing between image/icon and text */
     border-right: 1px solid rgb(230, 230, 230);
     /* Add border */
     padding-right: 10px;
@@ -67,7 +127,9 @@
 .logoAndCallUsSection {
     width: 30%;
 }
-
+.nav-tools{
+    display: none;
+}
 .contactEmailSection {
     width: 25%;
 }
@@ -192,11 +254,10 @@
 
 .quote-button:active {
     background-color: #870054;
-    /* Darker color on click */
 }
 
 #searchIcon {
-    margin-top: 25px;
+    margin-top: 30px;
     font-size: 25px;
     margin-right: 40px;
 }
