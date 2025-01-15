@@ -1,7 +1,6 @@
 .LandingPage-container {
     width: 100%;
     height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
@@ -21,9 +20,19 @@
     /* Ensure zoom effect stays within container */
 }
 
+/* Add this to the CSS to prevent initial scaling on the first image */
+.image-container img.no-compression {
+    transform: scale(1) !important;
+    /* Ensure no scaling */
+    opacity: 1 !important;
+    /* Ensure full opacity */
+    transition: none;
+    /* Remove any transition */
+}
+
 .image-container img {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
@@ -79,19 +88,134 @@
     z-index: 3;
 }
 
+/* Keyframes for slide-up animation */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .banner-text {
     margin-left: 100px;
+    animation: slideUp 1s ease-out;
+    /* Apply slide-up animation */
 }
 
 @media screen and (max-width: 1000px) {
     .banner-text {
-        margin-left: 1px;
+        margin-left: 1px !important;
+        width: 90%;
+
+    }
+
+    .dark-overlay {
+        justify-content: center !important;
+        display: flex !important;
     }
 
     .banner-text div {
         display: block;
+        margin-top: 60px !important;
         justify-content: center;
     }
+
+    .joinTeam p,
+    .joinTeam a {
+        font-size: small;
+        margin-left: 50px !important;
+    }
+
+    .banner-text h1 {
+        font-size: 40px !important;
+    }
+
+    .banner-text p {
+        font-size: 13px !important;
+    }
+    .compDes {
+        display: block !important;
+    }
+    .compDes div {
+        margin-left: 20px !important;
+    }
+    .compDesText h1 {
+        font-size: 30px !important;
+    }
+    .compDesText span {
+        color: rgb(145, 145, 145);
+        font-size: 12px;
+    }
+    
+    .GitFaq{
+        display:contents !important;
+    }
+    .dfff{
+        height: 140px !important;
+    }
+    .dfff span,.dffs span, .dfft span{
+        font-size: small;
+    }
+    .dffs{
+        height: 70px !important;
+    }
+    .dfft{
+        height: 60px !important;
+    }
+    
+    
+.gitF{
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.gitS{
+    width: 100% !important;
+    height: 100vh !important;
+    display: flex;
+}
+    
+.compDesTextDiv {
+    width: 530px !important;
+}
+}
+@media screen and (max-width: 700px) {
+    .compDesTextDiv {
+        width: 400px !important;
+        height: 300px !important;
+    }
+    .compDesTextDiv span{
+        font-size: small !important;
+    }
+    
+.slidesContainer {
+    width: 280px !important;
+}
+.aboutUs h1 {
+    font-size: 2.0rem !important;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #646464;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.aboutUs {
+    width: 90% !important;
+}
+.firstSlide p, .firstSlide span, .secondSlide p, .secondSlide span{
+    margin-left: -15px !important;
+}
+.sWeProvide h1 {
+    font-size: 35px !important;
+    font-weight: 600;
+}
 }
 
 @media screen and (min-width: 1000px) {
@@ -103,15 +227,70 @@
 .banner-text h1 {
     font-size: 55px;
     text-align: left;
-
     color: white;
+    animation: slideUp 1s ease-out 0.2s;
+    /* Slight delay for the heading animation */
 }
 
-.banner p {
+.banner-text p {
     font-size: large;
     font-weight: bold;
     color: white;
     text-align: left;
+    animation: slideUp 1s ease-out 0.4s;
+    /* Slight delay for the paragraph animation */
+}
+
+/* Keyframes for sliding in from the left */
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Keyframes for 3D rotate into the screen */
+@keyframes rotateIntoScreen {
+    0% {
+        opacity: 0;
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotateY(0);
+    }
+}
+
+.learn-button {
+    margin-left: 1px;
+    background-color: red;
+    color: white;
+    height: 50px;
+    border: none;
+    width: 210px;
+    font-size: 16px;
+    margin-right: 10px;
+    animation: slideInFromLeft 1s ease-out;
+    /* Slide in from the left */
+}
+
+.service-button {
+    width: 210px;
+    font-size: 16px;
+    animation: rotateIntoScreen 1s ease-out 1s forwards;
+    /* 3D rotate into the screen with a delay */
+    transform-origin: center;
+    /* Set the origin for 3D rotation */
+}
+
+.service-button:hover {
+    cursor: pointer;
 }
 
 
@@ -198,7 +377,600 @@
     /* Rotate the arrow */
 }
 
-.learn-button:active {
-    background-color: #870054;
-    /* Darker color on click */
+.joinTeam {
+    background-color: black;
+    color: rgb(124, 124, 124);
+    border: 2px solid rgb(0, 0, 0);
+    text-align: left;
+    font-size: larger;
+}
+
+.joinTeam p,
+.joinTeam a {
+    margin-left: 100px;
+}
+
+.joinTeam a {
+    color: white;
+}
+
+.compDes {
+    margin-top: 100px;
+    display: flex;
+    text-align: left;
+}
+
+.compDes div {
+    margin-left: 100px;
+}
+
+.compDesText h1 {
+    font-size: 40px;
+}
+
+.compDesText span {
+    color: rgb(145, 145, 145);
+}
+
+.compDesText button {
+    height: 50px;
+    border: none;
+    width: 200px;
+}
+.compDesTextDiv {
+    width: 350px; /* Container width */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    white-space: nowrap; /* Prevent wrapping */
+    position: relative; /* Enable absolute positioning for navigation dots */
+    background-color: #F3F3F3;
+    height: 350px;
+    margin-top: 50px;
+}
+
+.compDesTextDiv::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+
+/* Container for the slides */
+.slidesContainer {
+    display: inline-block; /* Keep slides in a single row */
+    vertical-align: top;
+    width: 350px; /* Ensure each slide fits the container */
+    white-space: nowrap;
+}
+
+/* Style each slide */
+.firstSlide,
+.secondSlide {
+    display: inline-block; /* Keep slides inline */
+    width: 350px; /* Slide width matches container */
+    box-sizing: border-box; /* Include padding and border in width */
+    margin: 0; /* Remove margin between slides */
+    text-align: center; /* Center text in each slide */
+    text-align: left;
+}
+.firstSlide p, .firstSlide span, .secondSlide p, .secondSlide span{
+    margin-left: 10px;
+}
+.firstSlide p,
+.secondSlide p {
+    font-size: larger;
+    font-weight: 600;
+}
+
+.firstSlide span,
+.secondSlide span {
+    
+    color: rgb(145, 145, 145);
+}
+/* Hide inactive slides */
+.firstSlide.inactive,
+.secondSlide.inactive {
+    display: none; /* Hide inactive slides */
+}
+
+/* Ensure navigation dots are positioned at the bottom */
+#sfSpan {
+    position: absolute; /* Position relative to the container */
+    bottom: 10px; /* Place at the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+    display: flex; /* Align dots in a row */
+    justify-content: center; /* Center-align the dots */
+}
+
+/* Style for navigation dots */
+.f,
+.s {
+    width: 12px; /* Dot size */
+    height: 12px;
+    background-color: #ccc; /* Default color */
+    border-radius: 50%; /* Circular shape */
+    display: inline-block; /* Inline dots */
+    margin: 5px; /* Spacing between dots */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+/* Active state for navigation dots */
+.f.active,
+.s.active {
+    background-color: #fd8f00; /* Highlight active dot */
+}
+
+.compDesTextDiv {
+    width: 350px; /* Container width */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.compDesTextDiv div {
+    display: inline-block; /* Arrange child divs in a row */
+    vertical-align: top; /* Align elements properly */
+    width: 350px; /* Ensure each slide fits the container width */
+    box-sizing: border-box; /* Include padding and border in width */
+    margin: 0; /* Remove margin between child elements */
+}
+
+
+#rmaua {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    z-index: 1;
+    color: white;
+    font-size: 16px;
+    width: 260px;
+    height: 50px;
+    border: none;
+    text-align: center;
+    line-height: 50px;
+    /* Center text vertically */
+    background-color: red;
+    /* Change to your preferred background color */
+    transition: color 0.4s ease;
+    margin-right: 15px;
+}
+
+#rmaua::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: black;
+    /* Change to your preferred background color */
+    z-index: -1;
+    transition: left 0.4s ease;
+}
+
+#rmaua:hover::before {
+    left: 0;
+}
+
+#rmaua:hover {
+    color: white;
+    /* Change text color on hover */
+    cursor: pointer;
+}
+
+#rmdarrow {
+    margin-right: 8px;
+    /* Space between arrow and text */
+    font-size: 18px;
+    /* Arrow size */
+    margin-left: 10px;
+    transition: transform 0.4s ease;
+    /* Smooth rotation */
+}
+
+#rmaua:hover #rmdarrow {
+    transform: rotate(360deg);
+    /* Rotate the arrow when the button is hovered */
+}
+
+.sWeProvide {
+    background-color: #F3F3F3;
+}
+
+.sWeProvide h1 {
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.sWeProvide span {
+    color: rgb(145, 145, 145);
+}
+
+
+.sWePdiv button {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    z-index: 1;
+    color: black;
+    font-size: large;
+    font-weight: 550;
+    font-size: 16px;
+    width: 260px;
+    height: 50px;
+    border: none;
+    border: 1px solid rgb(165, 165, 165);
+    text-align: center;
+    line-height: 50px;
+    background-color: rgb(255, 255, 255);
+    transition: color 0.4s ease;
+    margin-right: 15px;
+
+}
+
+.sWePdiv button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: rgb(255, 0, 0);
+    /* Change to your preferred background color */
+    z-index: -1;
+    transition: left 0.4s ease;
+}
+
+.sWePdiv button:hover::before {
+    left: 0;
+}
+
+.sWePdiv button:hover {
+    color: white;
+    /* Change text color on hover */
+    cursor: pointer;
+}
+
+.sWePdiv {
+    width: 370px;
+    margin-right: 15px;
+    margin-left: 15px;
+    height: 400px;
+    background-color: white;
+}
+.sWePdiv p{
+    font-size: 23px;
+    font-weight: 400;
+}
+.sWePdiv div{
+    width: 90%;
+    margin-left: 5%;
+}
+.OurSDivs {
+    display: flex;
+    overflow-x: auto;
+    /* Enables horizontal scrolling */
+    width: 100%;
+    /* Ensure it takes up the full width of the screen */
+}
+
+.OurSDivs div {
+    flex-shrink: 0;
+    /* Add a background color for visibility */
+    margin-right: 10px;
+    /* Space between each div */
+    justify-content: center;
+}
+
+.OurSDivs::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar in Webkit browsers (Chrome, Safari) */
+}
+
+.OurSDivs img {
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.slideControls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.controlBox {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: 2px solid #FD8F00;
+    cursor: pointer;
+}
+
+.controlBox.active {
+    background-color: red;
+}
+
+.aboutUs {
+    background: linear-gradient(135deg, hsl(25, 100%, 80%), #b3b3b3);
+    color: #000000;
+    text-align: center;
+    padding: 60px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.aboutUs p {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #646464;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+.aboutUs h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #646464;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.aboutUs span {
+    display: block;
+    font-size: 1.1rem;
+    margin: 20px auto 40px;
+    max-width: 800px;
+    line-height: 1.8;
+    color: #646464;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.aboutUs button {
+    background-color: #fff;
+    color: #ff4d4d;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1.8s ease-in-out;
+}
+
+.aboutUs button:hover {
+    background-color: #ff4d4d;
+    color: #fff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.GitFaq {
+    background-image: url('../assets/img/Cbackground.png');
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-size: cover; /* Ensure the image covers the entire element */
+    background-position: center; /* Center the image within the element */
+    width: 100%;
+    margin-top: 10px;
+    height: 700px;
+}
+
+.GitFaq{
+    display: flex;
+    align-items: center;
+}
+.GitFaq form h1{
+    font-weight: 500;
+}
+.GitFaq form{
+    background-color: white;
+    height: 600px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 
+    0px 1px 3px rgba(0, 0, 0, 0.06);
+    width: 450px;
+}
+.gitF{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: right;
+}
+.gitF p{
+    font-size: 15px;
+    color: #646464;
+}
+.gitS{
+    width: 60%;
+    height: 100%;
+    display: flex;
+}
+#gitfI{
+    width: 80%;
+    height: 43px;
+}
+#gitfQ{
+    height: 120px;
+    width: 80%;
+}
+#gitfl{
+    width: 82%;
+    height: 43px;
+}
+
+.gitF button {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    z-index: 1;
+    color: rgb(255, 255, 255);
+    font-size: large;
+    font-weight: 550;
+    font-size: 16px;
+    width: 260px;
+    height: 40px;
+    border: none;
+    text-align: center;
+    line-height: 50px;
+    background-color: rgb(206, 0, 0);
+    transition: color 0.4s ease;
+
+}
+
+.gitF button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
+    transition: left 0.4s ease;
+}
+
+
+
+.gitF button:hover::before {
+    left: 0;
+}
+
+.gitF button:hover {
+    color: white;
+    /* Change text color on hover */
+    cursor: pointer;
+}
+
+.input-container {
+    position: relative;
+    margin-left: 8.5%;
+    width: 82%; /* Adjust width as needed */
+}
+
+input#gitfQ {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input#gitfQ:focus {
+    border-color: #ff4d4d; /* Highlight border color on focus */
+}
+
+input#gitfQ::placeholder {
+    color: transparent; /* Hide the default placeholder */
+}
+
+label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 16px;
+    transition: 0.3s ease;
+    pointer-events: none; /* Prevent label from being selected */
+}
+
+input#gitfQ:focus + label,
+input#gitfQ:not(:placeholder-shown) + label {
+    top: 0;
+    left: 10px;
+    font-size: 12px;
+    color: #ff4d4d; /* Match the active border color */
+    background-color: white; /* Optional: Add a background for better visibility */
+    padding: 0 4px; /* Optional: Add padding to the label */
+}
+.gitSf{
+    margin-left: 40px;
+    text-align: left;
+    width: 100%;
+}
+.gitS h1{
+    font-size: 45px;
+    font-weight: 600;
+    margin-top: 40px;
+}
+.gitS p{ 
+    color: #646464;
+    font-size: large;
+}
+.gitS p span{
+    color: #000000;
+}
+.gitScont{
+    height: 450px;
+    background-color: white;
+    width: 90%;
+    border: 1px solid rgb(173, 173, 173);
+    margin-left: 0px !important;
+}
+.gitScont section span{
+    font-size: 14px;
+}
+.gitScont div{
+    height: 46px;
+    border: 1px solid rgb(196, 0, 0);
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(196, 0, 0);
+}
+.gitScont section{
+    height: 90px;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.gitScont div p{
+    font-size: larger;
+    margin-left: 10px;
+    font-weight: 500;
+    margin-top: 5px;
+    color: white;
 }

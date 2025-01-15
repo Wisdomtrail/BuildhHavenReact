@@ -1,0 +1,165 @@
+.footerContainer {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    background-color: #1A191D;
+}
+
+.footerContainer div {
+    width: 25%;
+    text-align: left;
+}
+
+.footerContainer div img {
+    width: 200px;
+    margin-left: 20px;
+}
+
+.infoFooter section {
+    margin-top: 5px;
+    width: 90%;
+    font-weight: 500;
+    color: white;
+    height: 80%;
+    margin-left: 35px;
+}
+
+.contactFooter section {
+    color: white;
+    margin-left: 30px;
+}
+
+.contactFooter section span {
+    margin-left: 10px;
+    
+    transition: color 0.4s ease;
+
+}
+.contactFooter section span:hover {
+    color: red;
+}
+
+
+#mfoot {
+    margin-top: 15px;
+}
+.newsLetter section{
+    margin-left: 30px;
+}
+.newsLetter span a{
+    color: white;
+    
+    transition: color 0.4s ease;
+}
+.newsLetter span {
+    color: white;
+}
+.newsLetter span a:hover{
+    color: rgb(250, 0, 0);
+}
+.newsLetter section input{
+    height: 45px;
+    width: 200px;
+    border: none;
+}
+.newsArrow{
+    border-bottom: 15px solid white;
+    border-top: 11px solid white;
+    border-right: 7px solid white;
+    border-left: 15px solid white;
+    background-color: red;
+    cursor: pointer;
+}
+.newsArrow span{
+    
+    border-bottom: 15px solid red;
+    border-top: 11px solid red;
+    border-right: 15px solid red;
+    border-left: 15px solid red;   
+}
+.newsFaArrowR{
+    color: rgb(255, 255, 255);
+    width: 20px;
+}
+.emFooter {
+    display: flex;
+}
+
+.contactFooter .fa-icon {
+    color: grey;
+    /* Changes the icon color to grey */
+}
+
+.contactFooter section a {
+    text-decoration: none;
+    /* Removes the default underline for links */
+    color: white;
+    /* Sets the text color to white */
+}
+
+
+.footerContainer div h2 {
+    margin-left: 30px;
+    color: white;
+    margin-top: 67px;
+}
+@media screen and (max-width: 1000px) {
+    .footerContainer {
+        background-color: #1A191D !important;
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        padding: 20px; /* Optional padding for better spacing */
+        height: auto; /* Allow auto height based on content */
+    }
+
+    .footerContainer div {
+        width: 100%; /* Ensure each section takes up full width */
+        margin-bottom: 20px; /* Space between sections */
+        padding: 10px; /* Padding for better spacing */
+        box-sizing: border-box; /* Ensure padding does not overflow */
+    }
+
+    .infoFooter, .contactFooter, .quick-links, .newsLetter {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Ensure the last section (newsLetter) has enough space */
+    .newsLetter {
+        margin-top: 20px; /* Add space before newsletter */
+        padding-bottom: 20px; /* Ensure space at the bottom */
+    }
+
+    /* Ensure the footer container adjusts to the content height */
+    .footerContainer {
+        flex-grow: 1; /* Allow footer container to grow with content */
+    }
+
+    .footerContainer h2 {
+        color: white;
+        margin-top: 10px;
+    }
+}
+
+
+#iil {
+    margin-left: 25px;
+}
+.quick-icons{
+    color: red;
+    width: 6px;
+    transition: color 0.3s ease;
+    margin-left: 35px;
+}
+.quick-links section a{
+    color: white;
+    margin-left: 10px;
+}
+.quick-links section:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: white;
+}
+.quick-links section:hover .quick-icons{
+    color: whitesmoke;
+}

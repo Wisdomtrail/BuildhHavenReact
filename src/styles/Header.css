@@ -7,7 +7,6 @@
     padding: 10px 20px;
     /* Add some padding for spacing */
     gap: 20px;
-    /* Add spacing between sections */
 }
 
 @media screen and (max-width: 1000px) {
@@ -29,7 +28,8 @@
         height: 100% !important;
     }
     #menuIcon{
-        margin-left: 15px;
+        margin-left: 25px;
+        font-size: 25px;
     }
 
     .bottom-section div {
@@ -99,6 +99,9 @@
 #tsb{
     font-size: large;
     font-weight: bold;
+}
+#tsb:hover{
+    color: #CD0001;
 }
 
 #tsh{
@@ -184,7 +187,6 @@
     /* Align text to the left */
 }
 
-
 .bottom-section {
     width: 100%;
     height: 200px;
@@ -198,11 +200,80 @@
 }
 
 .bottom-section div p {
+    position: relative;
     margin-right: 20px;
     margin-left: 20px;
     margin-top: 25px;
     font-weight: bold;
     font-size: larger;
+    cursor: pointer;
+}
+
+.services {
+    margin-top: 30px !important;
+    position: relative;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 16px; /* Slightly larger font for the 'Services' text */
+    font-weight: bold; /* Make the 'Services' text bold */
+  }
+  
+  .services .dropdown {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 200px; /* Set a fixed width */
+  }
+  
+  .services:hover .dropdown {
+    display: block;
+    text-align: left;
+  }
+  
+  .services .dropdown p {
+    margin: 5px 0;
+    padding: 8px 10px;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px; /* Smaller font size for dropdown items */
+    color: #333; /* Dark gray text for better readability */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .services .dropdown p:hover {
+    background-color: #ff0000; /* Subtle hover effect */
+    border-radius: 3px;
+    color: white;
+  }
+  
+
+#angle{
+    margin-top: 33px;
+    margin-left: -18px
+}
+
+/* Add red border on hover */
+.bottom-section div p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: red;
+    transition: width 0.3s ease;
+}
+
+.bottom-section div p:hover::before {
+    width: 100%;
+    /* Extend the border to cover the full width */
 }
 
 .sg {
