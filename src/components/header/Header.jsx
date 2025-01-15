@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "../../styles/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faArrowRight, faSearch, faBars, faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +7,11 @@ import phoneIcon from '../../assets/img/phoneIcon.png';
 import messageIcon from '../../assets/img/messageIcon.png';
 
 const Header = () => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isServicesOpen, setServicesOpen] = useState(false);
+
+  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
+  const toggleServices = () => setServicesOpen(!isServicesOpen);
 
   return (
     <header>
@@ -28,8 +33,12 @@ const Header = () => {
           </div>
         </div>
         <div className="nav-tools">
-          <FontAwesomeIcon icon={faSearch} color="#9e9e9e" />
-          <FontAwesomeIcon id="menuIcon" icon={faBars} color="#9e9e9e" />
+          <FontAwesomeIcon
+            id="menuIcon"
+            icon={faBars}
+            color="#9e9e9e"
+            onClick={toggleSidebar}
+          />
         </div>
         {/* Email Section */}
         <div className="contactEmailSection">
@@ -57,7 +66,29 @@ const Header = () => {
             </p>
           </div>
         </div>
+      </div>
 
+      {/* Sidebar */}
+      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+        <nav>
+          <p className="hme">Home</p>
+          <p id="aus">About Us</p>
+          <p className="services" onClick={toggleServices}>
+            Services <FontAwesomeIcon icon={faAngleDown} />
+            {isServicesOpen && (
+              <div className="dropdown">
+                <p id="building-materials">Building Materials</p>
+                <p id="precision-power-tools">Precision Power Tools</p>
+                <p id="fabrication-tools">Fabrication Tools</p>
+                <p id="pipes-steel">Pipes and Structural Steel</p>
+                <p id="accessories-gear">Accessories & Safety Gear</p>
+                <p id="doors-plates">Doors and Plates</p>
+              </div>
+            )}
+          </p>
+          <p>News</p>
+          <p>Contact Us</p>
+        </nav>
       </div>
 
       {/* Bottom Section */}

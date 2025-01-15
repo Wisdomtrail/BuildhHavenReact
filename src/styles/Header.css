@@ -64,10 +64,54 @@
     .locationSection {
         display: none !important;
     }
-
-
-
-  
+    .sidebar{
+        display: block !important;
+    }
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 250px;
+        background-color: #fff;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        padding: 1rem;
+      }
+      
+      .sidebar.open {
+        left: 0;
+      }
+      
+      .sidebar nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .sidebar nav p{
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        margin-top: 0px;
+      }
+      .hme{
+        margin-top: 50px !important;
+      }
+      #aus{
+        margin-bottom: -10px !important;
+      }
+      
+      .dropdown {
+        margin-top: 0.5rem;
+        padding-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      #menuIcon, #closeIcon {
+        cursor: pointer;
+      }
+      
   /* Hide the bottom section by moving it down */
   .bottom-section.hidden {
     transform: translateY(100%);
@@ -86,11 +130,22 @@
       padding-top: 60px; /* Adjust based on .top-section height */
     }
   }
-  
+  .services .dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 200px;
+    padding: 10px 0;
+  }
 }
 #tsb{
     font-size: large;
     font-weight: bold;
+}
+.sidebar{
+    display: none;
 }
 #tsb:hover{
     color: #CD0001;
