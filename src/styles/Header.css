@@ -65,15 +65,8 @@
         display: none !important;
     }
 
-    /* Base styles for the header sections */
-.top-section, .bottom-section {
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  /* Hide the top section by moving it up */
-  .top-section.hidden {
-    transform: translateY(-100%);
-  }
+
+
   
   /* Hide the bottom section by moving it down */
   .bottom-section.hidden {
@@ -84,12 +77,11 @@
   @media screen and (max-width: 1000px) {
     .top-section {
       position: fixed;
+      background-color: white !important;
       top: 0;
       width: 100%;
       z-index: 1000;
     }
-  
-    /* Adjust padding to prevent content overlap */
     header {
       padding-top: 60px; /* Adjust based on .top-section height */
     }

@@ -8,38 +8,6 @@ import messageIcon from '../../assets/img/messageIcon.png';
 
 const Header = () => {
 
-  useEffect(() => {
-    let lastScrollTop = 0;
-    const delta = 5;
-    const topSection = document.querySelector('.top-section');
-    const bottomSection = document.querySelector('.bottom-section');
-    const header = document.querySelector('header');
-
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (Math.abs(scrollTop - lastScrollTop) <= delta) return;
-
-      if (scrollTop > lastScrollTop) {
-        // Scrolling down
-        topSection.classList.add('hidden');
-        bottomSection.classList.add('hidden');
-      } else {
-        // Scrolling up
-        topSection.classList.remove('hidden');
-        bottomSection.classList.remove('hidden');
-      }
-
-      lastScrollTop = scrollTop;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <header>
       {/* Top Section */}
