@@ -60,29 +60,21 @@
 .newsLetter section input{
     height: 45px;
     width: 200px;
+    display: flex;
     border: none;
 }
-.newsArrow{
-    border-bottom: 15px solid white;
-    border-top: 11px solid white;
-    border-right: 7px solid white;
-    border-left: 15px solid white;
-    background-color: red;
+#sendMail{
+    display: flex !important;
+}
+#sendMail article{
+    width: 50px;
+    text-align: center;
     cursor: pointer;
+    align-content: center;
 }
-.newsArrow span{
-    
-    border-bottom: 15px solid red;
-    border-top: 11px solid red;
-    border-right: 15px solid red;
-    border-left: 15px solid red;   
-}
-.newsFaArrowR{
-    color: rgb(255, 255, 255);
-    width: 20px;
-}
-.emFooter {
-    display: flex;
+.send{
+   background-color: red;
+   
 }
 
 .contactFooter .fa-icon {

@@ -9,6 +9,7 @@ const Footer = () => {
 
     return (
         <div className="footerContainer" id="footerS">
+            
             <div className="infoFooter"><br /><br /><br />
                 <img src={logo} alt="" />
                 <section>
@@ -100,12 +101,10 @@ const Footer = () => {
                 </section>
                 <br />
                 <section>
-                    <input type="text" placeholder="Email" />
-                    <span className="newsArrow">
-                        <span>
-                        <FontAwesomeIcon className="newsFaArrowR" icon={faArrowRight}/>
-                        </span>
-                    </span>
+                   <div id="sendMail">
+                   <input type="text" placeholder="Email" />
+                   <article className="send"><span>send</span></article>
+                   </div>
                     <br /><br />
                     <span>Want to visit?</span>
                     <span><a href="">Click here</a></span>
