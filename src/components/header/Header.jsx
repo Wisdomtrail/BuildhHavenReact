@@ -77,12 +77,12 @@ const Header = () => {
             Services <FontAwesomeIcon icon={faAngleDown} />
             {isServicesOpen && (
               <div className="dropdown">
-                <p id="building-materials">Building Materials</p>
-                <p id="precision-power-tools">Precision Power Tools</p>
-                <p id="fabrication-tools">Fabrication Tools</p>
-                <p id="pipes-steel">Pipes and Structural Steel</p>
-                <p id="accessories-gear">Accessories & Safety Gear</p>
-                <p id="doors-plates">Doors and Plates</p>
+                <p id="building-materials"><span>Building Materials</span></p>
+                <p id="precision-power-tools"><span>Precision Power Tools</span></p>
+                <p id="fabrication-tools"><span>Fabrication Tools</span></p>
+                <p id="pipes-steel"><span>Pipes and Structural Steel</span></p>
+                <p id="accessories-gear"><span>Accessories & Safety Gear</span></p>
+                <p id="doors-plates"><span>Doors and Plates</span></p>
               </div>
             )}
           </p>
