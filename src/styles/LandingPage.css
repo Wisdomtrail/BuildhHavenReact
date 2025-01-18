@@ -207,7 +207,7 @@
 }
 
 .aboutUs {
-    width: 90% !important;
+    width: 100% !important;
 }
 .firstSlide p, .firstSlide span, .secondSlide p, .secondSlide span{
     margin-left: -15px !important;
@@ -578,9 +578,14 @@
 .sWeProvide h1 {
     font-size: 45px;
     font-weight: 600;
+    margin-left: 15px;
 }
 
-.sWeProvide span {
+.sWeProvide section {
+    margin-left: 15px;
+    color: rgb(145, 145, 145);
+}
+.sWePdiv span{
     color: rgb(145, 145, 145);
 }
 

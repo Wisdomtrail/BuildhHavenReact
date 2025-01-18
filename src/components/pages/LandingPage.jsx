@@ -155,7 +155,8 @@ const LandingPage = () => {
                 </div><br /><br /><br /><br /><br />
                 <div className="sWeProvide">
                     <h1>Service We Provide</h1>
-                    <span>We have diverse services for your construction project. We will procure top quality building materials for you and get them to you in good shape.</span><br /><br />
+                    <section>We have diverse services for your construction project. We will procure top quality building materials for you and get them to you in good shape.</section>
+                    <br /><br />
                     <div className="OurSDivs" ref={ourSDivsRef}>
                         <div className="sWePdiv">
                             <img src={precisionTools} alt="" />
