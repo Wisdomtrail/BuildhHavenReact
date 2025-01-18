@@ -174,7 +174,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className="sWePdiv"><img src={Ftools} alt="" />
-                            <p>Fabrication Tools  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></p>
+                            <p>Fabrication Tools</p>
                             <div>
                                 <span>
                                     Craft brilliance with our specialized fabrication tools. We provide the tools you need to shape metals with finesse.                                    </span>

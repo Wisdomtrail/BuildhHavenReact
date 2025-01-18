@@ -632,6 +632,7 @@
 
 .sWePdiv {
     width: 370px;
+    text-align: center;
     margin-right: 15px;
     margin-left: 15px;
     height: 400px;
@@ -813,14 +814,20 @@
 .gitF{
     width: 40%;
     display: flex;
-    align-items: center;
+    align-items: center !important;
     height: 100%;
-    justify-content: right;
+    text-align: center;
+    justify-content: center;
 }
 .gitF p{
     font-size: 15px;
     color: #646464;
+    text-align: center;
 }
+.gitF h1{
+    text-align: center;
+}
+
 .gitS{
     width: 60%;
     height: 100%;

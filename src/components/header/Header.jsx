@@ -5,14 +5,20 @@ import { faLocationDot, faArrowRight, faSearch, faBars, faAngleDown } from "@for
 import logo from '../../assets/img/Logo.png';
 import phoneIcon from '../../assets/img/phoneIcon.png';
 import messageIcon from '../../assets/img/messageIcon.png';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isServicesOpen, setServicesOpen] = useState(false);
+  
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
   const toggleServices = () => setServicesOpen(!isServicesOpen);
 
+  const navigateToLogin = () => {
+    navigate('/login')
+  }
   return (
     <header>
       {/* Top Section */}
@@ -83,11 +89,13 @@ const Header = () => {
                 <p id="pipes-steel"><span>Pipes and Structural Steel</span></p>
                 <p id="accessories-gear"><span>Accessories & Safety Gear</span></p>
                 <p id="doors-plates"><span>Doors and Plates</span></p>
+                
               </div>
             )}
           </p>
           <p>News</p>
           <p>Contact Us</p>
+          <p onClick={navigateToLogin}>Login</p>
         </nav>
       </div>
 
@@ -110,6 +118,7 @@ const Header = () => {
 
           <p>News</p>
           <p>Contact Us</p>
+          <p onClick={navigateToLogin}>Login</p>
         </div>
         <div className="sg">
           <input type="text" name="slideOutOnclick" id="searchBox" />
