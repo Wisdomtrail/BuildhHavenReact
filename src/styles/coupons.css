@@ -1,0 +1,73 @@
+/* Container for all coupons */
+.coupons-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row by default */
+    gap: 20px;
+    padding: 20px;
+    margin-left: 250px; /* Adjust for sidebar */
+    background-color: #f9f9f9; /* Light background */
+    box-sizing: border-box;
+  }
+  
+  /* Responsive layout for smaller screens */
+  @media (max-width: 1000px) {
+    .coupons-container {
+      margin-left: 0; /* Remove left margin for small screens */
+      grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+      padding: 10px;
+    }
+  }
+  
+  /* Individual coupon card */
+  .coupon-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .coupon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Coupon icon */
+  .coupon-icon {
+    font-size: 36px;
+    color: #e77840;
+    margin-bottom: 10px;
+  }
+  
+  /* Coupon title */
+  .coupon-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Coupon description */
+  .coupon-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  /* Coupon code button */
+  .coupon-code {
+    background-color: #e77840;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .coupon-code:hover {
+    background-color: #e77840;
+  }
+  

@@ -83,10 +83,10 @@ const LandingPage = () => {
                     </div>
                     <div className="dark-overlay">
                         <div className="banner-text">
-                            <h1>We supply Quality <br />You Can Trust Everyday</h1>
-                            <p>Building Dreams, One Quality Material at a Time. Discover The Difference With Build Haven Hub's Premium <br />
+                            <h1>We supply Quality <br />You Can Trust Everyday</h1><br />
+                           <br /> <p>Building Dreams, One Quality Material at a Time. Discover The Difference With Build Haven Hub's Premium <br />
                                 Construction Supplies. Your Project Deserves The Best.</p>
-                            <div>
+                           <br /> <div>
                                 <button className="learn-button">LEARN MORE
                                     <FontAwesomeIcon className="arrow" icon={faArrowRight} /> </button>
                                 <br /><br />  <button className="service-button">OUR SERVICES</button>

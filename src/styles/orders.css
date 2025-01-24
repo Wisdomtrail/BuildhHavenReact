@@ -1,0 +1,134 @@
+/* General Container */
+.order-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  /* Title */
+  .order-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 1000px) {
+    
+  /* Order Details */
+  .order-details {
+    width: 80%;
+    margin-left: 20%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  }
+  .order-details h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+  
+  /* Order Item */
+  .order-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+  }
+  
+  .order-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Product Image */
+  .item-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  /* Item Info */
+  .item-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .item-name {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .item-price, .item-total {
+    font-size: 1em;
+    color: #666;
+  }
+  
+  .item-quantity {
+    font-size: 1.2em;
+    margin: 0 10px;
+  }
+  
+  /* Quantity Controls */
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .quantity-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .quantity-btn:hover {
+    opacity: 0.8;
+  }
+  
+  /* Order Summary */
+  .order-summary {
+    text-align: right;
+    margin-top: 20px;
+  }
+  
+  .total-amount {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Buttons */
+  .order-container button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  /* Buttons for Confirm & Cancel */
+  .confirm-order {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cancel-order {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  /* Buttons Hover Effect */
+  .order-container button:hover {
+    opacity: 0.8;
+  }
+  

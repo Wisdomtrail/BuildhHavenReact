@@ -1,0 +1,271 @@
+/* Ensure the sidebar is visible by default on larger screens */
+.Sidebar {
+    display: block;
+  }
+  
+  /* Ensure the mobile downbar is hidden by default on larger screens */
+  .DMobileDownbar {
+    display: none;
+  }
+  .logoP{
+    display: none;
+  }
+  
+  /* Media query for screens smaller than 1000px */
+  @media (max-width: 1000px) {
+    .Sidebar {
+      display: none; /* Hide sidebar on small screens */
+    }
+    .logoP{
+      display: block;
+    }
+    .search-bar{
+      margin-left: 10px;
+    }
+  
+    .DMobileDownbar {
+      display: block; /* Show downbar on small screens */
+    }
+  
+    /* Ensure the topnav takes full width and stays at the top */
+    .topnav {
+      width: 100% !important; /* Ensure topnav spans the full width */
+      margin-left: 0 !important; /* No space for the sidebar */
+      left: 0 !important;
+      right: 0 !important;
+      position: fixed !important;
+      top: 0 !important;
+      z-index: 1000 !important; /* Ensure it stays on top */
+    }
+  
+    /* Adjust the products layout on smaller screens */
+    .products {
+      margin-left: 0 !important; /* Remove left margin for small screens */
+      width: 100% !important; /* Allow products to fill the entire width */
+      padding: 10px !important;
+      grid-template-columns: repeat(2, 1fr) !important; /* 2 items per row */
+      gap: 15px !important;
+    }
+  }
+  
+  /* Default layout for larger screens (min-width: 1000px) */
+  @media (min-width: 1000px) {
+    .products {
+      margin-left: 250px !important; /* Space for sidebar */
+      width: calc(100% - 250px) !important; /* Fill the remaining space after the sidebar */
+      padding: 20px !important;
+      grid-template-columns: repeat(5, 1fr) !important; /* 5 items per row */
+      gap: 20px !important;
+    }
+  }
+  
+  /* Container for all products */
+  .products {
+    display: grid !important; /* Use grid layout for flexible row management */
+    background-color: #f9f9f9 !important; /* Light background */
+    min-height: 100vh !important;
+    box-sizing: border-box !important;
+    padding-top: 60px !important; /* Space for the fixed topnav */
+  }
+  
+  /* Individual product card */
+  .product-card {
+    background-color: white !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    padding: 15px !important;
+    text-align: center !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    height: 250px !important; /* Set a static height for product cards */
+    min-height: 250px !important; /* Ensure it doesn't shrink */
+    width: 195px;
+  }
+  
+  /* Ensure hover effect still works */
+  .product-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Product image */
+  .product-card img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 4px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Product name */
+  .product-card h3 {
+    font-size: 18px !important;
+    color: #333 !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Product description */
+  .product-card p {
+    font-size: 14px !important;
+    color: #666 !important;
+    margin-bottom: 15px !important;
+  }
+  
+/* Product info container */
+.product-info {
+    display: flex !important;
+    flex-direction: column !important; /* Stack items vertically */
+    align-items: center !important;
+    margin-top: 10px !important;
+  }
+  
+  .price-quantity {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+  
+  .product-price {
+    font-size: 16px !important;
+    color: #e77840 !important;
+    font-weight: bold !important;
+    margin-right: 20px !important; /* Space between price and quantity */
+  }
+  
+  .quantity-container {
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  .quantity-btn {
+    background-color: #e77840 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 5px 10px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    margin: 0 5px !important;
+  }
+  
+  .quantity-display {
+    font-size: 16px !important;
+    color: #333 !important;
+    padding: 5px !important;
+    border-radius: 4px !important;
+    width: 30px !important;
+    text-align: center !important;
+  }
+  
+  .add-to-cart {
+    background-color: #e77840 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 8px 12px !important;
+    font-size: 10px !important;
+    cursor: pointer !important;
+    margin-top: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    transition: background-color 0.3s ease !important;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #e77840 !important;
+  }
+  
+  
+  /* Fixed top nav bar styling */
+  .topnav {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 15px !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    position: fixed !important; /* Fix the topnav to the top */
+    top: 0 !important;
+    left: 0 !important;
+    justify-self: right;
+    right: 0 !important;
+    z-index: 1000 !important; /* Ensure it stays on top of other content */
+    width: 81.5%; /* Full width */
+    margin-left: 0 !important; /* Remove any margin */
+  }
+  
+  /* Search bar inside the topnav */
+  .search-bar {
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+  }
+  
+  .search-bar input {
+    padding: 10px !important;
+    width: 250px !important;
+    border-radius: 25px !important;
+    border: 1px solid #ddd !important;
+  }
+  
+  .search-icon {
+    position: absolute !important;
+    right: 10px !important;
+    color: #888 !important;
+  }
+  
+  /* Icons container inside the topnav */
+  .icons {
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  .support-icon,
+  .cart-icon {
+    font-size: 20px !important;
+    margin-left: 20px !important;
+    cursor: pointer !important;
+  }
+  
+  .cart-icon-container {
+    position: relative !important;
+  }
+  
+  .cart-item-count {
+    position: absolute !important;
+    top: -5px !important;
+    right: -5px !important;
+    background-color: red !important;
+    color: white !important;
+    font-size: 12px !important;
+    padding: 2px 5px !important;
+    border-radius: 50% !important;
+  }
+  /* Quantity container */
+.quantity-container {
+    display: flex !important;
+    align-items: center !important;
+    margin-top: 10px !important;
+  }
+  
+  .quantity-btn {
+    background-color: #e77840 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 5px 10px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    margin: 0 5px !important;
+  }
+  
+  .quantity-display {
+    font-size: 16px !important;
+    color: #333 !important;
+    padding: 5px !important;
+    border-radius: 4px !important;
+    width: 30px !important;
+    text-align: center !important;
+  }
+  
