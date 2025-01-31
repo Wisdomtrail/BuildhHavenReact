@@ -1,0 +1,130 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* View Product Container */
+.view-product-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Slider */
+.view-product-slider {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.view-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Arrows */
+.view-product-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view-product-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+/* Product Details */
+.view-product-details {
+    margin-top: 20px;
+}
+
+.view-product-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.view-product-description {
+    color: #555;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.view-product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FD8F00;
+    margin-top: 10px;
+}
+
+/* Add to Cart Button */
+.view-product-button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    background: #FD8F00;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.3s;
+}
+
+.view-product-button:hover {
+    background: #E67E22;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .view-product-container {
+        width: 95%;
+    }
+
+    .view-product-slider {
+        height: 250px;
+    }
+
+    .view-product-title {
+        font-size: 22px;
+    }
+
+    .view-product-description {
+        font-size: 14px;
+    }
+
+    .view-product-price {
+        font-size: 18px;
+    }
+}

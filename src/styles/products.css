@@ -13,6 +13,18 @@
   
   /* Media query for screens smaller than 1000px */
   @media (max-width: 1000px) {
+    
+  .product-card {
+    width: 190px !important;
+    height: 320px !important;
+  }
+  .product-card img {
+    width: 100% !important;
+    height: 150px !important;
+    border-radius: 4px !important;
+    margin-bottom: 10px !important;
+  }
+  
     .Sidebar {
       display: none; /* Hide sidebar on small screens */
     }
@@ -44,7 +56,7 @@
       width: 100% !important; /* Allow products to fill the entire width */
       padding: 10px !important;
       grid-template-columns: repeat(2, 1fr) !important; /* 2 items per row */
-      gap: 15px !important;
+      gap: 2px !important;
     }
   }
   
@@ -54,8 +66,8 @@
       margin-left: 250px !important; /* Space for sidebar */
       width: calc(100% - 250px) !important; /* Fill the remaining space after the sidebar */
       padding: 20px !important;
-      grid-template-columns: repeat(5, 1fr) !important; /* 5 items per row */
-      gap: 20px !important;
+      grid-template-columns: repeat(4, 1fr) !important; /* 5 items per row */
+      gap: 20px ;
     }
   }
   
@@ -77,9 +89,9 @@
     padding: 15px !important;
     text-align: center !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-    height: 250px !important; /* Set a static height for product cards */
+    height: 400px ; /* Set a static height for product cards */
     min-height: 250px !important; /* Ensure it doesn't shrink */
-    width: 195px;
+    width: 265px;
   }
   
   /* Ensure hover effect still works */
@@ -91,7 +103,7 @@
   /* Product image */
   .product-card img {
     width: 100% !important;
-    height: auto !important;
+    height: auto ;
     border-radius: 4px !important;
     margin-bottom: 10px !important;
   }
@@ -126,7 +138,7 @@
   }
   
   .product-price {
-    font-size: 16px !important;
+    font-size: 13px !important;
     color: #e77840 !important;
     font-weight: bold !important;
     margin-right: 20px !important; /* Space between price and quantity */
@@ -141,12 +153,13 @@
     background-color: #e77840 !important;
     color: white !important;
     border: none !important;
-    border-radius: 4px !important;
-    padding: 5px 10px !important;
-    font-size: 16px !important;
+    border-radius: 3px !important;
+    padding: 1px 2px !important; /* Further reduced padding */
+    font-size: 12px !important; /* Smaller font size */
     cursor: pointer !important;
-    margin: 0 5px !important;
+    margin: 0 2px !important; /* Reduced margin */
   }
+  
   
   .quantity-display {
     font-size: 16px !important;

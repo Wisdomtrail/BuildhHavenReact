@@ -1,35 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaShoppingCart, FaSearch, FaQuestionCircle } from "react-icons/fa";
 import Sidebar from '../sideBar/SideBar';
 import DMobileDownbar from '../sideBar/DMobileDownbar';
 import '../../styles/products.css';
 import { useNavigate } from "react-router-dom";
-import logoP from '../../assets/img/logoP.png'
+import logoP from '../../assets/img/logoP.png';
+
 const Products = () => {
   const [cartCount, setCartCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate  = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);  // Loading state for products
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Fetch products from the API when the component mounts
+    const fetchProducts = async () => {
+      try {
+        // Retrieve the token from localStorage
+        const token = localStorage.getItem("token");
   
-  // Initialize products with quantity set to 1
-  const products = Array.from({ length: 30 }, (_, index) => ({
-    id: index + 1,
-    name: `Product ${index + 1}`,
-    description: `This is the description of Product ${index + 1}.`,
-    price: (Math.random() * 100).toFixed(2),
-    image: `https://via.placeholder.com/150?text=Product+${index + 1}`,
-    quantity: 1, // Default quantity
-  }));
+        // Ensure the token exists before making the request
+        if (!token) {
+          console.error("Token is missing. Please log in again.");
+          return;
+        }
+  
+        const response = await fetch("http://localhost:3001/product/getAll", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` // Add token to the Authorization header
+          },
+        });
+  
+        const data = await response.json();
+        console.log("API Response:", data); // Log the API response to check the structure
+  
+        // Check if the response contains the expected message and products
+        if (data.message === "Products retrieved successfully" && data.products) {
+          setProducts(data.products);
+        } else {
+          console.error("No products found or incorrect response format", data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false); // Stop loading after the API call finishes
+      }
+    };
+  
+    fetchProducts();
+  }, []);
+  
 
-  const [updatedProducts, setUpdatedProducts] = useState(products);
-
-  const filteredProducts = updatedProducts.filter(product =>
+  const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleQuantityChange = (id, action) => {
-    setUpdatedProducts((prevProducts) =>
+    setProducts((prevProducts) =>
       prevProducts.map((product) =>
-        product.id === id
+        product._id === id
           ? {
               ...product,
               quantity: action === "increase" ? product.quantity + 1 : product.quantity > 1 ? product.quantity - 1 : product.quantity,
@@ -39,13 +70,17 @@ const Products = () => {
     );
   };
 
-  const orders = () =>{
-    navigate('/orders')
-  }
+  const orders = () => {
+    navigate('/orders');
+  };
 
   const handleAddToCart = (product) => {
     setCartCount(cartCount + product.quantity);
   };
+
+  if (loading) {
+    return <div>Loading products...</div>;  // Show loading message while products are being fetched
+  }
 
   return (
     <>
@@ -53,7 +88,7 @@ const Products = () => {
       <div className="products">
         <div className="topnav">
           <div className="logoP">
-            <img src={logoP} alt="" />
+            <img src={logoP} alt="Logo" />
           </div>
           <div className="search-bar">
             <input
@@ -66,7 +101,7 @@ const Products = () => {
           </div>
           <div className="icons">
             <FaQuestionCircle className="support-icon" />
-            <div className="cart-icon-container" onClick={orders} >
+            <div className="cart-icon-container" onClick={orders}>
               <FaShoppingCart className="cart-icon" />
               {cartCount > 0 && (
                 <span className="cart-item-count">{cartCount}</span>
@@ -76,24 +111,23 @@ const Products = () => {
         </div>
 
         {filteredProducts.map((product) => (
-          <div className="product-card" key={product.id}>
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
+          <div className="product-card" key={product._id}>
+            <img src={product.images[0]} alt={product.name} />
+            <p>{product.description.length > 40 ? `${product.description.substring(0, 40)}...` : product.description}</p>
             <div className="product-info">
               <div className="price-quantity">
-                <span className="product-price">${product.price}</span>
+                <span className="product-price">₦{product.price}</span>
                 <div className="quantity-container">
                   <button
                     className="quantity-btn"
-                    onClick={() => handleQuantityChange(product.id, "decrease")}
+                    onClick={() => handleQuantityChange(product._id, "decrease")}
                   >
                     -
                   </button>
                   <span className="quantity-display">{product.quantity}</span>
                   <button
                     className="quantity-btn"
-                    onClick={() => handleQuantityChange(product.id, "increase")}
+                    onClick={() => handleQuantityChange(product._id, "increase")}
                   >
                     +
                   </button>

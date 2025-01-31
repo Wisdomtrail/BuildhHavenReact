@@ -62,7 +62,7 @@
   .settingsPage input[type="text"]:focus,
   .settingsPage input[type="email"]:focus,
   .settingsPage input[type="password"]:focus {
-    border-color: #FF8C00;
+    border-color: #e77840;
   }
   
   /* Profile Section */
@@ -72,6 +72,7 @@
     align-items: center;
     gap: 15px;
     border: 2px solid red;
+    width: 300px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -92,7 +93,7 @@
   }
   
   .profile button {
-    background-color: #FF8C00;
+    background-color: #e77840;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -107,7 +108,7 @@
   
   /* Update Info Button */
   .update-button {
-    background-color: #FF8C00;
+    background-color: #e77840;
     color: white;
     border: none;
     padding: 10px 20px;

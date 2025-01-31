@@ -11,6 +11,19 @@ import Orders from './components/pages/Orders.jsx';
 import Logout from './components/pages/Logout.jsx';
 import Profile from './components/pages/Profile.jsx';
 import Settings from './components/pages/Settings.jsx';
+import ViewProduct from './components/pages/ViewProduct.jsx';
+
+
+const product = {
+  images: [
+    "https://res.cloudinary.com/dcsvykbiw/image/upload/v1738247724/product_images/ezqipzvbwbycpzav8twf.jpg",
+    "https://res.cloudinary.com/dcsvykbiw/image/upload/v1738247724/product_images/ezqipzvbwbycpzav8twf.jpg",
+    "https://res.cloudinary.com/dcsvykbiw/image/upload/v1738247724/product_images/ezqipzvbwbycpzav8twf.jpg",
+  ],
+  title: "Stylish Sneakers",
+  description: "High-quality sneakers with a comfortable fit and modern design.",
+  price: 89.99,
+};
 
 
 function App() {
@@ -26,6 +39,7 @@ function App() {
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/settings' element={<Settings/>}/>
         <Route path='logout' element={<Logout/>}/>
+        <Route path='/viewProduct' element={ <ViewProduct product={product} />}/>
       </Routes>
     </Router>
   );

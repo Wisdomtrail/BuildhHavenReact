@@ -5,18 +5,21 @@
     align-items: center;
     min-height: 100vh;
     background-image: url('../assets/img/ContructionImg.jpg');
-    background-size: cover; /* Ensures the image covers the entire viewport */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents tiling */
+    background-size: cover;
+    /* Ensures the image covers the entire viewport */
+    background-position: center;
+    /* Centers the image */
+    background-repeat: no-repeat;
+    /* Prevents tiling */
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.wrapper{
+.wrapper {
     position: relative;
     width: 420px;
     height: 450px;
@@ -26,16 +29,18 @@
     color: #fff;
     backdrop-filter: blur(30px);
 }
-.wrapper .form-box{
+
+.wrapper .form-box {
     width: 100%;
     padding: 40px;
 }
-.form h1{
+
+.form h1 {
     font-size: 36px;
     text-align: center;
 }
 
-.form .input-box{
+.form .input-box {
     position: relative;
     width: 100%;
     height: 50px;
@@ -50,17 +55,19 @@
     outline: none;
     border: 2px solid red;
     border-radius: 40px;
-    padding: 20px 45px 20px 20px;  
+    padding: 20px 45px 20px 20px;
 }
 
-.input-box input::placeholder{
-    color:#fff;
+.input-box input::placeholder {
+    color: #fff;
     font-size: 15px;
 }
-.input-box input:focus{
+
+.input-box input:focus {
     background-color: transparent;
 }
-.input-box .icon{
+
+.input-box .icon {
     position: absolute;
     right: 20px;
     top: 50%;
@@ -68,30 +75,70 @@
     font-size: 16px;
 }
 
-.form .remember-forgot{
+.form .remember-forgot {
     display: flex;
     justify-content: space-between;
     font-size: 14.5px;
     margin: -10px 0 15px;
 }
 
-.remember-forgot div{
+.remember-forgot div {
     accent-color: red;
     margin-left: 4px;
 }
-.remember-forgot div input{
+
+.remember-forgot div input {
     margin-right: 4px;
 }
-.remember-forgot a{
+
+.remember-forgot a {
     color: #fff;
     text-decoration: none;
 }
 
-.remember-forgot a:hover{
+.remember-forgot a:hover {
     text-decoration: underline;
 }
+
+.form button.loading {
+    pointer-events: none;
+    /* Disable clicking while loading */
+    color: transparent;
+    /* Hide the text while loading */
+    background-color: white;
+    /* Make sure the background is transparent when loading */
+}
+
+.form button .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid transparent;
+    border-top: 3px solid red;
+    /* Spinner color */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+    /* Ensure spinner is on top of everything */
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
 .form button {
-    position: relative; /* Add this to make the button the reference for ::before */
+    position: relative;
+    /* Add this to make the button the reference for ::before */
     width: 100%;
     height: 45px;
     background-color: #fff;
@@ -103,9 +150,11 @@
     font-size: 16px;
     color: #333;
     font-weight: 700;
-    overflow: hidden; /* Ensures the pseudo-element doesn't overflow the button */
+    overflow: hidden;
+    /* Ensures the pseudo-element doesn't overflow the button */
     transition: color 0.4s ease;
-    z-index: 1; /* Ensures the text is above the pseudo-element */
+    z-index: 1;
+    /* Ensures the text is above the pseudo-element */
 }
 
 .form button::before {
@@ -115,17 +164,21 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 0, 0); /* Change to your preferred background color */
-    z-index: -1; /* Keeps the background behind the text */
+    background-color: rgb(255, 0, 0);
+    /* Change to your preferred background color */
+    z-index: -1;
+    /* Keeps the background behind the text */
     transition: left 0.4s ease;
 }
 
 .form button:hover::before {
-    left: 0; /* Animate the pseudo-element into view */
+    left: 0;
+    /* Animate the pseudo-element into view */
 }
 
 .form button:hover {
-    color: white; /* Change text color on hover */
+    color: white;
+    /* Change text color on hover */
     cursor: pointer;
 }
 
@@ -136,11 +189,12 @@
     margin: 20px 0 15px;
 }
 
-.register-link p a{
+.register-link p a {
     color: white;
     text-decoration: none;
     font-weight: 600;
 }
-.register-link p a:hover{
+
+.register-link p a:hover {
     text-decoration: underline;
 }
