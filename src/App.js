@@ -12,6 +12,9 @@ import Logout from './components/pages/Logout.jsx';
 import Profile from './components/pages/Profile.jsx';
 import Settings from './components/pages/Settings.jsx';
 import ViewProduct from './components/pages/ViewProduct.jsx';
+import AboutUs from './components/pages/AboutUs.jsx';
+import News from './components/pages/News.jsx';
+import ContactUs from './components/pages/ContactUs.jsx';
 
 
 const product = {
@@ -40,6 +43,9 @@ function App() {
         <Route path='/settings' element={<Settings/>}/>
         <Route path='logout' element={<Logout/>}/>
         <Route path='/viewProduct' element={ <ViewProduct product={product} />}/>
+        <Route path='/aboutUs' element={<AboutUs/>}/>
+        <Route path='/news' element={<News/>}/>
+        <Route path='/contactUs' element={<ContactUs/>}/>
       </Routes>
     </Router>
   );

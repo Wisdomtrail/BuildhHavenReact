@@ -8,6 +8,14 @@
     /* Add some padding for spacing */
     gap: 20px;
 }
+.bottom-section div p a{
+    text-decoration:  none;
+    color: black;
+}
+.sidebar nav p a{
+    text-decoration:  none;
+    color: black;
+}
 
 @media screen and (max-width: 1000px) {
     .top-section {

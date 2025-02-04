@@ -150,10 +150,8 @@
     color: #333;
     font-weight: 700;
     overflow: hidden;
-    /* Ensures the pseudo-element doesn't overflow the button */
     transition: color 0.4s ease;
     z-index: 1;
-    /* Ensures the text is above the pseudo-element */
 }
 
 .form button::before {
@@ -186,12 +184,10 @@
 
 .form button:hover::before {
     left: 0;
-    /* Animate the pseudo-element into view */
 }
 
 .form button:hover {
     color: white;
-    /* Change text color on hover */
     cursor: pointer;
 }
 

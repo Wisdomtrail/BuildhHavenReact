@@ -48,9 +48,11 @@ const Footer = () => {
                         rel="noopener noreferrer"
                     >
                         <FontAwesomeIcon className="fa-icon" icon={faLocationDot} />
+                        <span>
                         <span>175, Abeokuta express way </span>
                         <br />
                         <span id="iil">Iyana Ipaja Lagos</span>
+                        </span>
                     </a>
                 </section>
                 <br />
@@ -62,7 +64,7 @@ const Footer = () => {
                         rel="noopener noreferrer"
                     >
                         <FontAwesomeIcon className="fa-icon" icon={faGlobe} />
-                        <span>www.buildhavenhub.com</span>
+                        <span id="www">www.buildhavenhub.com</span>
                     </a>
                 </section>
             </div>
@@ -71,15 +73,15 @@ const Footer = () => {
                 <h2>Quick Links</h2>
                 <section>
                     <FontAwesomeIcon className="quick-icons" icon={faSquare}/>
-                    <a>Home</a>
+                    <a href="/">Home</a>
                 </section><br />
                 <section>
                     <FontAwesomeIcon className="quick-icons" icon={faSquare}/>
-                    <a>Who Are We</a>
+                    <a  href="/aboutUs">Who Are We</a>
                 </section><br />
                 <section>
                     <FontAwesomeIcon className="quick-icons" icon={faSquare}/>
-                    <a>News</a>
+                    <a  href="/news">News</a>
                 </section><br />
                 <section>
                     <FontAwesomeIcon className="quick-icons" icon={faSquare}/>
@@ -87,7 +89,7 @@ const Footer = () => {
                 </section><br />
                 <section>
                     <FontAwesomeIcon className="quick-icons" icon={faSquare}/>
-                    <a>Contact Us</a>
+                    <a  href="/contactUs">Contact Us</a>
                 </section>
             </div>
 

@@ -28,6 +28,9 @@
     color: white;
     margin-left: 30px;
 }
+#www{
+    margin-left: 20px;
+}
 
 .contactFooter section span {
     margin-left: 10px;
@@ -74,7 +77,13 @@
 }
 .send{
    background-color: red;
-   
+}
+.emFooter article{
+    margin-left: 20px;
+    margin-top: -30px;
+}
+.emFooter section span:hover{
+    color: red;
 }
 
 .contactFooter .fa-icon {
@@ -115,14 +124,11 @@
         margin: 0;
         padding: 0;
     }
-
-    /* Ensure the last section (newsLetter) has enough space */
     .newsLetter {
         margin-top: 20px; /* Add space before newsletter */
         padding-bottom: 20px; /* Ensure space at the bottom */
     }
 
-    /* Ensure the footer container adjusts to the content height */
     .footerContainer {
         flex-grow: 1; /* Allow footer container to grow with content */
     }
@@ -135,7 +141,7 @@
 
 
 #iil {
-    margin-left: 25px;
+    margin-left: 35px;
 }
 .quick-icons{
     color: red;

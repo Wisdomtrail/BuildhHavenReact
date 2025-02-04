@@ -19,9 +19,9 @@ const Header = () => {
   const navigateToLogin = () => {
     navigate('/login')
   }
+
   return (
     <header>
-      {/* Top Section */}
       <div className="top-section">
         <div className="logoAndCallUsSection">
           <img id="logo" src={logo} alt="Build Haven Logo" />
@@ -46,7 +46,6 @@ const Header = () => {
             onClick={toggleSidebar}
           />
         </div>
-        {/* Email Section */}
         <div className="contactEmailSection">
           <img src={messageIcon} alt="Message Icon" />
           <div>
@@ -59,7 +58,6 @@ const Header = () => {
             </p>
           </div>
         </div>
-        {/* Location Section */}
         <div className="locationSection">
           <FontAwesomeIcon id="locationIcon" icon={faLocationDot} color="#CD0001" />
           <div>
@@ -73,12 +71,10 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <nav>
-          <p className="hme">Home</p>
-          <p id="aus">About Us</p>
+          <p className="hme"><a href="/">Home</a></p>
+          <p id="aus"><a href="/aboutUs">About Us</a></p>
           <p className="services" onClick={toggleServices}>
             Services <FontAwesomeIcon icon={faAngleDown} />
             {isServicesOpen && (
@@ -93,17 +89,16 @@ const Header = () => {
               </div>
             )}
           </p>
-          <p>News</p>
-          <p>Contact Us</p>
+          <p><a href="/news">News</a></p>
+          <p><a href="/contactus">Contact Us</a></p>
           <p onClick={navigateToLogin}>Login</p>
         </nav>
       </div>
 
-      {/* Bottom Section */}
       <div className="bottom-section">
         <div>
-          <p>Home</p>
-          <p>About Us</p>
+          <p><a href="/">Home</a></p>
+          <p><a href="aboutUs">About Us</a></p>
           <p className="services">
             Services <FontAwesomeIcon icon={faAngleDown} />
             <div className="dropdown">
@@ -116,8 +111,8 @@ const Header = () => {
             </div>
           </p>
 
-          <p>News</p>
-          <p>Contact Us</p>
+          <p><a href="/news">News</a></p>
+          <p><a href="contactUs">Contact Us</a></p>
           <p onClick={navigateToLogin}>Login</p>
         </div>
         <div className="sg">
