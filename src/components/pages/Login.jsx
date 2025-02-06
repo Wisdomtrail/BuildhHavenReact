@@ -44,14 +44,11 @@ const Login = () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Successful login
                     localStorage.setItem("userId", data.user.id);
                     localStorage.setItem("token", data.token);
                     toast.success("Login successful!");
-
-                    // Delay before navigating to products
                     setTimeout(() => {
-                        navigate('/products'); // Navigate to /products after 1 second
+                        navigate('/products'); 
                     }, 1000);
                 } else {
                     toast.error(data.message || "Login failed. Please try again.");
@@ -60,9 +57,9 @@ const Login = () => {
                 toast.error("An error occurred. Please try again.");
             }
 
-            setIsButtonDisabled(false); // Re-enable button after response
-            setLoading(false); // Hide loading spinner after response
-        }, 2000); // Simulate a 2-second loading state
+            setIsButtonDisabled(false); 
+            setLoading(false); 
+        }, 2000); 
     };
 
     return (

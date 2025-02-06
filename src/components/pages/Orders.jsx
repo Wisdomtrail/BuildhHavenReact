@@ -2,87 +2,84 @@ import React, { useState } from "react";
 import Sidebar from '../sideBar/SideBar';
 import DMobileDownbar from '../sideBar/DMobileDownbar';
 import '../../styles/orders.css'; // Ensure to import the CSS
+import { FaCheckCircle, FaTimesCircle, FaHourglass } from 'react-icons/fa'; // Icons for status
 
 const Orders = () => {
-  const [orderItems, setOrderItems] = useState([
-    { id: 'product1', name: 'Product 1', price: 20, quantity: 2 },
-    { id: 'product2', name: 'Product 2', price: 50, quantity: 1 }
-  ]);
-
-  const handleQuantityChange = (productId, action) => {
-    setOrderItems(prevItems => {
-      return prevItems.map(item => {
-        if (item.id === productId) {
-          let newQuantity = item.quantity;
-          if (action === 'increase') {
-            newQuantity += 1;
-          } else if (action === 'decrease') {
-            newQuantity = Math.max(0, newQuantity - 1); // Prevent quantity from going below 0
-          }
-
-          // Remove the item if quantity becomes 0
-          if (newQuantity === 0) {
-            return null;
-          }
-
-          return { ...item, quantity: newQuantity };
-        }
-        return item;
-      }).filter(item => item !== null); // Filter out any null items
-    });
-  };
+  // Dummy Orders Data
+  const dummyOrders = [
+    {
+      orderId: '12345',
+      userId: 'user1',
+      items: [
+        { productId: 'tool1', quantity: 2 },
+        { productId: 'cement1', quantity: 3 }
+      ],
+      totalAmount: 200,
+      orderDate: '2025-02-01',
+      status: 'Pending',
+    },
+    {
+      orderId: '12346',
+      userId: 'user2',
+      items: [
+        { productId: 'bricks1', quantity: 10 },
+        { productId: 'hammer1', quantity: 1 }
+      ],
+      totalAmount: 150,
+      orderDate: '2025-02-02',
+      status: 'Completed',
+    },
+  ];
 
   return (
-    <>
+    <div className="orders-page">
       <Sidebar />
       <DMobileDownbar />
 
-      <div className="order-container">
-        <h1 className="order-title">Your Orders</h1>
-
-        <div className="order-details">
-          <h2>Order Summary</h2>
-
-          {orderItems.map(item => (
-            <div key={item.id} className="order-item">
-              <div className="item-image">
-                <img src="path-to-your-image.jpg" alt={item.name} />
-              </div>
-              <div className="item-info">
-                <p className="item-name">{item.name}</p>
-                <p className="item-price">Price: ${item.price}</p>
-
-                <div className="quantity-controls">
-                  <button
-                    className="quantity-btn"
-                    onClick={() => handleQuantityChange(item.id, 'decrease')}
-                  >
-                    -
-                  </button>
-                  <p className="item-quantity">{item.quantity}</p>
-                  <button
-                    className="quantity-btn"
-                    onClick={() => handleQuantityChange(item.id, 'increase')}
-                  >
-                    +
-                  </button>
-                </div>
-
-                <p className="item-total">Total: ${item.quantity * item.price}</p>
-              </div>
-            </div>
-          ))}
-
-          <div className="order-summary">
-            <p className="total-amount">
-              Total Amount: ${orderItems.reduce((acc, item) => acc + (item.quantity * item.price), 0)}
-            </p>
-            <button className="confirm-order">Confirm Order</button>
-            <button className="cancel-order">Cancel Order</button>
-          </div>
-        </div>
-      </div><br /><br /><br />
-    </>
+      <div className="orders-content">
+        <h2>Orders</h2>
+        <table className="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>User ID</th>
+              <th>Items</th>
+              <th>Total Amount</th>
+              <th>Order Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dummyOrders.map((order) => (
+              <tr key={order.orderId}>
+                <td>{order.orderId}</td>
+                <td>{order.userId}</td>
+                <td>
+                  {order.items.map((item, index) => (
+                    <div key={index}>
+                      {item.productId} (Qty: {item.quantity})
+                    </div>
+                  ))}
+                </td>
+                <td>{order.totalAmount} USD</td>
+                <td>{order.orderDate}</td>
+                <td>
+                  {/* Status Icons */}
+                  {order.status === 'Completed' && <FaCheckCircle className="status-icon completed" />}
+                  {order.status === 'Pending' && <FaHourglass className="status-icon pending" />}
+                  {order.status === 'Cancelled' && <FaTimesCircle className="status-icon cancelled" />}
+                </td>
+                <td>
+                  <button className="action-btn view-btn">View</button>
+                  <button className="action-btn delete-btn">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div><br /><br />
+    </div>
   );
 };
 

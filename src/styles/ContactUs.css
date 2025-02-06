@@ -2,18 +2,18 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-  }
-  
-  .hero-section {
+}
+
+.hero-section {
     position: relative;
     width: 100%;
     height: 100vh;
     background-image: url('../assets/img/1280269.jpg');
     background-size: cover;
     background-position: center;
-  }
-  
-  .overlay {
+}
+
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -26,113 +26,140 @@
     align-items: flex-start;
     padding: 20px;
     color: white;
-  }
-  
-  .content {
+}
+
+.content {
     margin-top: 40px;
     margin-left: 20px;
-  }
-  
-  .title {
+}
+
+.title {
     font-size: 3rem;
     margin-bottom: 16px;
-  }
-  
-  .subtitle {
+}
+
+.subtitle {
     font-size: 1.25rem;
     margin-bottom: 32px;
-  }
-  
-  .buttons {
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .buttons {
+        display: block !important;
+    }
+
+    .buttons button {
+
+        margin-top: 20px !important;
+    }
+
+    .contact-info {
+        display: block !important;
+    }
+    .contact-info div{
+        margin-top: 20px !important;
+        width: 100% !important;        
+    }
+}
+
+.buttons {
     display: flex;
     gap: 16px;
-  }
-  
-  .btn {
+}
+
+.btn {
     padding: 12px 24px;
     font-size: 1rem;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
-  }
-  
-  .btn-red {
+}
+
+.btn-red {
     background-color: #e53e3e;
     color: white;
-  }
-  
-  .btn-red:hover {
+}
+
+.btn-red:hover {
     background-color: #c53030;
-  }
-  
-  .btn-white {
-    background-color: white;
-    color: black;
-  }
-  
-  .btn-white:hover {
+}
+
+.btn-white {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.btn-white:hover {
     background-color: #e53e3e;
     color: white;
-  }
-  
-  .contact-info {
+}
+
+.contact-info {
     display: flex;
     justify-content: space-around;
     padding: 48px;
     background-color: #f7fafc;
-  }
-  
-  .message-form {
+}
+
+.message-form {
     width: 50%;
-  }
-  
-  .message-form h2 {
+}
+
+.message-form h2 {
     font-size: 2rem;
     margin-bottom: 16px;
-  }
-  
-  .form {
+}
+.contact-form {
     display: flex;
     flex-direction: column;
-  }
-  
-  .input,
-  .textarea {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+.contact-input,
+.contact-textarea {
     margin-bottom: 16px;
     padding: 12px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .textarea {
+    width: 100%;
+}
+
+.contact-textarea {
     height: 120px;
-  }
-  
-  .submit-btn {
+}
+
+.contact-submit-btn {
     background-color: #e53e3e;
     color: white;
     padding: 12px 24px;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
- 
-  
-  .details {
+}
+
+.contact-submit-btn:hover {
+    background-color: #c53030;
+}
+
+.details {
     width: 33%;
-  }
-  
-  .details h2 {
+}
+
+.details h2 {
     font-size: 2rem;
     margin-bottom: 16px;
-  }
-  
-  .details p {
+}
+
+.details p {
     font-size: 1.25rem;
     margin-bottom: 8px;
-  }
+}
+
 @keyframes slideInFromLeft {
     0% {
         opacity: 0;
@@ -167,12 +194,14 @@
     border: none;
     text-align: center;
     line-height: 50px;
-    background-color: red; 
-    color: white; 
+    background-color: red;
+    color: white;
     cursor: pointer;
     margin-right: 15px;
-    animation: slideInFromLeft 1s ease-out; /* Slide in from the left */
-    transition: color 0.4s ease, background-color 0.4s ease; /* Transition for both text and background color */
+    animation: slideInFromLeft 1s ease-out;
+    /* Slide in from the left */
+    transition: color 0.4s ease, background-color 0.4s ease;
+    /* Transition for both text and background color */
 }
 
 .get-in-touch-button::before {
@@ -182,23 +211,28 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background-color: white; /* Background to be revealed on hover */
-    z-index: -1; /* Ensure it stays behind the text */
+    background-color: white;
+    /* Background to be revealed on hover */
+    z-index: -1;
+    /* Ensure it stays behind the text */
     transition: left 0.4s ease;
 }
 
 .get-in-touch-button:hover::before {
-    left: 0; 
+    left: 0;
 }
 
 .get-in-touch-button:hover {
-    color: red; /* Change text color to red */
-    background-color: white; /* Change background color to white */
+    color: red;
+    /* Change text color to red */
+    background-color: white;
+    /* Change background color to white */
     cursor: pointer;
 }
 
 .get-in-touch-button:hover .arrow {
-    transform: rotate(360deg); /* Rotate the arrow */
+    transform: rotate(360deg);
+    /* Rotate the arrow */
 }
 
 /* Styling for Request a Quote button */
@@ -215,7 +249,8 @@
     background-color: white;
     color: black;
     cursor: pointer;
-    animation: rotateIntoScreen 1s ease-out 1s forwards; /* 3D rotate with delay */
+    animation: rotateIntoScreen 1s ease-out 1s forwards;
+    /* 3D rotate with delay */
     transform-origin: center;
     transition: color 0.4s ease, background-color 0.4s ease;
 }
@@ -227,13 +262,14 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 0, 0); /* Background to be revealed on hover */
+    background-color: rgb(255, 0, 0);
+    /* Background to be revealed on hover */
     z-index: -1;
     transition: left 0.4s ease;
 }
 
 .request-quote-button:hover::before {
-    left: 0; 
+    left: 0;
 }
 
 .request-quote-button:hover {

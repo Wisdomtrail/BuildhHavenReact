@@ -29,12 +29,13 @@ const ContactUs = () => {
             <div className="contact-info">
                 <div className="message-form">
                     <h2>Send Us a Message</h2>
-                    <form className="form">
-                        <input type="text" placeholder="Your Name" required className="input" />
-                        <input type="email" placeholder="Your Email" required className="input" />
-                        <textarea placeholder="Your Message" required className="textarea"></textarea>
-                        <button type="submit" className="submit-btn">Submit</button>
-                    </form>
+                    <form className="contact-form">
+    <input type="text" placeholder="Your Name" required className="contact-input" />
+    <input type="email" placeholder="Your Email" required className="contact-input" />
+    <textarea placeholder="Your Message" required className="contact-textarea"></textarea>
+    <button type="submit" className="contact-submit-btn">Submit</button>
+</form>
+
                 </div>
                 <div className="details">
                     <h2>Our Contact Information</h2>

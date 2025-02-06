@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBox, FaTag, FaList, FaCog, FaUser, FaSignOutAlt } from 'react-icons/fa';
+import { FaBox, FaTag, FaList, FaCog, FaUser, FaSignOutAlt, FaShoppingCart } from 'react-icons/fa';
 import '../../styles/d-mobile-downbar.css'; // Make sure to link to the new CSS file
 
 const DMobileDownbar = () => {
@@ -17,9 +17,9 @@ const DMobileDownbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/coupons" className={currentPath === '/coupons' ? 'active' : ''}>
-            <FaTag className="d-sidebar-icon" />
-            Coupons
+          <Link to="/cart" className={currentPath === '/cart' ? 'active' : ''}>
+            <FaShoppingCart className="d-sidebar-icon" />
+            Cart
           </Link>
         </li>
         <li>

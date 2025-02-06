@@ -1,21 +1,63 @@
-/* Ensure the sidebar is visible by default on larger screens */
+
 .Sidebar {
     display: block;
   }
   
-  /* Ensure the mobile downbar is hidden by default on larger screens */
   .DMobileDownbar {
     display: none;
   }
   .logoP{
     display: none;
   }
-  
-  /* Media query for screens smaller than 1000px */
-  @media (max-width: 1000px) {
+  @media (max-width: 450px) {
+    .product-card {
+      width: 180px !important;
+      height: 320px !important;
+    }
+    .product-price{
+      font-size: 13px !important;
+    }
+    .product-card img {
+      width: 100% !important;
+      height: 150px !important;
+      border-radius: 4px !important;
+      margin-bottom: 10px !important;
+    }
+    
+      .Sidebar {
+        display: none; /* Hide sidebar on small screens */
+      }
+      .logoP{
+        display: block;
+      }
+      .search-bar{
+        margin-left: 10px;
+      }
+    
+      .DMobileDownbar {
+        display: block;
+      }
+      .topnav {
+        width: 100% !important; /* Ensure topnav spans the full width */
+        margin-left: 0 !important; /* No space for the sidebar */
+        left: 0 !important;
+        right: 0 !important;
+        position: fixed !important;
+        top: 0 !important;
+        z-index: 1000 !important; /* Ensure it stays on top */
+      }
+      .products {
+        margin-left: 0 !important; /* Remove left margin for small screens */
+        width: 100% !important; /* Allow products to fill the entire width */
+        padding: 10px !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 items per row */
+        gap: 2px !important;
+      }
+  }
+  @media  (min-width: 456px) and (max-width: 1000px) {
     
   .product-card {
-    width: 190px !important;
+    width: 210px !important;
     height: 320px !important;
   }
   .product-card img {
@@ -39,7 +81,6 @@
       display: block; /* Show downbar on small screens */
     }
   
-    /* Ensure the topnav takes full width and stays at the top */
     .topnav {
       width: 100% !important; /* Ensure topnav spans the full width */
       margin-left: 0 !important; /* No space for the sidebar */
@@ -103,7 +144,7 @@
   /* Product image */
   .product-card img {
     width: 100% !important;
-    height: auto ;
+    height: 210px ;
     border-radius: 4px !important;
     margin-bottom: 10px !important;
   }
@@ -118,6 +159,7 @@
   /* Product description */
   .product-card p {
     font-size: 14px !important;
+    text-align: left;
     color: #666 !important;
     margin-bottom: 15px !important;
   }
@@ -138,11 +180,54 @@
   }
   
   .product-price {
-    font-size: 13px !important;
+    font-size: 20px ;
     color: #e77840 !important;
     font-weight: bold !important;
     margin-right: 20px !important; /* Space between price and quantity */
   }
+  /* Container for the quantity controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;  /* Space between buttons */
+}
+
+/* Styling for the buttons */
+.quantity-controls button {
+  background-color: #FD8F00; /* Orange color */
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover effect */
+.quantity-controls button:hover {
+  background-color: #ff6a00; /* Darker orange */
+  transform: scale(1.1); /* Slightly increase the size on hover */
+}
+
+/* Disabled button styling */
+.quantity-controls button:disabled {
+  background-color: #ddd;  /* Light gray for disabled buttons */
+  cursor: not-allowed;
+}
+
+/* Styling for the quantity number text */
+.quantity-controls .quantity {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Dark text for visibility */
+  padding: 0 10px; /* Add spacing on both sides */
+  border-radius: 5px;
+  background-color: #f0f0f0; /* Light gray background for the number */
+}
+
   
   .quantity-container {
     display: flex !important;
@@ -189,7 +274,25 @@
     background-color: #e77840 !important;
   }
   
-  
+  @media screen and (min-width: 1000px) and (max-width: 1200px) {
+    
+  .topnav {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 15px !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    justify-self: right;
+    right: 0 !important;
+    z-index: 1000 !important;
+    width: 77.5% !important; 
+    margin-left: 0 !important;
+  }
+  }
   /* Fixed top nav bar styling */
   .topnav {
     display: flex !important;
@@ -203,9 +306,9 @@
     left: 0 !important;
     justify-self: right;
     right: 0 !important;
-    z-index: 1000 !important; /* Ensure it stays on top of other content */
-    width: 81.5%; /* Full width */
-    margin-left: 0 !important; /* Remove any margin */
+    z-index: 1000 !important; 
+    width: 81.5%; 
+    margin-left: 0 !important;
   }
   
   /* Search bar inside the topnav */
@@ -243,7 +346,9 @@
   
   .cart-icon-container {
     position: relative !important;
+    cursor: pointer;
   }
+  
   
   .cart-item-count {
     position: absolute !important;
