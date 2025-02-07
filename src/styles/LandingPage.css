@@ -134,6 +134,9 @@
     .banner-text h1 {
         font-size: 40px !important;
     }
+    .gitS{
+        margin-bottom: 150px !important;
+    }
 
     .banner-text p {
         font-size: 13px !important;
@@ -156,7 +159,7 @@
         display:contents !important;
     }
     .dfff{
-        height: 140px !important;
+        height: 170px !important;
     }
     .dfff span,.dffs span, .dfft span{
         font-size: small;
@@ -164,9 +167,7 @@
     .dffs{
         height: 70px !important;
     }
-    .dfft{
-        height: 60px !important;
-    }
+    
     
     
 .gitF{
@@ -175,6 +176,9 @@
     justify-content: center !important;
 }
 
+.gitScont{
+    height: 500px !important;
+}
 .gitS{
     width: 100% !important;
     height: 100vh !important;
@@ -314,7 +318,9 @@
     background-color: red;
     transition: color 0.4s ease;
 }
-
+.lbuttons{
+    margin-top: 20px;
+}
 .service-button {
     background-color: white;
     color: black;
@@ -956,10 +962,10 @@ input#gitfQ:not(:placeholder-shown) + label {
     color: #000000;
 }
 .gitScont{
-    height: 450px;
+    height: 485px;
     background-color: white;
     width: 90%;
-    border: 1px solid rgb(173, 173, 173);
+    border: 1px solid rgb(134, 3, 3);
     margin-left: 0px !important;
 }
 .gitScont section span{
@@ -980,7 +986,7 @@ input#gitfQ:not(:placeholder-shown) + label {
 }
 
 .gitScont div p{
-    font-size: larger;
+    font-size: small;
     margin-left: 10px;
     font-weight: 500;
     margin-top: 5px;

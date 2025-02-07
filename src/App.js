@@ -12,6 +12,8 @@ import AboutUs from './components/pages/AboutUs.jsx';
 import News from './components/pages/News.jsx';
 import ContactUs from './components/pages/ContactUs.jsx';
 import Cart from './components/pages/Cart.jsx';
+import DeliveryOptions from './components/pages/DeliveryOptions.jsx';
+import PickupConfirmation from './components/pages/PickUpConfirmation.jsx';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route path='/aboutUs' element={<AboutUs />} />
         <Route path='/news' element={<News />} />
         <Route path='/contactUs' element={<ContactUs />} />
+        <Route path='/delivery-options' element={<DeliveryOptions/>}/>
+        <Route path="/pickup-confirmation" element={<PickupConfirmation />} />
       </Routes>
     </Router>
   );

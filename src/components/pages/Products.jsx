@@ -6,13 +6,12 @@ import '../../styles/products.css';
 import { useNavigate } from "react-router-dom";
 import logoP from '../../assets/img/logoP.png';
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify styles
-
+import "react-toastify/dist/ReactToastify.css";
+import BASE_URL from "../../config";
 const Products = () => {
   const [cartCount, setCartCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [quantities, setQuantities] = useState({});
   const navigate = useNavigate();
 
@@ -25,7 +24,7 @@ const Products = () => {
           return;
         }
 
-        const response = await fetch("http://localhost:3001/product/getAll", {
+        const response = await fetch(`${BASE_URL}/product/getAll`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -43,8 +42,6 @@ const Products = () => {
         }
       } catch (error) {
         console.error("Failed to fetch products:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -62,7 +59,7 @@ const Products = () => {
       }
     
       try {
-        const response = await fetch(`http://localhost:3001/user/getCartQuantity/${userId}`, {
+        const response = await fetch(`${BASE_URL}/user/getCartQuantity/${userId}`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -73,7 +70,7 @@ const Products = () => {
         const data = await response.json();
     
         if (data.totalQuantity !== undefined) {
-          setCartCount(data.totalQuantity);  // Update the cart count state
+          setCartCount(data.totalQuantity);  
         } else {
           console.error("Failed to fetch cart quantity:", data);
         }
@@ -117,7 +114,7 @@ const Products = () => {
         const token = localStorage.getItem("token");
         const userId = localStorage.getItem("userId"); // Assuming you have user ID stored in localStorage
         
-        const response = await fetch(`http://localhost:3001/user/addToCart/${userId}`, {
+        const response = await fetch(`${BASE_URL}/user/addToCart/${userId}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -133,13 +130,13 @@ const Products = () => {
         if (data.message === "Product added to cart") {
           setCartCount(cartCount + quantity);
           toast.success("Added to Cart ✔️", {
-            position: "bottom-right",
+            position: "top-right",
             autoClose: 2000,
             hideProgressBar: true,
           });
         } else {
           toast.error("Failed to add to cart", {
-            position: "bottom-right",
+            position: "top-right",
             autoClose: 2000,
             hideProgressBar: true,
           });
@@ -158,9 +155,7 @@ const Products = () => {
     navigate('/cart');
   };
 
-  if (loading) {
-    return <div>Loading products...</div>;
-  }
+  
 
   return (
     <>

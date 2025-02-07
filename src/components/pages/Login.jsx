@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/Login.css";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../config";
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
@@ -30,7 +31,7 @@ const Login = () => {
 
         setTimeout(async () => {
             try {
-                const response = await fetch("http://localhost:3001/user/login", {
+                const response = await fetch(`${BASE_URL}/user/login`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -109,7 +110,7 @@ const Login = () => {
                                 "Login"
                             )}
                         </button>
-                        <div className="register-link">
+                        <div className="register-link" id="register-link">
                             <p>
                                 Don't have an account? <a href="/registration">Register</a>
                             </p>

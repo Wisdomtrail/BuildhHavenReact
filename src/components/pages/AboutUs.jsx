@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "../header/Header";
 import Footer from '../footer/Footer';
-import '../../styles/AboutUs.css'; // Unique CSS file for About Us
+import '../../styles/AboutUs.css'; 
 
 const AboutUs = () => {
     return (
@@ -13,7 +13,7 @@ const AboutUs = () => {
                         <h1>About Us</h1>
                         <p>
                             Learn more about our company, our values, and how we provide the best construction materials and tools to our customers.
-                        </p>
+                        </p><br />
                         <div className="button-container">
                             <button className="learn-more-button">
                                 Learn More <span className="arrow">→</span>

@@ -3,6 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/Login.css";
+import BASE_URL from "../../config";
 
 const Registration = () => {
     const [loading, setLoading] = useState(false);
@@ -28,7 +29,7 @@ const Registration = () => {
         setLoading(true);
 
         setTimeout(async () => {
-            const response = await fetch("http://localhost:3001/user/register", {
+            const response = await fetch(`${BASE_URL}/user/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

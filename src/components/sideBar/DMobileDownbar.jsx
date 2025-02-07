@@ -1,11 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBox, FaTag, FaList, FaCog, FaUser, FaSignOutAlt, FaShoppingCart } from 'react-icons/fa';
-import '../../styles/d-mobile-downbar.css'; // Make sure to link to the new CSS file
+import { FaBox, FaList, FaCog, FaUser, FaSignOutAlt, FaShoppingCart } from 'react-icons/fa';
+import '../../styles/d-mobile-downbar.css';
+import BASE_URL from '../../config';
 
 const DMobileDownbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
+  const [cartQuantity, setCartQuantity] = useState(0);
+
+  useEffect(() => {
+    const fetchCartQuantity = async () => {
+      if (!userId || !token) return;
+
+      try {
+        const response = await fetch(`${BASE_URL}/user/getCart/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+        if (data.cart) {
+          const totalQuantity = data.cart.reduce((acc, item) => acc + item.quantity, 0);
+          setCartQuantity(totalQuantity);
+        }
+      } catch (error) {
+        console.error('Error fetching cart quantity:', error);
+      }
+    };
+
+    fetchCartQuantity();
+  }, [userId, token]);
 
   return (
     <div className="d-mobile-downbar">
@@ -18,7 +47,10 @@ const DMobileDownbar = () => {
         </li>
         <li>
           <Link to="/cart" className={currentPath === '/cart' ? 'active' : ''}>
-            <FaShoppingCart className="d-sidebar-icon" />
+            <div className="cart-icon-container">
+              <FaShoppingCart className="d-sidebar-icon" />
+              {cartQuantity > 0 && <span className="cart-badge">{cartQuantity}</span>}
+            </div>
             Cart
           </Link>
         </li>

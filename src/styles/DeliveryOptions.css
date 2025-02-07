@@ -1,0 +1,269 @@
+.delivery-options-container {
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    margin-left: 19%;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+.order-summary {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: left;
+    width: 100% !important;
+    margin: 20px auto;
+}
+
+.order-summary h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.order-summary h3 .icon {
+    color: #FD8F00;
+    font-size: 22px;
+}
+
+.order-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-summary-item:last-child {
+    border-bottom: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.order-summary-item .label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #555;
+}
+
+.order-summary-item .label .icon {
+    font-size: 18px;
+    color: #555;
+}
+
+.order-summary-item .value {
+    color: #222;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 1000px) {
+    .delivery-options-container {
+        text-align: center;
+        padding: 20px;
+        width: 100% !important;
+        margin-left: 0% !important;
+        background-color: #f9f9f9;
+        min-height: 100vh;
+    }
+    
+}
+.payment-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.payment-buttons button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 150px;
+}
+
+/* Pay Online Button */
+.payment-buttons .pay-online {
+    background-color: #007BFF;
+    color: white;
+}
+
+.payment-buttons .pay-online:hover {
+    background-color: #0056b3;
+}
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 18px;
+    z-index: 9999;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #a52a2a; /* Rust Red */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Pickup Payment Button */
+.pay-pickup {
+    background: #8b5e3b;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+.pay-pickup:hover {
+    background: #6e462d;
+}
+
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.delivery-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.option {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.option:hover,
+.option.active {
+    transform: scale(1.05);
+    border: 2px solid #FD8F00;
+}
+
+.ddicon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #FD8F00;
+}
+
+.icon.express {
+    color: #ff4500;
+}
+
+.icon.store {
+    color: #0073e6;
+}
+
+h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.delivery-options p {
+    color: #666;
+    font-size: 14px;
+}
+
+.delivery-form {
+    background: white;
+    padding: 20px;
+    width: 100% !important;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.delivery-form h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.delivery-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.delivery-form button {
+    width: 100%;
+    padding: 10px;
+    background: #FD8F00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.delivery-form button:hover {
+    background: #e07a00;
+}
+
+.pickup-info {
+    background: white;
+    padding: 20px;
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.pickup-info h3 {
+    color: #0073e6;
+}
+
+.pickup-info p {
+    font-size: 16px;
+    color: #333;
+}

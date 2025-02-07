@@ -8,7 +8,6 @@ const News = () => {
         <div className="news-page-container">
             <Header />
             
-            {/* Hero Section */}
             <div className="news-banner">
                 <div className="news-overlay">
                     <div className="newsContent">

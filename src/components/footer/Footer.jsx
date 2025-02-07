@@ -104,8 +104,8 @@ const Footer = () => {
                 <br />
                 <section>
                    <div id="sendMail">
-                   <input type="text" placeholder="Email" />
-                   <article className="send"><span>send</span></article>
+                   <input type="text" placeholder="Email" /><br />
+                   <button>Send</button>
                    </div>
                     <br /><br />
                     <span>Want to visit?</span>

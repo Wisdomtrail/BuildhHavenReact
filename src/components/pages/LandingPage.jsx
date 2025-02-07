@@ -17,15 +17,15 @@ const LandingPage = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isFading, setIsFading] = useState(false);
     const images = [ContructionImg, EngineerImg, tallBuildingImg];
-    const [activeSlide, setActiveSlide] = useState('f'); // 'f' means first slide active
+    const [activeSlide, setActiveSlide] = useState('f'); 
     const handleSlideChange = (slide) => {
         setActiveSlide(slide);
         const container = document.querySelector('.compDesTextDiv');
         const slideWidth = container.offsetWidth;
         if (slide === 'f') {
-            container.scrollLeft = 0; // Scroll to the first slide
+            container.scrollLeft = 0;
         } else if (slide === 's') {
-            container.scrollLeft = slideWidth; // Scroll to the second slide
+            container.scrollLeft = slideWidth;
         }
     };
 
@@ -83,10 +83,10 @@ const LandingPage = () => {
                     </div>
                     <div className="dark-overlay">
                         <div className="banner-text">
-                            <h1>We supply Quality <br />You Can Trust Everyday</h1><br />
-                           <br /> <p>Building Dreams, One Quality Material at a Time. Discover The Difference With Build Haven Hub's Premium <br />
+                            <h1>We supply Quality <br />You Can Trust Everyday</h1>
+                            <p>Building Dreams, One Quality Material at a Time. Discover The Difference With Build Haven Hub's Premium <br />
                                 Construction Supplies. Your Project Deserves The Best.</p>
-                           <br /> <div>
+                           <div className="lbuttons">
                                 <button className="learn-button">LEARN MORE
                                     <FontAwesomeIcon className="arrow" icon={faArrowRight} /> </button>
                                 <br /><br />  <button className="service-button">OUR SERVICES</button>
@@ -263,7 +263,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                     </div>
-                </div><br /><br /><br />
+                </div>
                 <Footer/>
             </div>
         </>

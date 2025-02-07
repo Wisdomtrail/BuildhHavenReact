@@ -4,6 +4,15 @@
   }
   
 }
+.cart-badge {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 3px 7px;
+  margin-left: 5px;
+}
 
 .d-sidebar-nav ul li a.active {
   background-color: #e77840; /* Highlight active link */
