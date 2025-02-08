@@ -1,100 +1,163 @@
+/* General Profile Page Styling */
 .ProfileContainer {
-    width: 81%;
-    margin-left: 19%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background: #f9f9f9;
-    box-sizing: border-box;
+  width: 81%;
+  margin-left: 19%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f9f9f9;
+  box-sizing: border-box;
+}
+
+/* Profile Card */
+.ProfileCard {
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 80%;
+  transition: transform 0.3s ease-in-out;
+}
+.ProfileCard:hover {
+  transform: translateY(-5px);
+}
+
+/* Profile Image */
+.ProfileImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* Profile Details */
+.ProfileName {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.ProfileEmail {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.ProfileBio {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Profile Details Section */
+.ProfileDetails {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+}
+
+.ProfileDetails h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Order History */
+.OrderHistory {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.OrderItem {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+.OrderItem:hover {
+  transform: scale(1.02);
+}
+
+.order-icon {
+  font-size: 18px;
+}
+
+.delivered {
+  color: green;
+}
+
+.processing {
+  color: orange;
+}
+
+.cancelled {
+  color: red;
+}
+
+/* Wishlist */
+.WishList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.WishlistItem {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+  transition: transform 0.2s ease-in-out;
+}
+.WishlistItem:hover {
+  transform: scale(1.05);
+}
+
+/* Buttons */
+.EditProfileButton, .ChangePasswordButton {
+  background-color: #e77840;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.EditProfileButton:hover, .ChangePasswordButton:hover {
+  background-color: #d86c35;
+  transform: scale(1.05);
+}
+
+/* Loading */
+.loading {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Responsive */
+@media screen and (max-width: 1000px) {
+  .ProfileContainer {
+      width: 100%;
+      margin-left: 0;
   }
-  
-  .ProfileCard {
-    text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 80%;
+  .ProfileCard, .ProfileDetails {
+      width: 100%;
   }
-  
-  .ProfileImage {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 2px solid #ddd;
-    object-fit: cover;
-    margin-bottom: 15px;
-  }
-  
-  .ProfileEmail {
-    font-size: 14px;
-    color: gray;
-    margin-bottom: 10px;
-  }
-  
-  .ProfileBio {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .ProfileDetails {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
-  }
-  
-  .ProfileDetails h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .ProfileDetails ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 0 20px 0;
-  }
-  
-  .ProfileDetails ul li {
-    padding: 8px 0;
-    border-bottom: 1px solid #ddd;
-    color: #555;
-  }
-  
-  .ProfileDetails ul li:last-child {
-    border-bottom: none;
-  }
-  
-  .ProfileDetails button {
-    background-color: #e77840;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-  }
-  
-  .ProfileDetails button:hover {
-    background-color: #e77840;
-  }
-  
-  @media screen and (max-width: 1000px) {
-    .ProfileContainer{
-        width: 100%;
-        margin-left: 0px;
-    }
-    .ProfileCard{
-        width: 100%;
-    }
-    .ProfileDetails{
-        width: 100%;
-    }
-  }
+}

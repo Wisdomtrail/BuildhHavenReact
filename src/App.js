@@ -14,10 +14,15 @@ import ContactUs from './components/pages/ContactUs.jsx';
 import Cart from './components/pages/Cart.jsx';
 import DeliveryOptions from './components/pages/DeliveryOptions.jsx';
 import PickupConfirmation from './components/pages/PickUpConfirmation.jsx';
+import Payment from './components/pages/Payment.jsx';
+import DeliveryConfirmation from './components/pages/DeliveryConfirmation.jsx';
+import ScrollToTop from './components/pages/ScrollToTop.jsx';
+import BuildingMaterials from './components/pages/BuildingMaterials.jsx';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/registration" element={<Registration />} />
@@ -34,6 +39,9 @@ function App() {
         <Route path='/contactUs' element={<ContactUs />} />
         <Route path='/delivery-options' element={<DeliveryOptions/>}/>
         <Route path="/pickup-confirmation" element={<PickupConfirmation />} />
+        <Route path='/paymentPage' element={<Payment/>}/>
+        <Route path='/building-materials' element={<BuildingMaterials/>}/>
+        <Route path='/deliveryconfirmation' element={<DeliveryConfirmation/>}/>
       </Routes>
     </Router>
   );

@@ -16,6 +16,10 @@ const Products = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
     const fetchProducts = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -46,18 +50,18 @@ const Products = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const fetchCartCount = async () => {
       const userId = localStorage.getItem("userId");
       const token = localStorage.getItem("token");
-    
+
       if (!userId || !token) {
         console.error("User ID or token is missing. Please log in again.");
         return;
       }
-    
+
       try {
         const response = await fetch(`${BASE_URL}/user/getCartQuantity/${userId}`, {
           method: "GET",
@@ -66,11 +70,11 @@ const Products = () => {
             "Content-Type": "application/json",
           },
         });
-    
+
         const data = await response.json();
-    
+
         if (data.totalQuantity !== undefined) {
-          setCartCount(data.totalQuantity);  
+          setCartCount(data.totalQuantity);
         } else {
           console.error("Failed to fetch cart quantity:", data);
         }
@@ -78,7 +82,7 @@ const Products = () => {
         console.error("Error fetching cart quantity:", error);
       }
     };
-    
+
     fetchCartCount();
   }, []);
 
@@ -113,7 +117,7 @@ const Products = () => {
       try {
         const token = localStorage.getItem("token");
         const userId = localStorage.getItem("userId"); // Assuming you have user ID stored in localStorage
-        
+
         const response = await fetch(`${BASE_URL}/user/addToCart/${userId}`, {
           method: "POST",
           headers: {
@@ -155,7 +159,7 @@ const Products = () => {
     navigate('/cart');
   };
 
-  
+
 
   return (
     <>

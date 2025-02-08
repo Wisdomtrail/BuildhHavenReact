@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "../../styles/viewProduct.css";
 import DMobileDownbar  from "../sideBar/DMobileDownbar";
@@ -7,16 +7,23 @@ import { motion } from "framer-motion";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import BASE_URL from "../../config";
-
+import { useNavigate } from "react-router-dom";
 const ViewProduct = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantities, setQuantities] = useState({});
   const [cartCount, setCartCount] = useState(0);
+  const navigate = useNavigate(); // Initialize navigate
+  
   const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
   const product = state ? state.product : null;
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
   if (!product) {
     return <p>Product not found</p>;
   }

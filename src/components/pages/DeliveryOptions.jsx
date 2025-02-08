@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DMobileDownbar from "../sideBar/DMobileDownbar";
 import "../../styles/DeliveryOptions.css";
 import BASE_URL from '../../config';
+import { useEffect } from "react";
 
 const DeliveryOptions = () => {
     const navigate = useNavigate();
@@ -15,6 +16,15 @@ const DeliveryOptions = () => {
     const [loading, setLoading] = useState(false);
 
     const totalProductPrice = orderItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+
+    if (!userId || !token) {
+        navigate("/login"); 
+    }
+}, [navigate]);
 
     const deliveryFees = {
         standard: totalProductPrice >= 1000000 ? 0 : 2000,
@@ -29,29 +39,67 @@ const DeliveryOptions = () => {
         setLoading(true);
         const userId = localStorage.getItem('userId');
         const token = localStorage.getItem('token')
-    
-        setTimeout(async () => {  // Make setTimeout async
+
+        setTimeout(async () => { 
             try {
-                const response = await fetch(`${BASE_URL}/user/clearCart/${userId}`, {
+                await fetch(`${BASE_URL}/user/clearCart/${userId}`, {
                     method: "DELETE",
                     headers: {
                         "Authorization": `Bearer ${token}`,
                     },
                 });
+
             } catch (error) {
                 console.error("Error:", error);
             }
-    
+
             setLoading(false);
             navigate("/pickup-confirmation");
         }, 2000);
     };
     
-
     const handleConfirmDelivery = (e) => {
         e.preventDefault();
-        navigate("/paymentPage");
+        
+        setLoading(true);  // Show "Confirming..." on button
+        
+        const userId = localStorage.getItem('userId'); 
+        if (!userId) {
+            setLoading(false);
+            return;
+        }
+    
+        const fullName = e.target[0].value;
+        const phoneNumber = e.target[1].value;
+        const streetAddress = e.target[2].value;
+        const city = e.target[3].value;
+        const state = e.target[4].value;
+        const zipCode = e.target[5].value;
+    
+        const address = selectedOption === "pickup"
+            ? "175, Abeokuta Express Way, Iyana Ipaja, Lagos"
+            : `${streetAddress}, ${city}, ${state}, ${zipCode}`;
+    
+        const orderDetails = {
+            userId,
+            items: orderItems.map(item => ({
+                productId: item.id,  
+                quantity: item.quantity,
+                price: item.price
+            })),
+            totalAmount: finalTotal,
+            pickupMethod: selectedOption === "pickup" ? "Pickup" : "Delivery",
+            address: selectedOption === "pickup" ? "" : address,
+            customerDetails: { fullName, phoneNumber },
+        };
+    
+        setTimeout(() => {
+            localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
+            setLoading(false);  // Hide "Confirming..."
+            navigate("/paymentPage");  // Navigate AFTER saving order details
+        }, 2000);
     };
+    
 
     return (
         <>
@@ -77,14 +125,14 @@ const DeliveryOptions = () => {
 
                             <div className={`option ${selectedOption === "express" ? "active" : ""}`}
                                 onClick={() => setSelectedOption("express")}>
-                                <FaShippingFast className="icon express" />
+                                <FaShippingFast className="ddicona" />
                                 <h3>Express Delivery</h3>
                                 <p>Arrives in 1-2 days. Extra charge applies.</p>
                             </div>
 
                             <div className={`option ${selectedOption === "pickup" ? "active" : ""}`}
                                 onClick={() => setSelectedOption("pickup")}>
-                                <FaStore className="icon store" />
+                                <FaStore className="ddiconb" />
                                 <h3>Store Pickup</h3>
                                 <p>Pick up from the nearest store in 24 hours.</p>
                             </div>
@@ -134,15 +182,21 @@ const DeliveryOptions = () => {
                                     </a>
                                 </p>
                                 <p>🕒 Pickup Hours: 9 AM - 7 PM</p>
+
+                                <span className="pickup-warning">
+                                    ⚠️ Please note: Orders must be picked up within <strong>7 days</strong>. Unclaimed orders will be automatically canceled.
+                                </span>
+
                                 <div className="payment-buttons">
                                     <button className="pay-online">Pay Online</button>
                                     <button className="pay-pickup" onClick={handlePayAtPickup}>Pay at Pickup</button>
                                 </div>
                             </div>
+
                         ) : null}
                     </>
                 )}
-            </div>
+            </div><br /><br /><br />
         </>
     );
 };

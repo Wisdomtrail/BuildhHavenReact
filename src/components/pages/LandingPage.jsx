@@ -12,12 +12,61 @@ import PSsteel from '../../assets/img/PSsteel.png';
 import Ftools from '../../assets/img/Ftools.png';
 import Bmaterials from '../../assets/img/Bmaterials.png';
 import precisionTools from '../../assets/img/precisionTools.png';
+import { useNavigate } from "react-router-dom";
+import emailjs from "emailjs-com";
+import Modal from 'react-modal'
+const modalStyles = {
+    overlay: {
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+    content: {
+        width: "400px",
+        margin: "auto",
+        height: "150px",
+        padding: "20px",
+        borderRadius: "10px",
+        textAlign: "center",
+        backgroundColor: "#fff",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
+    },
+};
+
+Modal.setAppElement("#root"); // Required for accessibility
+
 
 const LandingPage = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isFading, setIsFading] = useState(false);
     const images = [ContructionImg, EngineerImg, tallBuildingImg];
-    const [activeSlide, setActiveSlide] = useState('f'); 
+    const [activeSlide, setActiveSlide] = useState('f');
+    const navigate = useNavigate();
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [isSending, setIsSending] = useState(false);
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setIsSending(true); // ✅ Set to true when sending starts
+
+        emailjs
+            .sendForm(
+                "service_945fzok", // Replace with your EmailJS service ID
+                "template_mre49re", // Replace with your EmailJS template ID
+                event.target,
+                "zXCA7yc7A9WFsuPbS" // Replace with your EmailJS public key
+            )
+            .then(() => {
+                setModalIsOpen(true);
+                setIsSending(false); // ✅ Reset after successful send
+                event.target.reset();
+            })
+            .catch((error) => {
+                console.log("FAILED...", error);
+                setIsSending(false); // ✅ Reset if there's an error
+            });
+    };
+
+
     const handleSlideChange = (slide) => {
         setActiveSlide(slide);
         const container = document.querySelector('.compDesTextDiv');
@@ -29,7 +78,7 @@ const LandingPage = () => {
         }
     };
 
-    
+
 
     useEffect(() => {
         setCurrentImageIndex(0);
@@ -58,6 +107,7 @@ const LandingPage = () => {
             }
         }
 
+
         // Toggle active class
         const controls = document.querySelectorAll('.controlBox');
         controls.forEach((control, i) => {
@@ -65,7 +115,12 @@ const LandingPage = () => {
         });
     };
 
-
+    const aboutUs = () => {
+        navigate('/aboutUs')
+    }
+    const contactUs = () => {
+        navigate('/contactUs')
+    }
     return (
         <>
             <Header />
@@ -86,8 +141,8 @@ const LandingPage = () => {
                             <h1>We supply Quality <br />You Can Trust Everyday</h1>
                             <p>Building Dreams, One Quality Material at a Time. Discover The Difference With Build Haven Hub's Premium <br />
                                 Construction Supplies. Your Project Deserves The Best.</p>
-                           <div className="lbuttons">
-                                <button className="learn-button">LEARN MORE
+                            <div className="lbuttons">
+                                <button className="learn-button" onClick={aboutUs}>LEARN MORE
                                     <FontAwesomeIcon className="arrow" icon={faArrowRight} /> </button>
                                 <br /><br />  <button className="service-button">OUR SERVICES</button>
                             </div>
@@ -109,7 +164,7 @@ const LandingPage = () => {
                             <br /> dreams, partners in innovation, and champions of unwavering quality. Our story is one of passion,
                             <br /> dedication, and a commitment to redefine the construction landscape. Step into the world of
                             <br /> BuildHaven Hub, where every nail, every tool, and every interaction is infused with our core values.</span><br /><br /><br />
-                        <button id="rmaua">READ MORE ABOUT US
+                        <button id="rmaua" onClick={aboutUs}>READ MORE ABOUT US
                             <FontAwesomeIcon id="rmdarrow" className="arrow" icon={faArrowRight} /></button>
                     </div>
                     <div className="compDesTextDiv">
@@ -212,27 +267,33 @@ const LandingPage = () => {
                     <p>About Us</p>
                     <h1>Customer Centric Approach</h1>
                     <span>At Build Haven Hub, our customers are at the heart of everything we do. We listen to their needs, understand their challenges, and strive to provide solutions that exceed their expectations. Our customer service team is always ready to assist, ensuring a seamless and positive experience from the first point of contact to the final delivery. We are not just suppliers; we are partners in our clients’ success.</span>
-                    <button>Contact Us</button>
+                    <button onClick={contactUs}>Contact Us</button>
                 </div>
 
                 <div className="GitFaq"><br /><br />
                     <div className="gitF">
-                        <form action="">
+                        <form id="contactForm" onSubmit={handleSubmit}>
                             <h1>Get In Touch</h1>
-                            <p>Fill all information details to consult with <br /> us to get sevices from us</p><br /><br />
-                            <input type="text" name="" id="gitfI" placeholder="Your Name*" /><br /><br />
-                            <input type="text" name="" id="gitfI" placeholder="Your Email*" /><br /><br />
-                            <select name="" id="gitfl" >
-                                <option value="">Inquiry 1</option>
-                                <option value="">Inquiry 2</option>
-                                <option value="">Inquiry 3</option>
+                            <p>Fill all information details to consult with <br /> us to get services from us</p><br /><br />
+
+                            <input type="text" name="name" id="gitfI" placeholder="Your Name*" required /><br /><br />
+                            <input type="email" name="email" id="gitfI" placeholder="Your Email*" required /><br /><br />
+
+                            <select name="inquiry" id="gitfl" required>
+                                <option value="">Select an Inquiry</option>
+                                <option value="pricing">Pricing & Quotes</option>
+                                <option value="technical_support">Technical Support</option>
+                                <option value="partnership">Partnership Opportunities</option>
+                                <option value="custom_request">Custom Project Request</option>
                             </select><br /><br />
+
                             <div class="input-container">
                                 <input type="text" id="gitfQ" placeholder=" " />
                                 <label for="gitfQ">Your message*</label>
                             </div><br />
-
-                            <button id="gitfl">Send Questions</button><br />
+                            <button id="gitfl" type="submit" disabled={isSending}>
+                {isSending ? "Sending..." : "Send Questions"}
+            </button><br />
                         </form>
                     </div>
                     <div className="gitS">
@@ -247,7 +308,7 @@ const LandingPage = () => {
                                 </div>
                                 <section className="dfff">
                                     <span>
-                                    In 2016, Build Haven Hub was founded with a vision to become a reliable supplier of high-quality construction materials to private constructors. Starting from a small warehouse and a single supplier, the company focused on building strong relationships with local builders, offering personalized service and competitive pricing.
+                                        In 2016, Build Haven Hub was founded with a vision to become a reliable supplier of high-quality construction materials to private constructors. Starting from a small warehouse and a single supplier, the company focused on building strong relationships with local builders, offering personalized service and competitive pricing.
                                     </span>
                                 </section>
                                 <div >
@@ -264,7 +325,23 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
-                <Footer/>
+                <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={modalStyles}>
+                    <h2 style={{ color: "#FF0000" }}>Message Sent!</h2>
+                    <p>Thank you for reaching out. We will get back to you shortly.</p>
+                    <button onClick={() => setModalIsOpen(false)} style={{
+                        backgroundColor: "#FF0000",
+                        color: "#FFFFFF",
+                        padding: "10px 20px",
+                        border: "none",
+                        borderRadius: "5px",
+                        cursor: "pointer",
+                        fontSize: "16px",
+                    }}>
+                        Close
+                    </button>
+
+                </Modal>
+                <Footer />
             </div>
         </>
     );

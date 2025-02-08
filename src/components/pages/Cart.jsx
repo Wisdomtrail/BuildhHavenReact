@@ -24,6 +24,14 @@ const Cart = () => {
     };
     const navigate = useNavigate();
     useEffect(() => {
+        if (!userId || !token) {
+            toast.error("Session expired! Please log in again.", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+            });
+            navigate("/login"); 
+        }
         setLoading(true);
         const fetchCart = async () => {
             try {
@@ -50,8 +58,8 @@ const Cart = () => {
                             description: productData.product.description,
                             price: productData.product.price,
                             quantity: item.quantity,
-                            image: productData.product.images[0],
-                        };
+                            images: productData.product.images || [], // Store all images
+                        };                        
                     }));
 
                     setOrderItems(updatedItems);
@@ -64,9 +72,7 @@ const Cart = () => {
         };
 
         fetchCart();
-    }, [userId, token]);
-
-    
+    }, [userId, token, navigate]);    
 
     const handleAddItem = () => {
         navigate("/products");
@@ -190,13 +196,14 @@ const Cart = () => {
     const totalQuantity = orderItems.reduce((acc, item) => acc + item.quantity, 0);
     const viewProduct = (item) => {
         const product = {
-            _id: item.id, // Ensure the ID format is consistent
+            _id: item.id,
             name: item.name,
             description: item.description,
             price: item.price,
-            images: [item.image], // Ensure images is an array like in product.jsx
-            quantity: item.quantity // Ensure quantity exists
+            images: item.images, // Pass all images
+            quantity: item.quantity
         };
+        
 
         navigate(`/view-product/${item.id}`, { state: { product } });
     };
@@ -226,7 +233,7 @@ const Cart = () => {
                             orderItems.map((item) => (
                                 <div key={item.id} className="cart-item" onClick={() => viewProduct(item)}>
                                     <div className="item-image">
-                                        <img src={item.image || "path-to-default-image.jpg"} alt={item.name} />
+                                    <img src={item.images.length > 0 ? item.images[0] : "path-to-default-image.jpg"} alt={item.name} />
                                     </div>
                                     <div className="item-info">
                                         <p className="item-name">{item.name.slice(0, 14)}...</p>

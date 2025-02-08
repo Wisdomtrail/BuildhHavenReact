@@ -1,9 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import Header from "../header/Header";
 import Footer from '../footer/Footer';
 import '../../styles/ContactUs.css'; // Import the custom CSS file
 
 const ContactUs = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+
+    const [isSending, setIsSending] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        // Basic validation
+        if (!formData.name || !formData.email || !formData.message) {
+            setModalMessage("Please fill out all fields before submitting.");
+            setModalOpen(true);
+            return;
+        }
+
+        setIsSending(true);
+
+        emailjs
+            .send(
+                "service_945fzok", // Your EmailJS Service ID
+                "template_mre49re", // Your EmailJS Template ID
+                formData,
+                "zXCA7yc7A9WFsuPbS" // Your EmailJS Public Key
+            )
+            .then(() => {
+                setModalMessage("Message sent successfully! We will get back to you soon.");
+                setModalOpen(true);
+                setFormData({ name: "", email: "", message: "" });
+            })
+            .catch((error) => {
+                console.error("FAILED...", error);
+                setModalMessage("Something went wrong. Please try again later.");
+                setModalOpen(true);
+            })
+            .finally(() => {
+                setIsSending(false);
+            });
+    };
+
     return (
         <div className="contact-us">
             <Header />
@@ -26,17 +75,43 @@ const ContactUs = () => {
                     </div>
                 </div>
             </div>
+
             <div className="contact-info">
                 <div className="message-form">
                     <h2>Send Us a Message</h2>
-                    <form className="contact-form">
-    <input type="text" placeholder="Your Name" required className="contact-input" />
-    <input type="email" placeholder="Your Email" required className="contact-input" />
-    <textarea placeholder="Your Message" required className="contact-textarea"></textarea>
-    <button type="submit" className="contact-submit-btn">Submit</button>
-</form>
-
+                    <form className="contact-form" onSubmit={handleSubmit}>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            placeholder="Your Name" 
+                            required 
+                            className="contact-input"
+                            value={formData.name}
+                            onChange={handleChange}
+                        />
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder="Your Email" 
+                            required 
+                            className="contact-input"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                        <textarea 
+                            name="message" 
+                            placeholder="Your Message" 
+                            required 
+                            className="contact-textarea"
+                            value={formData.message}
+                            onChange={handleChange}
+                        />
+                        <button type="submit" className="contact-submit-btn" disabled={isSending}>
+                            {isSending ? "Sending..." : "Submit"}
+                        </button>
+                    </form>
                 </div>
+
                 <div className="details">
                     <h2>Our Contact Information</h2>
                     <p><strong>Address:</strong> 175, Abeokuta express way Iyana Ipaja Lagos</p>
@@ -44,7 +119,24 @@ const ContactUs = () => {
                     <p><strong>Email:</strong> contact@buildhavenhub.com</p>
                 </div>
             </div>
+
             <Footer />
+
+            {/* Modal for Success/Error Messages */}
+            {modalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h2>Notification</h2>
+                        <p>{modalMessage}</p>
+                        <button 
+                            onClick={() => setModalOpen(false)}
+                            className="modal-close-btn"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

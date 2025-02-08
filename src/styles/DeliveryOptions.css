@@ -73,6 +73,15 @@
         min-height: 100vh;
     }
     
+/* Pay Online Button */
+.payment-buttons .pay-online {
+    font-size: 14px;
+}
+
+.payment-buttons .pay-pickup {
+    font-size: 14px;
+}
+    
 }
 .payment-buttons {
     display: flex;
@@ -261,6 +270,21 @@ h3 {
 
 .pickup-info h3 {
     color: #0073e6;
+}
+.ddicona{ 
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: red;
+}
+.ddiconb{
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: rgb(85, 85, 255);
+}
+.pickup-warning {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .pickup-info p {

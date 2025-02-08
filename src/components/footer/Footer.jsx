@@ -1,10 +1,46 @@
-import React from "react"
 import '../../styles/Footer.css'
+import { useState, React } from "react";
+import emailjs from "emailjs-com";
 import logo from '../../assets/img/logoT.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faEnvelope, faGlobe, faLocation, faLocationDot, faMessage, faPhone, faSquare } from "@fortawesome/free-solid-svg-icons";
+import {faEnvelope, faGlobe, faLocationDot, faPhone, faSquare } from "@fortawesome/free-solid-svg-icons";
 const Footer = () => {
 
+    const [email, setEmail] = useState("");
+    const [isSending, setIsSending] = useState(false);
+    const [message, setMessage] = useState("");
+
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
+    const handleSend = () => {
+        if (!validateEmail(email)) {
+            setMessage("Please enter a valid email address.");
+            return;
+        }
+
+        setIsSending(true);
+        setMessage("");
+
+        emailjs
+            .send(
+                "service_945fzok", // Replace with your EmailJS service ID
+                "template_hknbt7j", // Replace with your EmailJS template ID
+                { to_email: email }, 
+                "zXCA7yc7A9WFsuPbS" // Replace with your EmailJS public key
+            )
+            .then(() => {
+                setMessage("Newsletter subscribed successfully!");
+                setIsSending(false);
+                setEmail(""); // Clear input field
+            })
+            .catch((error) => {
+                console.log("FAILED...", error);
+                setMessage("Failed to send. Try again.");
+                setIsSending(false);
+            });
+    };
 
 
     return (
@@ -103,16 +139,24 @@ const Footer = () => {
                 </section>
                 <br />
                 <section>
-                   <div id="sendMail">
-                   <input type="text" placeholder="Email" /><br />
-                   <button>Send</button>
-                   </div>
-                    <br /><br />
-                    <span>Want to visit?</span>
-                    <span><a href="">Click here</a></span>
+                <div id="sendMail">
+                <input 
+                    type="text" 
+                    placeholder="Email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isSending}
+                /><br />
+                <button onClick={handleSend} disabled={isSending}>
+                    {isSending ? "Sending..." : "Send"}
+                </button>
+                <p style={{ color: message.includes("success") ? "green" : "red" }}>{message}</p>
+            </div>
+            <br />
+            <span>Want to visit?</span>
+            <span><a href="">Click here</a></span>
                 </section>
             </div>
-<br /><br /><br /><br /><br />
         </div>
     )
 }

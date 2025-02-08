@@ -1,0 +1,127 @@
+.building-materials {
+    font-family: Arial, sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 60vh;
+    background: url('../assets/img/1280269.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-section .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section .content {
+    color: white;
+    padding: 20px;
+}
+
+.hero-section .title {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-section .subtitle {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.shop-now-button {
+    background: #FD8F00;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease;
+}
+
+.shop-now-button:hover {
+    background: #cc7200;
+}
+
+/* Products Section */
+.products-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.products-section h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-name {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.product-price {
+    color: #FD8F00;
+    font-weight: bold;
+}
+
+.buy-button {
+    background: #FD8F00;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.3s ease;
+}
+
+.buy-button:hover {
+    background: #cc7200;
+}

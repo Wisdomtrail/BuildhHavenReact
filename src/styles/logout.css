@@ -1,0 +1,44 @@
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #3b3b3b, #707070);
+  }
+  
+  .logout-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .logout-icon {
+    font-size: 50px;
+    color: #ff4500;
+    animation: bounce 1s infinite;
+  }
+  
+  .logout-title {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .logout-message {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  

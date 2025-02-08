@@ -19,6 +19,9 @@ const Header = () => {
   const navigateToLogin = () => {
     navigate('/login')
   }
+  const bulidingPage = () =>{
+    navigate('/building-materials');
+  }
 
   return (
     <header>
@@ -79,7 +82,7 @@ const Header = () => {
             Services <FontAwesomeIcon icon={faAngleDown} />
             {isServicesOpen && (
               <div className="dropdown">
-                <p id="building-materials"><span>Building Materials</span></p>
+                <p id="building-materials" onClick={bulidingPage}><span>Building Materials</span></p>
                 <p id="precision-power-tools"><span>Precision Power Tools</span></p>
                 <p id="fabrication-tools"><span>Fabrication Tools</span></p>
                 <p id="pipes-steel"><span>Pipes and Structural Steel</span></p>
@@ -102,7 +105,7 @@ const Header = () => {
           <p className="services">
             Services <FontAwesomeIcon icon={faAngleDown} />
             <div className="dropdown">
-              <p id="building-materials">Building Materials</p>
+              <p id="building-materials" onClick={bulidingPage}>Building Materials</p>
               <p id="precision-power-tools">Precision Power Tools</p>
               <p id="fabrication-tools">Fabrication Tools</p>
               <p id="pipes-steel">Pipes and Structural Steel</p>
