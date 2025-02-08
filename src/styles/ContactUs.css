@@ -73,7 +73,7 @@
     }
 }
 .subtitle {
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
     margin-bottom: 32px;
     width: 100%;
 }
