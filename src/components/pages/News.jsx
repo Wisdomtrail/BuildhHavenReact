@@ -7,7 +7,7 @@ const News = () => {
     return (
         <div className="news-page-container">
             <Header />
-            
+
             <div className="news-banner">
                 <div className="news-overlay">
                     <div className="newsContent">
@@ -18,33 +18,47 @@ const News = () => {
                     </div>
                 </div>
             </div>
-
-            {/* News Section */}
             <div className="news-section">
                 <div className="news-card">
-                    <h2>🚧 New Construction Trends for 2025</h2>
+                    <h2>🛠️ Latest Construction Innovations in 2025</h2>
                     <p>
-                        Discover the latest innovations and technologies shaping the future of construction.
+                        Stay updated on cutting-edge construction technologies and techniques transforming the industry.
                     </p>
-                    <button className="read-more-button">Read More →</button>
+                    <a href="https://www.constructiondive.com/topic/technology/"
+                        className="read-more-button"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Read More →
+                    </a>
                 </div>
 
                 <div className="news-card">
-                    <h2>🏗️ BuildHaven Expands to More Cities</h2>
+                    <h2>🏗️ Smart Building Materials: The Future of Construction</h2>
                     <p>
-                        We are excited to announce our expansion to more cities, making construction materials more accessible.
+                        Discover how smart materials are improving efficiency, durability, and cost-effectiveness in construction.
                     </p>
-                    <button className="read-more-button">Read More →</button>
+                    <a href="https://www.archdaily.com/tag/smart-materials"
+                        className="read-more-button"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Read More →
+                    </a>
                 </div>
 
                 <div className="news-card">
-                    <h2>💡 Sustainable Building Materials Now Available</h2>
+                    <h2>🌍 Sustainable Building: Eco-Friendly Construction Trends</h2>
                     <p>
-                        Learn about our new eco-friendly materials that are revolutionizing the construction industry.
+                        Learn about the latest eco-friendly materials and sustainable building techniques shaping the industry.
                     </p>
-                    <button className="read-more-button">Read More →</button>
+                    <a href="https://www.archdaily.com/tag/sustainable-materials"
+                        className="read-more-button"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Read More →
+                    </a>
                 </div>
             </div>
+
 
             <Footer />
         </div>

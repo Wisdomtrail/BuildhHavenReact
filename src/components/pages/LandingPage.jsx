@@ -218,7 +218,7 @@ const LandingPage = () => {
                             <p>Precision Power Tools</p>
                             <div>
                                 <span>Craft brilliance with our specialized fabrication tools. We provide the tools you need to shape metals with finesse. </span>
-                                <br /><br /><br /><button>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
+                                <br /><br /><br /><button onClick={() => {navigate('/precision-tools')}}>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
                             </div>
                         </div>
                         <div className="sWePdiv"><img src={Bmaterials} alt="" />
@@ -226,7 +226,7 @@ const LandingPage = () => {
                             <div>
                                 <span>
                                     Lay the foundation of excellence with our superior building materials. Explore a range that includes everything you need.</span>
-                                <br /><br /><br /><button>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
+                                <br /><br /><br /><button onClick={() => {navigate('/building-materials')}} > Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
                             </div>
                         </div>
                         <div className="sWePdiv"><img src={Ftools} alt="" />
@@ -234,7 +234,7 @@ const LandingPage = () => {
                             <div>
                                 <span>
                                     Craft brilliance with our specialized fabrication tools. We provide the tools you need to shape metals with finesse.                                    </span>
-                                <br /><br /><br /><button>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
+                                <br /><br /><br /><button onClick={() => {navigate('/fabrication-tools')}}>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
                             </div>
                         </div>
                         <div className="sWePdiv"><img src={PSsteel} alt="" />
@@ -242,7 +242,7 @@ const LandingPage = () => {
                             <div>
                                 <span>
                                     BuildHaven Hub is your one-stop-shop for all types of pipes, including scaffolding pipes, H-beams, angles of all sizes and thicknesses.</span>
-                                <br /><br /><br /><button>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
+                                <br /><br /><br /><button onClick={() => {navigate('/pipes-steel')}}>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
                             </div>
 
                         </div>
@@ -251,7 +251,7 @@ const LandingPage = () => {
                             <div>
                                 <span>
                                     Design your spaces with our exquisite collection of doors and sheet plates of various thicknesses.</span>
-                                <br /><br /><br /><button>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
+                                <br /><br /><br /><button onClick={() => {navigate('/doors-plates')}}>Read More  <FontAwesomeIcon id="sweArrow" className="arrow" icon={faArrowRight} /></button>
                             </div>
                         </div>
                     </div>

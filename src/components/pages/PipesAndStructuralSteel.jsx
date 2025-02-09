@@ -9,18 +9,18 @@ import BASE_URL from '../../config';
 import { useNavigate } from "react-router-dom";
 import CartIcon from "./CartIcon";
 
-const BuildingMaterials = () => {
+const PipesAndStructuralSteel = () => {
     const [products, setProducts] = useState([]);
+    const [cartCount, setCartCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
-    const [cartCount, setCartCount] = useState(0);
     const productsRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`${BASE_URL}/product/category/Building Materials`);
+                const response = await fetch(`${BASE_URL}/product/category/Pipes and Structural Steel`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch products");
                 }
@@ -34,10 +34,14 @@ const BuildingMaterials = () => {
         };
 
         fetchProducts();
+        
         const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
         setCartCount(storedCart.length);
     }, []);
 
+    const scrollToProducts = () => {
+        productsRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
     const addToCart = (product) => {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         const existingProduct = cart.find((item) => item._id === product._id);
@@ -53,9 +57,6 @@ const BuildingMaterials = () => {
         window.dispatchEvent(new Event("storage"));
     };
     
-    const scrollToProducts = () => {
-        productsRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
 
     return (
         <div className="building-materials">
@@ -68,9 +69,9 @@ const BuildingMaterials = () => {
             >
                 <div className="overlay">
                     <div className="content">
-                        <h1 className="titleB"><MdConstruction /> Quality Building Materials</h1>
+                        <h1 className="titleB"><MdConstruction /> Pipes & Structural Steel</h1>
                         <p className="subtitle">
-                            Find top-quality materials for all your construction needs at unbeatable prices.
+                            Find high-quality pipes and structural steel for all your construction needs.
                         </p>
                         <motion.button
                             className="shop-now-button"
@@ -84,14 +85,14 @@ const BuildingMaterials = () => {
             </motion.div>
 
             <div className="products-section" ref={productsRef}>
-                <h2>Our Building Materials</h2>
+                <h2>Our Pipes & Structural Steel</h2>
 
                 {loading && <p>Loading products...</p>}
                 {error && <p className="error-message">{error}</p>}
 
                 {!loading && !error && products.length === 0 && (
                     <div className="no-products">
-                        <p>No Building Materials Available.</p>
+                        <p>No Pipes & Structural Steel Available.</p>
                     </div>
                 )}
 
@@ -118,7 +119,7 @@ const BuildingMaterials = () => {
                 </div>
             </div>
             {cartCount > 0 && (
-                <div className="floating-cart" onClick={() => {navigate('/shoppingBasket')}}>
+                <div className="floating-cart" onClick={() => { navigate("/shoppingBasket")}}>
                     <CartIcon />
                     <span className="cart-count">{cartCount}</span>
                 </div>
@@ -128,4 +129,4 @@ const BuildingMaterials = () => {
     );
 };
 
-export default BuildingMaterials;
+export default PipesAndStructuralSteel;

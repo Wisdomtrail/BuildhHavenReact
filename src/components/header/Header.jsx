@@ -22,12 +22,15 @@ const Header = () => {
   const bulidingPage = () =>{
     navigate('/building-materials');
   }
+  const precisionPage = () => {
+    navigate('/precision-tools')
+  }
 
   return (
     <header>
       <div className="top-section">
         <div className="logoAndCallUsSection">
-          <img id="logo" src={logo} alt="Build Haven Logo" />
+          <img id="logo" onClick={ () => navigate('/') } src={logo} alt="Build Haven Logo" />
           <div className="phoneCall">
             <img id="phone" src={phoneIcon} alt="Phone Icon" />
             <div className="contactN">
@@ -83,11 +86,11 @@ const Header = () => {
             {isServicesOpen && (
               <div className="dropdown">
                 <p id="building-materials" onClick={bulidingPage}><span>Building Materials</span></p>
-                <p id="precision-power-tools"><span>Precision Power Tools</span></p>
-                <p id="fabrication-tools"><span>Fabrication Tools</span></p>
-                <p id="pipes-steel"><span>Pipes and Structural Steel</span></p>
-                <p id="accessories-gear"><span>Accessories & Safety Gear</span></p>
-                <p id="doors-plates"><span>Doors and Plates</span></p>
+                <p id="precision-power-tools" onClick={precisionPage}><span>Precision Power Tools</span></p>
+                <p id="fabrication-tools" onClick={()=> navigate('/fabrication-tools')}><span>Fabrication Tools</span></p>
+                <p id="pipes-steel" onClick={() => navigate('/pipes-steel')} ><span>Pipes and Structural Steel</span></p>
+                <p id="accessories-gear" onClick={()=> navigate('/Accessories-SafetyGear')}><span>Accessories & Safety Gear</span></p>
+                <p id="doors-plates" onClick={()=> navigate('/doors-plates')}><span>Doors and Plates</span></p>
                 
               </div>
             )}
@@ -106,11 +109,11 @@ const Header = () => {
             Services <FontAwesomeIcon icon={faAngleDown} />
             <div className="dropdown">
               <p id="building-materials" onClick={bulidingPage}>Building Materials</p>
-              <p id="precision-power-tools">Precision Power Tools</p>
-              <p id="fabrication-tools">Fabrication Tools</p>
-              <p id="pipes-steel">Pipes and Structural Steel</p>
-              <p id="accessories-gear">Accessories & Safety Gear</p>
-              <p id="doors-plates">Doors and Plates</p>
+              <p id="precision-power-tools" onClick={precisionPage}>Precision Power Tools</p>
+              <p id="fabrication-tools" onClick={()=> navigate('/fabrication-tools')}>Fabrication Tools</p>
+              <p id="pipes-steel" onClick={() => navigate('/pipes-steel')}>Pipes and Structural Steel</p>
+              <p id="accessories-gear"onClick={()=> navigate('/Accessories-SafetyGear')}>Accessories & Safety Gear</p>
+              <p id="doors-plates"onClick={()=> navigate('/doors-plates')}>Doors and Plates</p>
             </div>
           </p>
 

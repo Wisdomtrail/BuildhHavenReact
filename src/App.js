@@ -18,6 +18,12 @@ import Payment from './components/pages/Payment.jsx';
 import DeliveryConfirmation from './components/pages/DeliveryConfirmation.jsx';
 import ScrollToTop from './components/pages/ScrollToTop.jsx';
 import BuildingMaterials from './components/pages/BuildingMaterials.jsx';
+import PrecisionTools from './components/pages/PrecisionTools.jsx';
+import Fabrication from './components/pages/Fabrication.jsx';
+import PipesAndStructuralSteel from './components/pages/PipesAndStructuralSteel.jsx';
+import DoorsAndPlates from './components/pages/DoorsAndPlates.jsx';
+import AccessoriesAndSafetyGear from './components/pages/AccessoriesAndSafetyGear.jsx';
+import ShoppingBasket from './components/pages/shoppingBasket.jsx';
 
 function App() {
   return (
@@ -40,8 +46,14 @@ function App() {
         <Route path='/delivery-options' element={<DeliveryOptions/>}/>
         <Route path="/pickup-confirmation" element={<PickupConfirmation />} />
         <Route path='/paymentPage' element={<Payment/>}/>
+        <Route path='/fabrication-tools' element={<Fabrication/>}/>
+        <Route path='/precision-tools' element={<PrecisionTools/>}/>
+        <Route path='/doors-plates' element={<DoorsAndPlates/>}/>
+        <Route path='/Accessories-SafetyGear' element={<AccessoriesAndSafetyGear/>}/>
         <Route path='/building-materials' element={<BuildingMaterials/>}/>
+        <Route path='/pipes-steel' element={<PipesAndStructuralSteel/>}/>
         <Route path='/deliveryconfirmation' element={<DeliveryConfirmation/>}/>
+        <Route path='/shoppingBasket' element={<ShoppingBasket/>}/>
       </Routes>
     </Router>
   );

@@ -56,7 +56,7 @@ const ContactUs = () => {
     return (
         <div className="contact-us">
             <Header />
-            <div className="hero-section">
+            <div className="hero-sectionc">
                 <div className="overlay">
                     <div className="content">
                         <h1 className="title">Contact Us</h1>

@@ -6,21 +6,21 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdConstruction } from "react-icons/md";
 import { motion } from "framer-motion";
 import BASE_URL from '../../config';
-import { useNavigate } from "react-router-dom";
 import CartIcon from "./CartIcon";
+import { useNavigate } from "react-router-dom";
 
-const BuildingMaterials = () => {
+const Fabrication = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
     const [cartCount, setCartCount] = useState(0);
     const productsRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`${BASE_URL}/product/category/Building Materials`);
+                const response = await fetch(`${BASE_URL}/product/category/Fabrication Tools`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch products");
                 }
@@ -52,7 +52,9 @@ const BuildingMaterials = () => {
         setCartCount(cart.length);
         window.dispatchEvent(new Event("storage"));
     };
-    
+    const goToCart = () => {
+        navigate("/shoppingBasket"); // Navigate to the cart page
+    };
     const scrollToProducts = () => {
         productsRef.current?.scrollIntoView({ behavior: "smooth" });
     };
@@ -68,9 +70,9 @@ const BuildingMaterials = () => {
             >
                 <div className="overlay">
                     <div className="content">
-                        <h1 className="titleB"><MdConstruction /> Quality Building Materials</h1>
+                        <h1 className="titleB"><MdConstruction /> High-Quality Fabrication Tools</h1>
                         <p className="subtitle">
-                            Find top-quality materials for all your construction needs at unbeatable prices.
+                            Explore top-notch fabrication tools for all your industrial and workshop needs.
                         </p>
                         <motion.button
                             className="shop-now-button"
@@ -84,14 +86,14 @@ const BuildingMaterials = () => {
             </motion.div>
 
             <div className="products-section" ref={productsRef}>
-                <h2>Our Building Materials</h2>
+                <h2>Our Fabrication Tools</h2>
 
                 {loading && <p>Loading products...</p>}
                 {error && <p className="error-message">{error}</p>}
 
                 {!loading && !error && products.length === 0 && (
                     <div className="no-products">
-                        <p>No Building Materials Available.</p>
+                        <p>No Fabrication Tools Available.</p>
                     </div>
                 )}
 
@@ -109,7 +111,7 @@ const BuildingMaterials = () => {
                             <motion.button
                                 className="buy-button"
                                 whileHover={{ scale: 1.1 }}
-                                onClick={addToCart}
+                                onClick={() => addToCart(product)}
                             >
                                 Buy Now <FaShoppingCart />
                             </motion.button>
@@ -118,14 +120,15 @@ const BuildingMaterials = () => {
                 </div>
             </div>
             {cartCount > 0 && (
-                <div className="floating-cart" onClick={() => {navigate('/shoppingBasket')}}>
+                <div className="floating-cart" onClick={goToCart}>
                     <CartIcon />
                     <span className="cart-count">{cartCount}</span>
                 </div>
             )}
             <Footer />
+            <Footer />
         </div>
     );
 };
 
-export default BuildingMaterials;
+export default Fabrication;

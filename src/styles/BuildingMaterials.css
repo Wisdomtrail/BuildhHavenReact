@@ -1,8 +1,45 @@
 .building-materials {
     font-family: Arial, sans-serif;
 }
+.floating-cart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fd8f00; /* Orange theme */
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 1000; /* Ensure it's above the footer */
+}
 
-/* Hero Section */
+.floating-cart:hover {
+    transform: scale(1.1);
+    background-color: #e07a00; /* Slightly darker on hover */
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .hero-section {
     position: relative;
     height: 60vh;
@@ -24,8 +61,29 @@
 
 .hero-section .content {
     color: white;
+    text-align: left;
     padding: 20px;
 }
+@media screen and (max-width: 700px) {
+    .titleB{
+    font-size: 1.8rem !important;
+    }
+    .hero-section .content {
+        text-align: left;
+        width: 100% !important;
+    }
+    .hero-section{
+        height: 80vh !important;
+    }
+}
+@media screen and (max-width: 580px) {
+   .product-card{
+    width: 80% !important;
+    justify-self: center;
+   }
+}
+
+
 
 .hero-section .title {
     font-size: 2.5rem;
