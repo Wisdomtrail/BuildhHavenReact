@@ -97,7 +97,7 @@ const PrecisionTools = () => {
                     {products.map((product) => (
                         <motion.div
                             key={product._id}
-                            className="product-card"
+                            className="product-cardd"
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.3 }}
                         >
