@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/Login.css";
 import BASE_URL from "../../config";
+import Header from "../header/Header";
 
 const Registration = () => {
     const [loading, setLoading] = useState(false);
@@ -59,6 +60,8 @@ const Registration = () => {
     };
 
     return (
+        <>
+        <Header/>
         <div className="body">
             <div className="wrapper" style={{ height: "550px" }}>
                 <div className="form-box login">
@@ -126,6 +129,7 @@ const Registration = () => {
             </div>
             <ToastContainer />
         </div>
+        </>
     );
 };
 

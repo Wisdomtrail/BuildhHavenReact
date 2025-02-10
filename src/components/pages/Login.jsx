@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config";
+import Header from "../header/Header";
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
@@ -64,6 +65,9 @@ const Login = () => {
     };
 
     return (
+        <>
+        <Header/>
+        
         <div className="body">
             <div className="wrapper">
                 <div className="form-box login">
@@ -120,6 +124,7 @@ const Login = () => {
             </div>
             <ToastContainer />
         </div>
+        </>
     );
 };
 
