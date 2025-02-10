@@ -4,6 +4,7 @@ import { FaBox, FaList, FaCog, FaUser, FaShoppingCart, FaSignOutAlt } from 'reac
 import '../../styles/sidebar.css';
 import logo from '../../assets/img/logoT.png';
 import { useNavigate } from 'react-router-dom';
+import BASE_URL from '../../config';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -18,7 +19,7 @@ const Sidebar = () => {
     if (!userId || !token) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/user/getCartQuantity/${userId}`, {
+      const response = await fetch(`${BASE_URL}/user/getCartQuantity/${userId}`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,

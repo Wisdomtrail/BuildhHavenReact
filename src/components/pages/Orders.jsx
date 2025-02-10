@@ -4,6 +4,7 @@ import DMobileDownbar from '../sideBar/DMobileDownbar';
 import '../../styles/orders.css'; // Ensure to import the CSS
 import { FaCheckCircle, FaTimesCircle, FaHourglass } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../config";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -25,7 +26,7 @@ const Orders = () => {
 
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/user/getOrder/${userId}`, {
+        const response = await fetch(`${BASE_URL}/user/getOrder/${userId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
