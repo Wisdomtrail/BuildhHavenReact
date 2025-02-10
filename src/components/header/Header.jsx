@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import "../../styles/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faArrowRight, faSearch, faBars, faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,23 @@ const Header = () => {
   const navigate = useNavigate();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isServicesOpen, setServicesOpen] = useState(false);
+  const sidebarRef = useRef(null);
   
+  const closeSidebar = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      setSidebarOpen(false);
+    }
+  };
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.addEventListener("click", closeSidebar);
+    } else {
+      document.removeEventListener("click", closeSidebar);
+    }
+
+    return () => document.removeEventListener("click", closeSidebar);
+  }, [isSidebarOpen]);
+
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
   const toggleServices = () => setServicesOpen(!isServicesOpen);
