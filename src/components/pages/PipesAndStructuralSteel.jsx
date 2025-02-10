@@ -108,12 +108,13 @@ const PipesAndStructuralSteel = () => {
                             <h3 className="product-name">{product.name}</h3>
                             <p className="product-price">₦{product.price.toLocaleString()}</p>
                             <motion.button
-                                className="buy-button"
-                                whileHover={{ scale: 1.1 }}
-                                onClick={addToCart}
-                            >
-                                Buy Now <FaShoppingCart />
-                            </motion.button>
+    className="buy-button"
+    whileHover={{ scale: 1.1 }}
+    onClick={() => addToCart(product)}  // ✅ Pass the product explicitly
+>
+    Buy Now <FaShoppingCart />
+</motion.button>
+
                         </motion.div>
                     ))}
                 </div>

@@ -53,7 +53,7 @@ const PrecisionTools = () => {
         window.dispatchEvent(new Event("storage"));
     };
     const goToCart = () => {
-        navigate("/shoppingBasket"); // Navigate to the cart page
+        navigate("/shoppingBasket");
     };
     return (
         <div className="building-materials">
@@ -107,10 +107,11 @@ const PrecisionTools = () => {
                             <motion.button
                                 className="buy-button"
                                 whileHover={{ scale: 1.1 }}
-                                onClick={addToCart}
+                                onClick={() => addToCart(product)}  // ✅ Pass the product explicitly
                             >
                                 Buy Now <FaShoppingCart />
                             </motion.button>
+
                         </motion.div>
                     ))}
                 </div>

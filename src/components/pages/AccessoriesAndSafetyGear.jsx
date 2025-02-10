@@ -34,7 +34,7 @@ const AccessoriesAndSafetyGear = () => {
         };
 
         fetchProducts();
-        
+
         const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
         setCartCount(storedCart.length);
     }, []);
@@ -45,7 +45,7 @@ const AccessoriesAndSafetyGear = () => {
     const addToCart = (product) => {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         const existingProduct = cart.find((item) => item._id === product._id);
-    
+
         if (existingProduct) {
             existingProduct.quantity += 1;
         } else {
@@ -56,7 +56,7 @@ const AccessoriesAndSafetyGear = () => {
         setCartCount(cart.length);
         window.dispatchEvent(new Event("storage"));
     };
-    
+
 
     return (
         <div className="building-materials">
@@ -110,17 +110,18 @@ const AccessoriesAndSafetyGear = () => {
                             <motion.button
                                 className="buy-button"
                                 whileHover={{ scale: 1.1 }}
-                                onClick={addToCart}
+                                onClick={() => addToCart(product)}  // ✅ Pass the product explicitly
                             >
                                 Buy Now <FaShoppingCart />
                             </motion.button>
+
                         </motion.div>
                     ))}
                 </div>
             </div>
-            
+
             {cartCount > 0 && (
-                <div className="floating-cart" onClick={() => {navigate('/shoppingBasket')}}>
+                <div className="floating-cart" onClick={() => { navigate('/shoppingBasket') }}>
                     <CartIcon />
                     <span className="cart-count">{cartCount}</span>
                 </div>
