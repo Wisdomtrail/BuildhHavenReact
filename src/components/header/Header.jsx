@@ -14,20 +14,16 @@ const Header = () => {
   const sidebarRef = useRef(null);
   
   const closeSidebar = (event) => {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isSidebarOpen) {
       setSidebarOpen(false);
     }
   };
+  
   useEffect(() => {
-    if (isSidebarOpen) {
-      document.addEventListener("click", closeSidebar);
-    } else {
-      document.removeEventListener("click", closeSidebar);
-    }
-
-    return () => document.removeEventListener("click", closeSidebar);
+    document.addEventListener("mousedown", closeSidebar);
+    return () => document.removeEventListener("mousedown", closeSidebar);
   }, [isSidebarOpen]);
-
+  
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
   const toggleServices = () => setServicesOpen(!isServicesOpen);
