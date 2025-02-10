@@ -89,7 +89,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+      <div ref={sidebarRef} className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <nav>
           <p className="hme"><a href="/">Home</a></p>
           <p id="aus"><a href="/aboutUs">About Us</a></p>
