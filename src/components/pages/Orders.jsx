@@ -30,7 +30,7 @@ const Orders = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}` // Send token in the header
+            "Authorization": `Bearer ${token}`
           },
         });
 

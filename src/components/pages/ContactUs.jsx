@@ -65,12 +65,20 @@ const ContactUs = () => {
                             <br /> of the methods below, and our team will respond promptly.
                         </p>
                         <div className="buttons">
-                            <button className="get-in-touch-button">
+                            <button
+                                className="get-in-touch-button"
+                                onClick={() => window.open("https://wa.me/2348165385299", "_blank")}
+                            >
                                 Get in Touch <span className="arrow">→</span>
                             </button>
-                            <button className="request-quote-button">
+
+                            <button
+                                className="request-quote-button"
+                                onClick={() => window.open("https://wa.me/2348165385299", "_blank")}
+                            >
                                 Request a Quote
                             </button>
+
                         </div>
                     </div>
                 </div>
@@ -80,28 +88,28 @@ const ContactUs = () => {
                 <div className="message-form">
                     <h2>Send Us a Message</h2>
                     <form className="contact-form" onSubmit={handleSubmit}>
-                        <input 
-                            type="text" 
-                            name="name" 
-                            placeholder="Your Name" 
-                            required 
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your Name"
+                            required
                             className="contact-input"
                             value={formData.name}
                             onChange={handleChange}
                         />
-                        <input 
-                            type="email" 
-                            name="email" 
-                            placeholder="Your Email" 
-                            required 
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Your Email"
+                            required
                             className="contact-input"
                             value={formData.email}
                             onChange={handleChange}
                         />
-                        <textarea 
-                            name="message" 
-                            placeholder="Your Message" 
-                            required 
+                        <textarea
+                            name="message"
+                            placeholder="Your Message"
+                            required
                             className="contact-textarea"
                             value={formData.message}
                             onChange={handleChange}
@@ -128,7 +136,7 @@ const ContactUs = () => {
                     <div className="modal-content">
                         <h2>Notification</h2>
                         <p>{modalMessage}</p>
-                        <button 
+                        <button
                             onClick={() => setModalOpen(false)}
                             className="modal-close-btn"
                         >
