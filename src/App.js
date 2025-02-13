@@ -24,6 +24,9 @@ import PipesAndStructuralSteel from './components/pages/PipesAndStructuralSteel.
 import DoorsAndPlates from './components/pages/DoorsAndPlates.jsx';
 import AccessoriesAndSafetyGear from './components/pages/AccessoriesAndSafetyGear.jsx';
 import ShoppingBasket from './components/pages/shoppingBasket.jsx';
+import AdminDashboard from './components/Admin/AdminDashboard.jsx';
+import ThisWeekOrders from './components/Admin/ThisWeekOrders.jsx';
+import AdminLogin from './components/Admin/AdminLogin.jsx';
 
 function App() {
   return (
@@ -54,6 +57,9 @@ function App() {
         <Route path='/pipes-steel' element={<PipesAndStructuralSteel/>}/>
         <Route path='/deliveryconfirmation' element={<DeliveryConfirmation/>}/>
         <Route path='/shoppingBasket' element={<ShoppingBasket/>}/>
+        <Route path='/admin' element={<AdminLogin/>}/>
+        <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
+        <Route path="/admin/this-week-orders" element={<ThisWeekOrders />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,102 @@
+.this-week-orders {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .orders-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #3b82f6;
+  }
+  
+  .orders-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .orders-table {
+    width: 90%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .orders-table thead th {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .orders-table tbody td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .orders-table tbody tr:hover {
+    background-color: #f3f4f6;
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: transform 0.2s;
+  }
+  
+  .status-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    gap: 5px;
+  }
+  
+  .status-badge.pending {
+    background-color: #fbbf24;
+  }
+  
+  .status-badge.completed {
+    background-color: #22c55e;
+  }
+  
+  .status-badge.cancelled {
+    background-color: #ef4444;
+  }
+  
+  .view-button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .view-button:hover {
+    background-color: #2563eb;
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

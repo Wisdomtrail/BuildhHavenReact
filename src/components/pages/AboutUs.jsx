@@ -1,9 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from "../header/Header";
 import Footer from '../footer/Footer';
 import '../../styles/AboutUs.css'; 
 
 const AboutUs = () => {
+    const navigate = useNavigate();
+
+    const scrollToDetails = () => {
+        const detailsSection = document.querySelector('.about-details');
+        if (detailsSection) {
+            detailsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className="about-page-container">
             <Header />
@@ -15,10 +25,10 @@ const AboutUs = () => {
                             Learn more about our company, our values, and how we provide the best construction materials and tools to our customers.
                         </p><br />
                         <div className="button-container">
-                            <button className="learn-more-button">
+                            <button className="learn-more-button" onClick={scrollToDetails}>
                                 Learn More <span className="arrow">→</span>
                             </button>
-                            <button className="our-products-button">
+                            <button className="our-products-button" onClick={() => navigate('/precision-tools')}>
                                 Our Products
                             </button>
                         </div>
