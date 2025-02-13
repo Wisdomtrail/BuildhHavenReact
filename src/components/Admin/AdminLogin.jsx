@@ -4,6 +4,7 @@ import { User, Lock } from "lucide-react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import "../../styles/AdminLogin.css";
+import BASE_URL from "../../config";
 
 const AdminLogin = () => {
     const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ const AdminLogin = () => {
         setLoading(true); // Show loading spinner
 
         try {
-            const response = await fetch("http://localhost:3001/public-route/admin/login", {
+            const response = await fetch(BASE_URL+"/public-route/admin/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
