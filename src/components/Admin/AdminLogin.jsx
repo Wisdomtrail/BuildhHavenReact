@@ -38,10 +38,9 @@ const AdminLogin = () => {
                 setSuccess("Login successful!");
                 setError("");
 
-                // Save token or perform other actions
                 localStorage.setItem("adminToken", data.token);
+                localStorage.setItem('adminId', data.admin.id)
 
-                // Redirect to dashboard after 2 seconds
                 setTimeout(() => {
                     setLoading(false); // Hide loading spinner
                     navigate("/admin/dashboard");

@@ -1,90 +1,199 @@
 import React, { useEffect, useState } from 'react';
-import { ShoppingCart, Package, Users, DollarSign, Clock } from 'lucide-react';
+import { ShoppingCart, Package, Users, Bell, Clock } from 'lucide-react';
 import '../../styles/Admin.css';
 import BASE_URL from '../../config';
+import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
-  // State variables
+  const navigate = useNavigate();
   const [orderCount, setOrderCount] = useState(0);
   const [userCount, setUserCount] = useState(0);
   const [productCount, setProductCount] = useState(0);
   const [pendingOrderCount, setPendingOrderCount] = useState(0);
   const [recentOrders, setRecentOrders] = useState([]); // State for recent orders
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [admin, setAdmin] = useState(null); // Default to null for better conditional rendering
 
-  // Token (retrieve from localStorage or context)
   const token = localStorage.getItem('adminToken');
+  const adminId = localStorage.getItem('adminId');
 
-  // Fetch data from APIs
+  const ordersThisWeeks = () => {
+    navigate('/admin/this-week-orders');
+  };
+
+  // Fetch admin details
   useEffect(() => {
-    const fetchCountsAndOrders = async () => {
+    const fetchAdminDetails = async () => {
       try {
-        // Headers for authentication
         const headers = {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         };
 
-        // Fetch order count for this week
-        const orderResponse = await fetch(`${BASE_URL}/product/getOrder-count/thisWeek`, { headers });
-        const orderData = await orderResponse.json();
-        setOrderCount(orderData.orderCount || 0);
+        const adminResponse = await fetch(`${BASE_URL}/user/getAdmin/${adminId}`, { headers });
+        const adminData = await adminResponse.json();
+        setNotifications(adminData.admin.notifications)
 
-        // Fetch user count
-        const userResponse = await fetch(`${BASE_URL}/user/get/All-count`, { headers });
-        const userData = await userResponse.json();
-        setUserCount(userData.userCount || 0);
-
-        // Fetch product count
-        const productResponse = await fetch(`${BASE_URL}/product/count-product`, { headers });
-        const productData = await productResponse.json();
-        setProductCount(productData.productCount || 0);
-
-        // Fetch recent orders
-        const ordersResponse = await fetch(`${BASE_URL}/product/getOrder/thisWeek`, { headers });
-        const ordersData = await ordersResponse.json();
-
-        // Calculate pending orders
-        const pendingCount = ordersData.filter(order => order.status === 'Pending').length;
-        setPendingOrderCount(pendingCount);
-
-        // Update recent orders state
-        setRecentOrders(ordersData);
+        if (adminResponse.ok) {
+          setAdmin(adminData.admin);
+        } else {
+          console.error('Failed to fetch admin details:', adminData.message);
+        }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching admin details:', error);
       }
     };
 
-    fetchCountsAndOrders();
+    if (token && adminId) fetchAdminDetails();
+  }, [token, adminId]);
+
+  // Fetch order count
+  useEffect(() => {
+    const fetchOrderCount = async () => {
+      try {
+        const headers = {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        };
+
+        const response = await fetch(`${BASE_URL}/product/getOrder-count/thisWeek`, { headers });
+        const data = await response.json();
+        setOrderCount(data.orderCount || 0);
+      } catch (error) {
+        console.error('Error fetching order count:', error);
+      }
+    };
+
+    if (token) fetchOrderCount();
+  }, [token]);
+
+  // Fetch user count
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const headers = {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        };
+
+        const response = await fetch(`${BASE_URL}/user/get/All-count`, { headers });
+        const data = await response.json();
+        setUserCount(data.userCount || 0);
+      } catch (error) {
+        console.error('Error fetching user count:', error);
+      }
+    };
+
+    if (token) fetchUserCount();
+  }, [token]);
+
+  // Fetch product count
+  useEffect(() => {
+    const fetchProductCount = async () => {
+      try {
+        const headers = {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        };
+
+        const response = await fetch(`${BASE_URL}/product/count-product`, { headers });
+        const data = await response.json();
+        setProductCount(data.productCount || 0);
+      } catch (error) {
+        console.error('Error fetching product count:', error);
+      }
+    };
+
+    if (token) fetchProductCount();
+  }, [token]);
+
+  // Fetch recent orders and calculate pending order count
+  useEffect(() => {
+    const fetchRecentOrders = async () => {
+      try {
+        const headers = {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        };
+
+        const response = await fetch(`${BASE_URL}/product/getOrder/thisWeek`, { headers });
+        const data = await response.json();
+
+        const pendingCount = data.filter(order => order.status === 'Pending').length;
+        setPendingOrderCount(pendingCount);
+        setRecentOrders(data);
+      } catch (error) {
+        console.error('Error fetching recent orders:', error);
+      }
+    };
+
+    if (token) fetchRecentOrders();
   }, [token]);
 
   return (
     <div className="dashboard">
-      {/* Header */}
       <header className="dashboard-header">
-        <h1 className="dashboard-title">Admin Dashboard</h1>
-        <button
-          className="logout-button"
-          onClick={() => {
-            localStorage.removeItem('token');
-            window.location.reload();
-          }}
-        >
-          Logout
-        </button>
+        <h3 className="dashboard-title">
+          Welcome, {admin ? admin.firstName : "Admin"}
+        </h3>
+        <div className="header-actions">
+          <div className="notifications-container">
+            <div className="notification-bell-wrapper">
+              <Bell
+                size={24}
+                className="notification-bell"
+                onClick={() => setShowNotifications(!showNotifications)}
+              />
+              {notifications.length > 0 && (
+                <span className="notification-count">{notifications.length}</span>
+              )}
+            </div>
+  
+            {showNotifications && (
+              <div className="notifications-dropdown">
+                {notifications.length > 0 ? (
+                  notifications.map((notification, index) => (
+                    <p key={index} className="notification-item">
+                      {notification.message}
+                    </p>
+                  ))
+                ) : (
+                  <p className="notification-item">No notifications</p>
+                )}
+              </div>
+            )}
+          </div>
+  
+          <img
+            src={admin?.profileImageUrl || "default-profile.jpg"} // Replace with the admin's profile image URL or a default one
+            alt="Admin Profile"
+            className="profile-image"
+          />
+          <button
+            className="logout-button"
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("adminId");
+              window.location.href = '/admin';
+            }}
+          >
+            Logout
+          </button>
+        </div>
       </header>
-
-      {/* Cards Section */}
+  
       <div className="cards-section">
         <div className="card">
           <div className="card-icon blue-icon">
             <ShoppingCart size={24} />
           </div>
-          <div className="card-details">
+          <div className="card-details" onClick={ordersThisWeeks}>
             <h2>Orders</h2>
             <p>{orderCount} this week</p>
           </div>
         </div>
-
+  
         <div className="card">
           <div className="card-icon green-icon">
             <Package size={24} />
@@ -94,7 +203,7 @@ const AdminDashboard = () => {
             <p>{productCount} available</p>
           </div>
         </div>
-
+  
         <div className="card">
           <div className="card-icon orange-icon">
             <Users size={24} />
@@ -104,7 +213,7 @@ const AdminDashboard = () => {
             <p>{userCount} active</p>
           </div>
         </div>
-
+  
         <div className="card">
           <div className="card-icon purple-icon">
             <Clock size={24} />
@@ -115,7 +224,7 @@ const AdminDashboard = () => {
           </div>
         </div>
       </div>
-
+  
       {/* Table Section */}
       <div className="table-section">
         <h2>Recent Orders</h2>
@@ -144,7 +253,7 @@ const AdminDashboard = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" style={{ textAlign: 'center' }}>
+                <td colSpan="5" style={{ textAlign: "center" }}>
                   No orders found this week.
                 </td>
               </tr>
@@ -152,12 +261,13 @@ const AdminDashboard = () => {
           </tbody>
         </table>
       </div>
-
+  
       <footer className="dashboard-footer">
         <p>&copy; 2025 BuildHaven Admin Dashboard. All rights reserved.</p>
       </footer>
     </div>
   );
+  
 };
 
 export default AdminDashboard;

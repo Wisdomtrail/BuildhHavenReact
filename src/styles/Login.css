@@ -100,30 +100,7 @@
     text-decoration: underline;
 }
 
-.form button.loading {
-    pointer-events: none;
-    /* Disable clicking while loading */
-    color: transparent;
-    /* Hide the text while loading */
-    background-color: white !important;
-    /* Make sure the background is transparent when loading */
-}
 
-.form button .spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 3px solid transparent;
-    border-top: 3px solid red;
-    /* Spinner color */
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-    z-index: 1;
-    /* Ensure spinner is on top of everything */
-}
 
 /* Spinner animation */
 @keyframes spin {
@@ -135,11 +112,10 @@
         transform: translate(-50%, -50%) rotate(360deg);
     }
 }
-
 .form button {
     position: relative;
     width: 100%;
-    height: 45px;
+    height: 45px; /* Ensure the height stays consistent */
     background-color: #fff;
     border: none;
     outline: none;
@@ -152,7 +128,35 @@
     overflow: hidden;
     transition: color 0.4s ease;
     z-index: 1;
+    display: flex; /* Use flex to align spinner and text */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
+
+.form button.loading {
+    pointer-events: none; /* Disable clicking while loading */
+}
+
+.form button .spinner {
+    border: 3px solid transparent;
+    border-top: 3px solid red; /* Spinner color */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+}
+
+/* Prevent text and spinner overlap */
+.form button span {
+    visibility: visible;
+}
+
+.form button.loading span {
+    visibility: hidden; /* Hide text when loading */
+}
+
 
 .form button::before {
     content: "";

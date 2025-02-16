@@ -5,9 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../styles/Login.css";
 import BASE_URL from "../../config";
 import Header from "../header/Header";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
@@ -47,8 +49,7 @@ const Registration = () => {
             console.log(data);
 
             if (response.ok) {
-                toast.success("Registration successful! Welcome!");
-
+                toast.success("Registration successful! Please Login!");
                 localStorage.setItem("userId", data.user.id);
                 localStorage.setItem("token", data.token);
             } else {
