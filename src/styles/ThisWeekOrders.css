@@ -11,6 +11,74 @@
     font-weight: bold;
     color: #3b82f6;
   }
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .orders-table th,
+  .orders-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .status-badge.pending {
+    background-color: #ffeb3b;
+    color: #000;
+  }
+  
+  .status-badge.completed {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .status-badge.cancelled {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  .product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .product-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+  }
+  
+  .pickup-method {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+  }
+  
+  .view-button {
+    background-color: #fd8f00;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .view-button:hover {
+    background-color: #e07d00;
+  }
   
   .orders-container {
     display: flex;

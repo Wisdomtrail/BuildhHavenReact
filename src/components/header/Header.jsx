@@ -134,8 +134,7 @@ const Header = () => {
           <p onClick={navigateToLogin}>Login</p>
         </div>
         <div className="sg">
-          <input type="text" name="slideOutOnclick" id="searchBox" />
-          <FontAwesomeIcon id="searchIcon" icon={faSearch} />
+          
           <button className="quote-button">
             Get a Quote
             <FontAwesomeIcon className="arrow" icon={faArrowRight} />

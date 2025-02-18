@@ -27,6 +27,10 @@ import ShoppingBasket from './components/pages/shoppingBasket.jsx';
 import AdminDashboard from './components/Admin/AdminDashboard.jsx';
 import ThisWeekOrders from './components/Admin/ThisWeekOrders.jsx';
 import AdminLogin from './components/Admin/AdminLogin.jsx';
+import ManageProduct from './components/Admin/ManageProduct.jsx';
+import ViewUsers from './components/Admin/ViewUsers.jsx';
+import PendingOrder from './components/Admin/PendingOrder.jsx';
+import OrderDetails from './components/Admin/viewOrderDetails.jsx';
 
 function App() {
   return (
@@ -60,6 +64,11 @@ function App() {
         <Route path='/admin' element={<AdminLogin/>}/>
         <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
         <Route path="/admin/this-week-orders" element={<ThisWeekOrders />} />
+        <Route path='/admin/manage-product' element={<ManageProduct/>}/>
+        <Route path='/admin/view-users' element ={<ViewUsers/>}/>
+        <Route path='/admin/pending-orders' element={<PendingOrder/>}/>
+        <Route path='/admin/view-order-details/:orderId' element={<OrderDetails />} />
+
       </Routes>
     </Router>
   );

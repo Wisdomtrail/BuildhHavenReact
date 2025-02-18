@@ -1,0 +1,155 @@
+.view-users-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.users-table-wrapper {
+    overflow-x: auto; /* Allows horizontal scrolling for the table */
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    margin-top: 20px;
+    width: 100%; /* Ensure the wrapper fills the available width */
+    box-sizing: border-box; /* Prevents extra space on the left */
+}
+
+.users-table {
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed the screen width */
+    border-collapse: collapse;
+    table-layout: auto; /* Allows columns to resize based on content */
+    margin-left: 0; /* Removes any unwanted left margin */
+}
+
+.users-table th, .users-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Wrap long text like emails */
+}
+
+.users-table th {
+    background-color: #1f2937;
+    color: white;
+    font-weight: bold;
+}
+
+.users-table tbody tr:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Reduced gap */
+}
+
+.action-btn {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+}
+
+.view-btn {
+    color: #4CAF50; /* Green for View */
+}
+
+.view-btn:hover {
+    color: #45a049;
+}
+
+.edit-btn {
+    color: #FF9800; /* Orange for Edit */
+}
+
+.edit-btn:hover {
+    color: #f57c00;
+}
+
+.delete-btn {
+    color: #F44336; /* Red for Delete */
+}
+
+.delete-btn:hover {
+    color: #d32f2f;
+}
+
+.user-details-modal {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-details-modal h3 {
+    margin-bottom: 15px;
+}
+
+.user-details-modal p {
+    margin-bottom: 10px;
+}
+
+.close-modal {
+    background-color: #FF5722;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Responsive Styling for Mobile Devices */
+@media screen and (max-width: 700px) {
+    .users-table {
+        font-size: 14px;
+        table-layout: auto; /* Allows columns to resize */
+        width: 100%; /* Ensures table is responsive */
+    }
+
+    .users-table th, .users-table td {
+        padding: 8px; /* Reduced padding for smaller screens */
+    }
+
+    .section-title {
+        font-size: 1.5rem; /* Smaller section title for mobile */
+    }
+
+    .users-table th, .users-table td {
+        word-wrap: break-word; /* Wrap long content like emails */
+    }
+
+    .action-icons {
+        gap: 5px; /* Smaller gap for mobile */
+    }
+
+    /* Hide Actions column on small screens */
+    .users-table th:nth-child(3),
+    .users-table td:nth-child(3) {
+        display: block; /* Show the Actions column */
+    }
+
+    /* Ensure the Actions buttons are displayed on small screens */
+    .action-btn {
+        font-size: 14px;
+        padding: 6px;
+    }
+}

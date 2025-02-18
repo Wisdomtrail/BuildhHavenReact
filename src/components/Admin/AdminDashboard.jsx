@@ -3,6 +3,7 @@ import { ShoppingCart, Package, Users, Bell, Clock } from 'lucide-react';
 import '../../styles/Admin.css';
 import BASE_URL from '../../config';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -21,8 +22,10 @@ const AdminDashboard = () => {
   const ordersThisWeeks = () => {
     navigate('/admin/this-week-orders');
   };
+  const manageProducts = () =>{
+    navigate('/admin/manage-product');
+  }
 
-  // Fetch admin details
   useEffect(() => {
     const fetchAdminDetails = async () => {
       try {
@@ -33,7 +36,7 @@ const AdminDashboard = () => {
 
         const adminResponse = await fetch(`${BASE_URL}/user/getAdmin/${adminId}`, { headers });
         const adminData = await adminResponse.json();
-        setNotifications(adminData.admin.notifications)
+        setNotifications(adminData.admin.notifications);
 
         if (adminResponse.ok) {
           setAdmin(adminData.admin);
@@ -184,17 +187,17 @@ const AdminDashboard = () => {
       </header>
   
       <div className="cards-section">
-        <div className="card">
+        <div className="card" onClick={ordersThisWeeks}>
           <div className="card-icon blue-icon">
             <ShoppingCart size={24} />
           </div>
-          <div className="card-details" onClick={ordersThisWeeks}>
+          <div className="card-details" >
             <h2>Orders</h2>
             <p>{orderCount} this week</p>
           </div>
         </div>
   
-        <div className="card">
+        <div className="card" onClick={manageProducts}>
           <div className="card-icon green-icon">
             <Package size={24} />
           </div>
@@ -204,7 +207,7 @@ const AdminDashboard = () => {
           </div>
         </div>
   
-        <div className="card">
+        <div className="card" onClick={() => navigate('/admin/view-users')}>
           <div className="card-icon orange-icon">
             <Users size={24} />
           </div>
@@ -214,7 +217,7 @@ const AdminDashboard = () => {
           </div>
         </div>
   
-        <div className="card">
+        <div className="card" onClick={ () => navigate('/admin/pending-orders')}>
           <div className="card-icon purple-icon">
             <Clock size={24} />
           </div>
@@ -225,7 +228,7 @@ const AdminDashboard = () => {
         </div>
       </div>
   
-      {/* Table Section */}
+      
       <div className="table-section">
         <h2>Recent Orders</h2>
         <table>
@@ -247,7 +250,9 @@ const AdminDashboard = () => {
                   <td>${order.totalAmount}</td>
                   <td>{order.status}</td>
                   <td>
-                    <button className="view-button">View</button>
+                    <Link to={`/admin/view-order-details/${order.orderId}`}>
+                      <button className="view-button">View</button>
+                    </Link>
                   </td>
                 </tr>
               ))

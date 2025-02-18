@@ -131,7 +131,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     height: 400px ; /* Set a static height for product cards */
     min-height: 250px !important; /* Ensure it doesn't shrink */
-    width: 265px;
+    width: 255px;
   }
   
   /* Ensure hover effect still works */

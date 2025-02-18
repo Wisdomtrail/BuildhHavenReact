@@ -1,0 +1,173 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+.order-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.order-buttons  button{
+  height: 40px;
+  border-radius: 5px;
+  width: 150px;
+  border: none;
+}
+.approveOrder{
+  background-color: blue;
+  color: white;
+  font-size: large;
+}
+.cancelOrder{
+  background-color: red;
+  color: white;
+  font-size: large;
+}
+.order-details-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
+  width: 90%;
+}
+
+.order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.order-header h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.order-status {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.order-info {
+  margin-bottom: 30px;
+}
+
+.order-info p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 10px 0;
+}
+
+.order-products-list {
+  margin-top: 30px;
+  flex-wrap: wrap; /* Allow wrapping of products on smaller screens */
+  gap: 20px; /* Space between product cards */
+}
+
+.order-product-card {
+  display: flex;
+  flex-direction: column; /* Default to column layout */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 30%; /* Make each product card take 30% of the container */
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.order-product-card:hover {
+  transform: translateY(-5px); /* Slight hover effect */
+}
+
+.order-product-card img {
+  max-width: 150px;
+  border-radius: 5px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.order-product-info {
+  flex: 1;
+}
+
+.order-product-info h4 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.order-product-info p {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.order-product-info p strong {
+  color: #333;
+}
+
+/* Handle overflowing descriptions */
+.order-product-info p.description {
+  max-height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.loading,
+.error {
+  font-size: 1.2rem;
+  color: #ff4040;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.order-status .FaRegCheckCircle {
+  color: #4CAF50;
+}
+
+.order-status .FaTimesCircle {
+  color: #F44336;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .order-details-container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-info p {
+    font-size: 1rem;
+  }
+
+  .order-products-list {
+    flex-direction: column; /* Stack product cards vertically */
+    align-items: center;
+    display: block !important;
+  }
+
+  .order-product-card {
+    width: 99% !important; /* Make the product card width take up 90% of the screen on smaller devices */
+  }
+
+  .order-product-info p.description {
+    max-height: none;
+    white-space: normal; /* Allow description text to wrap */
+  }
+}

@@ -4,7 +4,7 @@ import "../../styles/ThisWeekOrders.css";
 import BASE_URL from "../../config";
 import { useNavigate } from 'react-router-dom';
 ;
-const ThisWeekOrders = () => {
+const PendingOrder = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -52,11 +52,11 @@ const ThisWeekOrders = () => {
       }
 
       try {
-        const response = await fetch(BASE_URL+"/product/getOrder/thisWeek", {
+        const response = await fetch(BASE_URL+"/product/pending-order", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Pass the token in the Authorization header
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -200,4 +200,4 @@ const ThisWeekOrders = () => {
   );
 };
 
-export default ThisWeekOrders;
+export default PendingOrder;
