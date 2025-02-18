@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../../styles/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faArrowRight, faSearch, faBars, faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -12,18 +12,18 @@ const Header = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isServicesOpen, setServicesOpen] = useState(false);
   const sidebarRef = useRef(null);
-  
+
   const closeSidebar = (event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isSidebarOpen) {
       setSidebarOpen(false);
     }
   };
-  
+
   useEffect(() => {
     document.addEventListener("mousedown", closeSidebar);
     return () => document.removeEventListener("mousedown", closeSidebar);
   }, [isSidebarOpen]);
-  
+
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
   const toggleServices = () => setServicesOpen(!isServicesOpen);
@@ -31,7 +31,7 @@ const Header = () => {
   const navigateToLogin = () => {
     navigate('/login')
   }
-  const bulidingPage = () =>{
+  const bulidingPage = () => {
     navigate('/building-materials');
   }
   const precisionPage = () => {
@@ -42,7 +42,7 @@ const Header = () => {
     <header>
       <div className="top-section">
         <div className="logoAndCallUsSection">
-          <img id="logo" onClick={ () => navigate('/') } src={logo} alt="Build Haven Logo" />
+          <img id="logo" onClick={() => navigate('/')} src={logo} alt="Build Haven Logo" />
           <div className="phoneCall">
             <img id="phone" src={phoneIcon} alt="Phone Icon" />
             <div className="contactN">
@@ -99,11 +99,11 @@ const Header = () => {
               <div className="dropdown">
                 <p id="building-materials" onClick={bulidingPage}><span>Building Materials</span></p>
                 <p id="precision-power-tools" onClick={precisionPage}><span>Precision Power Tools</span></p>
-                <p id="fabrication-tools" onClick={()=> navigate('/fabrication-tools')}><span>Fabrication Tools</span></p>
+                <p id="fabrication-tools" onClick={() => navigate('/fabrication-tools')}><span>Fabrication Tools</span></p>
                 <p id="pipes-steel" onClick={() => navigate('/pipes-steel')} ><span>Pipes and Structural Steel</span></p>
-                <p id="accessories-gear" onClick={()=> navigate('/Accessories-SafetyGear')}><span>Accessories & Safety Gear</span></p>
-                <p id="doors-plates" onClick={()=> navigate('/doors-plates')}><span>Doors and Plates</span></p>
-                
+                <p id="accessories-gear" onClick={() => navigate('/Accessories-SafetyGear')}><span>Accessories & Safety Gear</span></p>
+                <p id="doors-plates" onClick={() => navigate('/doors-plates')}><span>Doors and Plates</span></p>
+
               </div>
             )}
           </p>
@@ -122,10 +122,10 @@ const Header = () => {
             <div className="dropdown">
               <p id="building-materials" onClick={bulidingPage}>Building Materials</p>
               <p id="precision-power-tools" onClick={precisionPage}>Precision Power Tools</p>
-              <p id="fabrication-tools" onClick={()=> navigate('/fabrication-tools')}>Fabrication Tools</p>
+              <p id="fabrication-tools" onClick={() => navigate('/fabrication-tools')}>Fabrication Tools</p>
               <p id="pipes-steel" onClick={() => navigate('/pipes-steel')}>Pipes and Structural Steel</p>
-              <p id="accessories-gear"onClick={()=> navigate('/Accessories-SafetyGear')}>Accessories & Safety Gear</p>
-              <p id="doors-plates"onClick={()=> navigate('/doors-plates')}>Doors and Plates</p>
+              <p id="accessories-gear" onClick={() => navigate('/Accessories-SafetyGear')}>Accessories & Safety Gear</p>
+              <p id="doors-plates" onClick={() => navigate('/doors-plates')}>Doors and Plates</p>
             </div>
           </p>
 
@@ -134,11 +134,16 @@ const Header = () => {
           <p onClick={navigateToLogin}>Login</p>
         </div>
         <div className="sg">
-          
-          <button className="quote-button">
+          <a
+            href="https://wa.me/2348165385299"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="quote-button"
+          >
             Get a Quote
             <FontAwesomeIcon className="arrow" icon={faArrowRight} />
-          </button>
+          </a>
+
         </div>
       </div>
     </header>

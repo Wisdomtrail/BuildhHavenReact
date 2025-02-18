@@ -13,6 +13,7 @@ const Login = () => {
         email: "",
         password: "",
     });
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Track password visibility
     const [isButtonDisabled, setIsButtonDisabled] = useState(false); // Track button state
     const navigate = useNavigate();
 
@@ -24,9 +25,13 @@ const Login = () => {
         });
     };
 
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         setLoading(true); // Show loading spinner
         setIsButtonDisabled(true); // Disable the button on first click
 
@@ -87,14 +92,19 @@ const Login = () => {
                         </div>
                         <div className="input-box">
                             <input
-                                type="password"
+                                type={isPasswordVisible ? "text" : "password"} // Toggle input type
                                 name="password"
                                 placeholder="Password"
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
                             />
-                            <FaLock className="icon" />
+                            <span
+                                className="icon toggle-password"
+                                onClick={togglePasswordVisibility}
+                            >
+                                {isPasswordVisible ? "Hide" : "Show"} {/* Toggle text */}
+                            </span>
                         </div>
                         <div className="remember-forgot">
                             <div>

@@ -10,10 +10,15 @@ body {
   justify-content: center;
   gap: 30px;
 }
+.deleteOrder{
+  background-color: red;
+  color: white;
+}
 .order-buttons  button{
   height: 40px;
   border-radius: 5px;
   width: 150px;
+  cursor: pointer;
   border: none;
 }
 .approveOrder{
@@ -46,7 +51,7 @@ body {
 }
 
 .order-header h2 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: #333;
 }
 

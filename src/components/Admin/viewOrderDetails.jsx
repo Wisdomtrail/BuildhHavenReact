@@ -1,28 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'; // Import useParams
-import axios from 'axios';
-import { FaRegCheckCircle, FaTimesCircle, FaMoneyBillWave, FaMapMarkerAlt } from 'react-icons/fa'; // Additional icons for styling
-import '../../styles/viewOrderDetails.css'; // Make sure to create and style this CSS file
+import { useParams, useNavigate } from 'react-router-dom';
+import { FaRegCheckCircle, FaTimesCircle, FaMoneyBillWave, FaMapMarkerAlt } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../../styles/viewOrderDetails.css';
 import BASE_URL from '../../config';
 
 const OrderDetails = () => {
-  const { orderId } = useParams(); // Extract orderId from URL using useParams
+  const { orderId } = useParams();
+  const navigate = useNavigate();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [processing, setProcessing] = useState(null); // To manage button state
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
         const token = localStorage.getItem('adminToken');
-        
-        const response = await axios.get(`${BASE_URL}/product/view-order/${orderId}`, {
+
+        const response = await fetch(`${BASE_URL}/product/view-order/${orderId}`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Add the token to the headers
+            Authorization: `Bearer ${token}`,
           },
         });
 
-        setOrder(response.data);
+        if (!response.ok) {
+          throw new Error('Failed to fetch order details');
+        }
+
+        const data = await response.json();
+        setOrder(data);
         setLoading(false);
       } catch (error) {
         setError('Failed to fetch order details');
@@ -32,6 +40,90 @@ const OrderDetails = () => {
 
     fetchOrderDetails();
   }, [orderId]);
+
+  const handleApproveOrder = async () => {
+    try {
+      setProcessing('approving'); // Set processing state
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate a delay
+
+      const token = localStorage.getItem('adminToken');
+
+      const response = await fetch(`${BASE_URL}/product/approve-order/${orderId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to approve order');
+      }
+
+      toast.success('Order approved successfully!');
+      setTimeout(() => navigate(-1), 2000); // Navigate back after 2 seconds
+    } catch (error) {
+      toast.error('Failed to approve order');
+    } finally {
+      setProcessing(null); // Reset processing state
+    }
+  };
+
+  const handleCancelOrder = async () => {
+    try {
+      setProcessing('cancelling'); // Set processing state
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate a delay
+
+      const token = localStorage.getItem('adminToken');
+
+      const response = await fetch(`${BASE_URL}/product/cancel-order/${orderId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to cancel order');
+      }
+
+      toast.success('Order canceled successfully!');
+      setTimeout(() => navigate(-1), 2000); // Navigate back after 2 seconds
+    } catch (error) {
+      toast.error('Failed to cancel order');
+    } finally {
+      setProcessing(null); // Reset processing state
+    }
+  };
+
+  const handleDeleteOrder = async () => {
+    try {
+      setProcessing('deleting'); // Set processing state
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate a delay
+
+      const token = localStorage.getItem('adminToken');
+
+      const response = await fetch(`${BASE_URL}/product/delete-order/${orderId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete order');
+      }
+
+      toast.success('Order deleted successfully!');
+      setTimeout(() => navigate(-1), 2000); // Navigate back after 2 seconds
+    } catch (error) {
+      toast.error('Failed to delete order');
+    } finally {
+      setProcessing(null); // Reset processing state
+    }
+  };
 
   if (loading) {
     return <div className="loading">Loading...</div>;
@@ -43,10 +135,18 @@ const OrderDetails = () => {
 
   return (
     <div className="order-details-container">
+      <ToastContainer />
       <div className="order-header">
         <h2>Order ID: {order.orderId}</h2>
         <p className="order-status">
-          Status: {order.status === 'Pending' ? <FaRegCheckCircle color="orange" /> : <FaTimesCircle color="red" />}
+          Status:
+          {order.status === 'Pending' ? (
+            <FaRegCheckCircle color="orange" />
+          ) : order.status === 'Completed' ? (
+            <FaRegCheckCircle color="green" />
+          ) : (
+            <FaTimesCircle color="red" />
+          )}
           {order.status}
         </p>
       </div>
@@ -73,9 +173,33 @@ const OrderDetails = () => {
           </div>
         ))}
       </div>
-      <div className='order-buttons'>
-        <button className='approveOrder'> Approve Order</button>
-        <button className='cancelOrder'>Cancel Order</button>
+      <div className="order-buttons">
+        {order.status === 'Completed' || order.status === 'Cancelled' ? (
+          <button
+            className="deleteOrder"
+            onClick={handleDeleteOrder}
+            disabled={processing !== null}
+          >
+            {processing === 'deleting' ? 'Deleting...' : 'Delete Order'}
+          </button>
+        ) : (
+          <>
+            <button
+              className="approveOrder"
+              onClick={handleApproveOrder}
+              disabled={processing !== null}
+            >
+              {processing === 'approving' ? 'Approving...' : 'Approve Order'}
+            </button>
+            <button
+              className="cancelOrder"
+              onClick={handleCancelOrder}
+              disabled={processing !== null}
+            >
+              {processing === 'cancelling' ? 'Cancelling...' : 'Cancel Order'}
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
