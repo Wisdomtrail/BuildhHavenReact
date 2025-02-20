@@ -4,6 +4,7 @@ import { FaRegCheckCircle, FaTimesCircle, FaMoneyBillWave, FaMapMarkerAlt } from
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/viewOrderDetails.css';
+import { jwtDecode }  from "jwt-decode";
 import BASE_URL from '../../config';
 
 const OrderDetails = () => {
@@ -14,6 +15,28 @@ const OrderDetails = () => {
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(null); // To manage button state
 
+  useEffect(() => {
+    const adminToken = localStorage.getItem("adminToken");
+  
+    if (!adminToken) {
+      navigate("/admin");
+      return;
+    }
+  
+    try {
+      const decodedToken = jwtDecode(adminToken);
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        // Token has expired
+        localStorage.removeItem("adminToken");
+        navigate("/admin");
+      }
+    } catch (error) {
+      localStorage.removeItem("adminToken");
+      navigate("/admin");
+    }
+  }, [navigate]);
+  
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {

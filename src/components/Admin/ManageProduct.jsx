@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/ManageProduct.css";
 import BASE_URL from "../../config";
+import { jwtDecode }  from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import defaultImage from '../../assets/img/defaultImage.jpg'
 
@@ -30,6 +31,28 @@ const ManageProduct = () => {
     const adminToken = localStorage.getItem("adminToken");
     const adminId = localStorage.getItem('adminId');
 
+    useEffect(() => {
+        const adminToken = localStorage.getItem("adminToken");
+        if (!adminToken) {
+          navigate("/admin");
+          return;
+        }
+      
+        try {
+          const decodedToken = jwtDecode(adminToken);
+          const currentTime = Date.now() / 1000;
+          if (decodedToken.exp < currentTime) {
+            // Token has expired
+            localStorage.removeItem("adminToken");
+            navigate("/admin");
+          }
+        } catch (error) {
+          // If token decoding fails
+          localStorage.removeItem("adminToken");
+          navigate("/admin");
+        }
+      }, [navigate]);
+      
     useEffect(() => {
         const fetchAdminDetails = async () => {
             try {

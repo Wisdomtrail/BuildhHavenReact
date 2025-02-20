@@ -3,6 +3,7 @@ import { ShoppingCart, Package, Users, Bell, Clock } from 'lucide-react';
 import '../../styles/Admin.css';
 import BASE_URL from '../../config';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode }  from "jwt-decode";
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -32,6 +33,27 @@ const AdminDashboard = () => {
   const manageProducts = () => {
     navigate('/admin/manage-product');
   }
+
+  useEffect(() => {
+    const adminToken = localStorage.getItem("adminToken");
+    if (!adminToken) {
+      navigate("/admin");
+      return;
+    }
+
+    try {
+      const decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        localStorage.removeItem("adminToken");
+        navigate("/admin");
+      }
+    } catch (error) {
+      localStorage.removeItem("adminToken");
+      navigate("/admin");
+    }
+  }, [navigate]);
+
 
   useEffect(() => {
     const fetchAdminDetails = async () => {
@@ -276,7 +298,7 @@ const AdminDashboard = () => {
           <button
             className="logout-button"
             onClick={() => {
-              localStorage.removeItem("token");
+              localStorage.removeItem("adminToken");
               localStorage.removeItem("adminId");
               window.location.href = '/admin';
             }}

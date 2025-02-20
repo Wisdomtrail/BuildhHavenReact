@@ -139,6 +139,11 @@ body {
     overflow-x: auto;
     white-space: nowrap;
   }
+  .dashboard-header {
+    margin-top: -20px;
+    margin-left: -20px !important;
+    width: 100vw !important;
+  }
 
   .table-section th,
   .table-section td {
@@ -160,6 +165,7 @@ body {
 .dashboard {
   padding: 20px;
 }
+
 .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -169,8 +175,12 @@ body {
   color: white;
   position: sticky;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
+
 
 .dashboard-title {
   font-size: 1.5rem;

@@ -4,7 +4,7 @@ import "../../styles/ThisWeekOrders.css";
 import BASE_URL from "../../config";
 import defaultImage from '../../assets/img/defaultImage.jpg'
 import { useNavigate } from 'react-router-dom';
-;
+import { jwtDecode }  from "jwt-decode";
 const PendingOrder = () => {
     const [showNotifications, setShowNotifications] = useState(false);
     const [notifications, setNotifications] = useState([]);
@@ -18,6 +18,29 @@ const PendingOrder = () => {
     const token = localStorage.getItem('adminToken');
     const adminId = localStorage.getItem('adminId');
 
+    useEffect(() => {
+        const adminToken = localStorage.getItem("adminToken");
+      
+        if (!adminToken) {
+          navigate("/admin");
+          return;
+        }
+      
+        try {
+          const decodedToken = jwtDecode(adminToken);
+          const currentTime = Date.now() / 1000;
+          if (decodedToken.exp < currentTime) {
+            // Token has expired
+            localStorage.removeItem("adminToken");
+            navigate("/admin");
+          }
+        } catch (error) {
+          // If token decoding fails
+          localStorage.removeItem("adminToken");
+          navigate("/admin");
+        }
+      }, [navigate]);
+      
     useEffect(() => {
         const fetchAdminDetails = async () => {
             try {

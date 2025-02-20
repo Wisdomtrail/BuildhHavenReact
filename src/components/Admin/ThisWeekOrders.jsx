@@ -4,6 +4,7 @@ import "../../styles/ThisWeekOrders.css";
 import BASE_URL from "../../config";
 import { useNavigate } from 'react-router-dom';
 import defaultImage from '../../assets/img/defaultImage.jpg'
+import { jwtDecode }  from "jwt-decode";
 const ThisWeekOrders = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -17,6 +18,29 @@ const ThisWeekOrders = () => {
   const token = localStorage.getItem('adminToken');
   const adminId = localStorage.getItem('adminId');
 
+  useEffect(() => {
+    const adminToken = localStorage.getItem("adminToken");
+  
+    if (!adminToken) {
+      navigate("/admin");
+      return;
+    }
+  
+    try {
+      const decodedToken = jwtDecode(adminToken);
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        // Token has expired
+        localStorage.removeItem("adminToken");
+        navigate("/admin");
+      }
+    } catch (error) {
+      // If token decoding fails
+      localStorage.removeItem("adminToken");
+      navigate("/admin");
+    }
+  }, [navigate]);
+  
   useEffect(() => {
     const fetchAdminDetails = async () => {
       try {
@@ -134,7 +158,7 @@ const ThisWeekOrders = () => {
           {loading ? (
             <p>Loading orders...</p>
           ) : error ? (
-            <p className="error-message">{error}</p>
+            <p className="error-message">No orders found for this week</p>
           ) : (
             <table className="orders-table">
               <thead>
@@ -185,7 +209,7 @@ const ThisWeekOrders = () => {
                       )}
                     </td>
                     <td>
-                      <button className="view-button">
+                      <button className="view-button" onClick={() => navigate('/view-order-details/'+order.orderId)}>
                         <Eye size={16} /> View
                       </button>
                     </td>
