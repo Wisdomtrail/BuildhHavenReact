@@ -5,6 +5,7 @@ import DMobileDownbar from '../sideBar/DMobileDownbar';
 import { FaTrash, FaPlus, FaMinus, FaCartPlus } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from '../../config';
 
@@ -24,14 +25,24 @@ const Cart = () => {
     };
     const navigate = useNavigate();
     useEffect(() => {
-        if (!userId || !token) {
-            toast.error("Session expired! Please log in again.", {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: true,
-            });
-            navigate("/login"); 
-        }
+       const token = localStorage.getItem("token");
+      
+          if (!token) {
+            navigate("/login");
+            return;
+          }
+        
+          try {
+            const decodedToken = jwtDecode(token);
+            const currentTime = Date.now() / 1000;
+            if (decodedToken.exp < currentTime) {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }
+          } catch (error) {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }
         setLoading(true);
         const fetchCart = async () => {
             try {

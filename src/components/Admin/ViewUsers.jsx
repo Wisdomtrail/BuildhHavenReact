@@ -3,6 +3,7 @@ import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
 import BASE_URL from '../../config';
 import '../../styles/ViewUsers.css'
 import { useNavigate } from 'react-router-dom';
+import defaultImage from '../../assets/img/defaultImage.jpg'
 import { Bell } from 'lucide-react'
 
 const ViewUsers = () => {
@@ -136,7 +137,7 @@ const ViewUsers = () => {
                     </div>
 
                     <img
-                        src={admin?.profileImageUrl || "default-profile.jpg"} // Replace with the admin's profile image URL or a default one
+                        src={admin?.profileImageUrl || defaultImage} // Replace with the admin's profile image URL or a default one
                         alt="Admin Profile"
                         className="profile-image"
                     />

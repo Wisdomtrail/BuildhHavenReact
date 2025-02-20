@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DMobileDownbar from "../sideBar/DMobileDownbar";
 import "../../styles/DeliveryOptions.css";
 import BASE_URL from '../../config';
+import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
 
 const DeliveryOptions = () => {
@@ -20,14 +21,27 @@ const DeliveryOptions = () => {
 useEffect(() => {
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
-
-    if (!userId || !token) {
-        navigate("/login"); 
-    }
+   
+       if (!token) {
+         navigate("/login");
+         return;
+       }
+     
+       try {
+         const decodedToken = jwtDecode(token);
+         const currentTime = Date.now() / 1000;
+         if (decodedToken.exp < currentTime) {
+           localStorage.removeItem("token");
+           navigate("/login");
+         }
+       } catch (error) {
+         localStorage.removeItem("token");
+         navigate("/login");
+       }
 }, [navigate]);
 
     const deliveryFees = {
-        standard: totalProductPrice >= 1000000 ? 0 : 2000,
+        standard: totalProductPrice >= 1000000 ? 0 : 0,
         express: 5000,
         pickup: 0
     };
@@ -188,7 +202,6 @@ useEffect(() => {
                                 </span>
 
                                 <div className="payment-buttons">
-                                    <button className="pay-online">Pay Online</button>
                                     <button className="pay-pickup" onClick={handlePayAtPickup}>Pay at Pickup</button>
                                 </div>
                             </div>

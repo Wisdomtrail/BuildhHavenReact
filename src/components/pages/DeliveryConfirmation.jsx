@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { FaCheckCircle, FaTruck, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import "../../styles/DeliveryConfirmation.css";
 
 const DeliveryConfirmation = () => {
@@ -10,9 +11,24 @@ const DeliveryConfirmation = () => {
     navigate("/login");
   }
     useEffect(() => {
-        if (!token) {
-          navigate("/login");
-        }
+         const token = localStorage.getItem("token");
+        
+            if (!token) {
+              navigate("/login");
+              return;
+            }
+          
+            try {
+              const decodedToken = jwtDecode(token);
+              const currentTime = Date.now() / 1000;
+              if (decodedToken.exp < currentTime) {
+                localStorage.removeItem("token");
+                navigate("/login");
+              }
+            } catch (error) {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }
       }, [token, navigate]);
     return (
         <div className="delivery-confirmation">

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "../../styles/viewProduct.css";
 import DMobileDownbar  from "../sideBar/DMobileDownbar";
 import Sidebar from "../sideBar/SideBar";
+import { jwtDecode } from "jwt-decode";
 import { motion } from "framer-motion";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,10 +20,24 @@ const ViewProduct = () => {
   const { state } = useLocation();
   const product = state ? state.product : null;
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-    }
+     const token = localStorage.getItem("token");
+    
+        if (!token) {
+          navigate("/login");
+          return;
+        }
+      
+        try {
+          const decodedToken = jwtDecode(token);
+          const currentTime = Date.now() / 1000;
+          if (decodedToken.exp < currentTime) {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }
+        } catch (error) {
+          localStorage.removeItem("token");
+          navigate("/login");
+        }
   }, [navigate]);
   if (!product) {
     return <p>Product not found</p>;
@@ -43,8 +58,6 @@ const ViewProduct = () => {
   const handleAddToCart = async (product, event) => {
     event.stopPropagation();
     setLoading(true); 
-    console.log("Add to Cart Clicked for:", product._id); 
-
     const quantity = quantities[product._id] || 1;
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
@@ -71,10 +84,7 @@ const ViewProduct = () => {
         }),
       });
 
-      console.log("API response received:", response);
-
       const data = await response.json();
-      console.log("Response data:", data);
 
       if (response.ok && data.message === "Product added to cart") {
         setCartCount(cartCount + quantity);

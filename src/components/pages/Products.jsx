@@ -6,6 +6,7 @@ import '../../styles/products.css';
 import { useNavigate } from "react-router-dom";
 import logoP from '../../assets/img/logoP.png';
 import { ToastContainer, toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
 import BASE_URL from "../../config";
 const Products = () => {
@@ -24,18 +25,27 @@ const Products = () => {
     setShowNotifications((prev) => !prev);
   };
 
-
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (!token) {
       navigate("/login");
+      return;
     }
-
-    const notifications = localStorage.getItem('userNotifications');
+  
+    try {
+      const decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+    } catch (error) {
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
     const fetchProducts = async () => {
       try {
-        setNotifications(JSON.parse(notifications) || []);
-
         const response = await fetch(`${BASE_URL}/product/getAll`, {
           method: "GET",
           headers: {
@@ -45,8 +55,6 @@ const Products = () => {
         });
 
         const data = await response.json();
-        console.log("API Response:", data);
-
         if (data.message === "Products retrieved successfully" && data.products) {
           setProducts(data.products);
         } else {
@@ -57,8 +65,35 @@ const Products = () => {
       }
     };
 
+    const fetchNotifications = async () => {
+      const userId = localStorage.getItem("userId");
+      try {
+        const response = await fetch(`${BASE_URL}/user/profile/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+    
+        const data = await response.json();    
+        if (data.notifications && Array.isArray(data.notifications)) {
+          const unreadNotifications = data.notifications.filter(
+            (notification) => !notification.isRead // Assuming `isRead` indicates read status
+          );
+          setNotifications(unreadNotifications); // Assuming `setNotifications` is a state setter
+        } else {
+          console.error("No notifications found or incorrect response format", data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch notifications:", error);
+      }
+    };    
+
     fetchProducts();
+    fetchNotifications();
   }, [navigate]);
+
 
   useEffect(() => {
     const fetchCartCount = async () => {
@@ -174,7 +209,7 @@ const Products = () => {
         console.error("Admin ID or token is missing.");
         return;
       }
-      const response = await fetch(`${BASE_URL}/user/${userId}/notifications/read`, {
+      const response = await fetch(`${BASE_URL}/user/${userId}/user-notifications/read`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -185,7 +220,6 @@ const Products = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Notifications marked as read:", data.notifications);
         setNotifications([]);
       } else {
         console.error("Failed to mark notifications as read:", data.message);
@@ -216,8 +250,17 @@ const Products = () => {
           </div>
           <div className="icons">
 
-            <div className="notification-bell-wrapper">
-              <FaBell className="support-icon" onClick={toggleNotifications} />
+            <div
+              className="notification-bell-wrapper"
+              onClick={() => {
+                if (showNotifications && notifications.length > 0) {
+                  markAsRead();
+                }
+                toggleNotifications(); // Added parentheses to correctly call the function
+              }}
+            >
+
+              <FaBell className="support-icon" />
 
               {notifications.length > 0 && (
                 <span className="notification-count">{notifications.length}</span>

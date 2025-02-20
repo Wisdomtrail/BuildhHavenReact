@@ -167,7 +167,6 @@ const AdminDashboard = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Notifications marked as read:", data.notifications);
         setNotifications([]);
       } else {
         console.error("Failed to mark notifications as read:", data.message);
@@ -207,7 +206,6 @@ const AdminDashboard = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Profile image updated successfully:", data);
         setAdmin((prevAdmin) => ({
           ...prevAdmin,
           profileImageUrl: data.profileImageUrl,
@@ -241,7 +239,6 @@ const AdminDashboard = () => {
                 className="notification-bell"
                 onClick={() => {
                   if (showNotifications && notifications.length > 0) {
-                    // Only mark as read when closing the dropdown while it was open
                     markAsRead();
                   }
                   setShowNotifications(!showNotifications); // Toggle the dropdown
@@ -385,7 +382,7 @@ const AdminDashboard = () => {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
               <img
-                src={admin?.profileImageUrl || 'default-profile.jpg'}
+                src={admin?.profileImageUrl || defaultImage}
                 alt="Admin Profile"
                 className="modal-profile-image"
               />

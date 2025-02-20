@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CheckCircle, XCircle, Clock, Eye, MapPin, Package, ShoppingCart, Bell } from "lucide-react";
 import "../../styles/ThisWeekOrders.css";
 import BASE_URL from "../../config";
+import defaultImage from '../../assets/img/defaultImage.jpg'
 import { useNavigate } from 'react-router-dom';
 ;
 const PendingOrder = () => {
@@ -118,7 +119,7 @@ const PendingOrder = () => {
                     </div>
 
                     <img
-                        src={admin?.profileImageUrl || "default-profile.jpg"} // Replace with the admin's profile image URL or a default one
+                        src={admin?.profileImageUrl || defaultImage} // Replace with the admin's profile image URL or a default one
                         alt="Admin Profile"
                         className="profile-image"
                     />

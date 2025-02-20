@@ -5,6 +5,7 @@ import "../../styles/PickupConfirmation.css";
 
 const PickupConfirmation = () => {
     const navigate = useNavigate();
+    
 
     return (
         <div className="pickup-confirmation">

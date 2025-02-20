@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUniversity, FaCopy, FaUser, FaMoneyBillWave } from "react-icons/fa";
 import "../../styles/Payment.css";
+import { jwtDecode } from "jwt-decode";
 import BASE_URL from "../../config";
 import Sidebar from '../sideBar/SideBar';
 import DMobileDownbar from '../sideBar/DMobileDownbar';
@@ -15,9 +16,24 @@ const Payment = () => {
     useEffect(() => {
         const storedOrder = JSON.parse(localStorage.getItem("orderDetails"));
 
-        if (!token) {
-            navigate("/login");
-        }
+         const token = localStorage.getItem("token");
+        
+            if (!token) {
+              navigate("/login");
+              return;
+            }
+          
+            try {
+              const decodedToken = jwtDecode(token);
+              const currentTime = Date.now() / 1000;
+              if (decodedToken.exp < currentTime) {
+                localStorage.removeItem("token");
+                navigate("/login");
+              }
+            } catch (error) {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }
         if (!storedOrder) {
             navigate("/products");
         } else {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from '../sideBar/SideBar';
 import DMobileDownbar from '../sideBar/DMobileDownbar';
+import { jwtDecode } from "jwt-decode";
 import '../../styles/orders.css'; // Ensure to import the CSS
 import { FaCheckCircle, FaTimesCircle, FaHourglass } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
@@ -14,10 +15,24 @@ const Orders = () => {
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    if (!userId || !token) {
-      navigate("/login");  // Redirects to login if user is not authenticated
-      return;
-    }
+    const token = localStorage.getItem("token");
+   
+       if (!token) {
+         navigate("/login");
+         return;
+       }
+     
+       try {
+         const decodedToken = jwtDecode(token);
+         const currentTime = Date.now() / 1000;
+         if (decodedToken.exp < currentTime) {
+           localStorage.removeItem("token");
+           navigate("/login");
+         }
+       } catch (error) {
+         localStorage.removeItem("token");
+         navigate("/login");
+       }
 
     if (!userId) {
       setLoading(false);
@@ -96,7 +111,7 @@ const Orders = () => {
             </tbody>
           </table>
         )}
-      </div>
+      </div><br /><br />
     </div>
   );
 };

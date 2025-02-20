@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../styles/ManageProduct.css";
 import BASE_URL from "../../config";
 import { useNavigate } from "react-router-dom";
+import defaultImage from '../../assets/img/defaultImage.jpg'
 
 const ManageProduct = () => {
     const [productCount, setProductCount] = useState(0);
@@ -178,7 +179,7 @@ const ManageProduct = () => {
                     </div>
 
                     <img
-                        src={admin?.profileImageUrl || "default-profile.jpg"} // Replace with the admin's profile image URL or a default one
+                        src={admin?.profileImageUrl || defaultImage} // Replace with the admin's profile image URL or a default one
                         alt="Admin Profile"
                         className="profile-image"
                     />

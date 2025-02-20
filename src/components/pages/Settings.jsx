@@ -3,6 +3,7 @@ import Sidebar from "../sideBar/SideBar";
 import DMobileDownbar from "../sideBar/DMobileDownbar";
 import "../../styles/settings.css";
 import BASE_URL from "../../config";
+import { jwtDecode } from "jwt-decode";
 import { FaUser, FaEnvelope, FaLock, FaSpinner,  } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 const Settings = () => {
@@ -24,9 +25,23 @@ const Settings = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-      if (!token) {
-        navigate("/login");
-      }
+     
+         if (!token) {
+           navigate("/login");
+           return;
+         }
+       
+         try {
+           const decodedToken = jwtDecode(token);
+           const currentTime = Date.now() / 1000;
+           if (decodedToken.exp < currentTime) {
+             localStorage.removeItem("token");
+             navigate("/login");
+           }
+         } catch (error) {
+           localStorage.removeItem("token");
+           navigate("/login");
+         }
     if (!userId) {
       console.error("No userId found in localStorage.");
       return;
@@ -116,7 +131,6 @@ const Settings = () => {
       const responseData = await response.json(); // Read the response body
   
       if (response.ok) {
-        console.log("Update successful:", responseData);
         setIsSuccess(true);
         setIsUpdated(false);
       } else {
@@ -161,7 +175,6 @@ const Settings = () => {
   
       if (response.ok) {
         setProfileImage(data.profileImage);
-        console.log("Image uploaded successfully:", data);
       } else {
         console.error("Failed to upload image:", data);
       }

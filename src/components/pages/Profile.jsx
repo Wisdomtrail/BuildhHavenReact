@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../sideBar/SideBar";
+import { jwtDecode } from "jwt-decode";
 import DMobileDownbar from "../sideBar/DMobileDownbar";
 import "../../styles/profile.css";
 import { useNavigate } from "react-router-dom";
 import {
-  FaEdit, FaLock, FaBoxOpen, FaHeart, FaHourglassHalf,
-  FaCheckCircle, FaTimesCircle
+  FaEdit, FaLock, FaBoxOpen, FaHeart, FaCheckCircle, FaTimesCircle,
+  FaHourglassHalf
 } from "react-icons/fa";
 import BASE_URL from "../../config";
-import defaultImage from '../../assets/img/defaultImage.jpg'
+import defaultImage from '../../assets/img/defaultImage.jpg';
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -21,9 +22,23 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
-      if (!token) {
-        navigate("/login");
-      }
+     
+         if (!token) {
+           navigate("/login");
+           return;
+         }
+       
+         try {
+           const decodedToken = jwtDecode(token);
+           const currentTime = Date.now() / 1000;
+           if (decodedToken.exp < currentTime) {
+             localStorage.removeItem("token");
+             navigate("/login");
+           }
+         } catch (error) {
+           localStorage.removeItem("token");
+           navigate("/login");
+         }
       if (!userId) {
         setError("Please Log in");
         setLoading(false);
@@ -35,8 +50,8 @@ const Profile = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          }
+            "Authorization": `Bearer ${token}`,
+          },
         });
 
         if (!response.ok) {
@@ -44,7 +59,6 @@ const Profile = () => {
         }
 
         const data = await response.json();
-        console.log("API Response:", data); // Debugging: Log the response
 
         if (!data || typeof data !== "object") {
           throw new Error("Invalid response format received from server.");
@@ -56,8 +70,8 @@ const Profile = () => {
         setUserData({
           ...data,
           wishlist: data.wishlist || [], // Ensure wishlist exists
+          orders: data.orders || [],    // Ensure orders exist
         });
-
       } catch (error) {
         console.error("Error fetching profile:", error);
         setError(error.message);
@@ -81,10 +95,7 @@ const Profile = () => {
     return <div className="error">Error: {error}</div>;
   }
 
-  // Count order statuses
-  const completedOrders = userData.orders?.filter(order => order.status === "Completed").length || 0;
-  const pendingOrders = userData.orders?.filter(order => order.status === "Pending").length || 0;
-  const cancelledOrders = userData.orders?.filter(order => order.status === "Cancelled").length || 0;
+  const completedOrders = userData.orders.filter(order => order.status === "Completed");
 
   return (
     <>
@@ -99,27 +110,32 @@ const Profile = () => {
           <h1 className="ProfileName">{userData.fullName}</h1>
           <p className="ProfileEmail">{userData.email}</p>
           <p className="ProfileBio">
-            Loyal Customer | {userData.orders?.length || 0} Orders Completed
+            Loyal Customer | {completedOrders.length} Orders Completed
           </p>
         </div>
 
         <div className="ProfileDetails">
           <h2><FaBoxOpen /> Order History</h2>
-          <p className="order-summary">
-            {completedOrders} Completed | {pendingOrders} Pending | {cancelledOrders} Cancelled
-          </p>
           <ul className="OrderHistory">
-            {userData.orders?.length > 0 ? (
+            {userData.orders.length > 0 ? (
               userData.orders.map((order, index) => (
                 <li key={index} className="OrderItem">
                   {order.status === "Completed" ? (
-                    <FaCheckCircle className="order-icon delivered" />
+                    <>
+                      <FaCheckCircle className="order-icon delivered" />
+                      <span>Order #{order.orderId} - Completed</span>
+                    </>
                   ) : order.status === "Pending" ? (
-                    <FaHourglassHalf className="order-icon processing" />
+                    <>
+                      <FaHourglassHalf className="order-icon processing" />
+                      <span>Order #{order.orderId} - Pending</span>
+                    </>
                   ) : order.status === "Cancelled" ? (
-                    <FaTimesCircle className="order-icon canceled" />
+                    <>
+                      <FaTimesCircle className="order-icon canceled" />
+                      <span>Order #{order.orderId} - Cancelled</span>
+                    </>
                   ) : null}
-                  Order #{order.orderId} - {order.status}
                 </li>
               ))
             ) : (
