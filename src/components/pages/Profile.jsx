@@ -8,6 +8,7 @@ import {
   FaCheckCircle, FaTimesCircle
 } from "react-icons/fa";
 import BASE_URL from "../../config";
+import defaultImage from '../../assets/img/defaultImage.jpg'
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -91,7 +92,7 @@ const Profile = () => {
       <div className="ProfileContainer">
         <div className="ProfileCard">
           <img
-            src={userData.profileImage || "https://via.placeholder.com/120"}
+            src={userData.profileImage || defaultImage}
             alt="User Profile"
             className="ProfileImage"
           />

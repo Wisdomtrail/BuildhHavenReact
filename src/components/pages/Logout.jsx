@@ -18,6 +18,7 @@ const Logout = () => {
     setTimeout(() => {
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
+      localStorage.removeItem('userNotifications');
       navigate("/login");
     }, 3000);
   }, [navigate]);

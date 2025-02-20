@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaShoppingCart, FaSearch, FaQuestionCircle } from "react-icons/fa";
+import { FaShoppingCart, FaSearch, FaBell } from "react-icons/fa";
 import Sidebar from '../sideBar/SideBar';
 import DMobileDownbar from '../sideBar/DMobileDownbar';
 import '../../styles/products.css';
@@ -13,20 +13,28 @@ const Products = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+  const [showNotifications, setShowNotifications] = useState(false);
+
+  const toggleNotifications = () => {
+    setShowNotifications((prev) => !prev);
+  };
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
     }
+
+    const notifications = localStorage.getItem('userNotifications');
     const fetchProducts = async () => {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          console.error("Token is missing. Please log in again.");
-          return;
-        }
+        setNotifications(JSON.parse(notifications) || []);
 
         const response = await fetch(`${BASE_URL}/product/getAll`, {
           method: "GET",
@@ -132,7 +140,7 @@ const Products = () => {
 
         const data = await response.json();
         if (data.message === "Product added to cart") {
-          setCartCount(cartCount + quantity);
+          setCartCount((prevCount) => prevCount + quantity);
           toast.success("Added to Cart ✔️", {
             position: "top-right",
             autoClose: 2000,
@@ -158,7 +166,35 @@ const Products = () => {
   const orders = () => {
     navigate('/cart');
   };
+  const markAsRead = async () => {
+    try {
 
+      const userId = localStorage.getItem("userId");
+      if (!userId || !token) {
+        console.error("Admin ID or token is missing.");
+        return;
+      }
+      const response = await fetch(`${BASE_URL}/user/${userId}/notifications/read`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Notifications marked as read:", data.notifications);
+        setNotifications([]);
+      } else {
+        console.error("Failed to mark notifications as read:", data.message);
+        console.log("Backend message:", data.message); // Log the backend message
+      }
+    } catch (error) {
+      console.error("Error marking notifications as read:", error);
+    }
+  };
 
 
   return (
@@ -179,7 +215,29 @@ const Products = () => {
             <FaSearch className="search-icon" />
           </div>
           <div className="icons">
-            <FaQuestionCircle className="support-icon" />
+
+            <div className="notification-bell-wrapper">
+              <FaBell className="support-icon" onClick={toggleNotifications} />
+
+              {notifications.length > 0 && (
+                <span className="notification-count">{notifications.length}</span>
+              )}
+
+              {showNotifications && (
+                <div className="notifications-dropdownp">
+                  {notifications.length > 0 ? (
+                    notifications.map((notification, index) => (
+                      <p key={index} className="notification-item">
+                        {notification.message}
+                      </p>
+                    ))
+                  ) : (
+                    <p className="notification-item">No new notifications</p>
+                  )}
+                </div>
+              )}
+
+            </div>
             <div className="cart-icon-container" onClick={orders}>
               <FaShoppingCart className="cart-icon" />
               {cartCount > 0 && (

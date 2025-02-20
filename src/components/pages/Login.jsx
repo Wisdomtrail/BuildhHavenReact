@@ -53,6 +53,10 @@ const Login = () => {
                 if (response.ok) {
                     localStorage.setItem("userId", data.user.id);
                     localStorage.setItem("token", data.token);
+                    localStorage.setItem(
+                        'userNotifications',
+                        JSON.stringify(data.user.notifications || [])
+                      );                      
                     toast.success("Login successful!");
                     setTimeout(() => {
                         navigate('/products'); 

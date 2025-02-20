@@ -68,7 +68,13 @@ const ViewUsers = () => {
         fetchUsers();
     }, []);
 
-
+    const editUser = (id) => {
+        console.log("Edit User", id);
+    };
+    
+    const deleteUser = (id) => {
+        console.log("Delete User", id);
+    };
 
     const viewUser = async (userId) => {
         try {
@@ -123,7 +129,7 @@ const ViewUsers = () => {
                                         </p>
                                     ))
                                 ) : (
-                                    <p className="notification-item">No notifications</p>
+                                    <p className="notification-item">No new notifications</p>
                                 )}
                             </div>
                         )}
@@ -165,9 +171,6 @@ const ViewUsers = () => {
                                 <button className="action-btn view-btn" onClick={() => viewUser(user._id)}>
                                     <FaEye /> View
                                 </button>
-                                <button className="action-btn edit-btn" onClick={() => editUser(user._id)}>
-                                    <FaEdit /> Edit
-                                </button>
                                 <button className="action-btn delete-btn" onClick={() => deleteUser(user._id)}>
                                     <FaTrash /> Delete
                                 </button>
@@ -207,12 +210,6 @@ const ViewUsers = () => {
     );
 };
 
-const editUser = (id) => {
-    console.log("Edit User", id);
-};
 
-const deleteUser = (id) => {
-    console.log("Delete User", id);
-};
 
 export default ViewUsers;

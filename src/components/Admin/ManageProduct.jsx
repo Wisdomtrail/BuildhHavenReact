@@ -171,7 +171,7 @@ const ManageProduct = () => {
                                         </p>
                                     ))
                                 ) : (
-                                    <p className="notification-item">No notifications</p>
+                                    <p className="notification-item">No new notifications</p>
                                 )}
                             </div>
                         )}

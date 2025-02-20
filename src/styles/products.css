@@ -9,6 +9,21 @@
   .logoP{
     display: none;
   }
+  
+.notifications-dropdownp {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+  width: 280px !important; 
+  z-index: 10;
+}
+
+
   @media (max-width: 450px) {
     .product-card {
       width: 180px !important;
