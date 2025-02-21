@@ -144,7 +144,7 @@ const LandingPage = () => {
                             <div className="lbuttons">
                                 <button className="learn-button" onClick={aboutUs}>LEARN MORE
                                     <FontAwesomeIcon className="arrow" icon={faArrowRight} /> </button>
-                                <br /><br />  <button className="service-button">OUR SERVICES</button>
+                                <br /><br />  <button className="service-button" onClick={() => navigate('/building-materials')}>OUR SERVICES</button>
                             </div>
                         </div>
                     </div>
