@@ -47,3 +47,27 @@
   width: 100%;
   border-radius: 5px;
 }
+
+/* Large screen styles */
+@media screen and (min-width: 1024px) {
+  .ad-content {
+    width: 60%;
+    max-width: 900px;
+    padding: 30px;
+  }
+
+  .ad-title {
+    font-size: 28px;
+  }
+
+  .close-btn {
+    font-size: 22px;
+    padding: 8px 12px;
+  }
+
+  .ad-video {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+  }
+}
