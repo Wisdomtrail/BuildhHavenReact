@@ -61,7 +61,7 @@ const Registration = () => {
 
     return (
         <>
-            <Header />
+            {/* <Header />
             <div className="body">
                 <div className="wrapper" style={{ height: "550px" }}>
                     <div className="form-box login">
@@ -130,7 +130,7 @@ const Registration = () => {
                                     "Register"
                                 )}
                             </button>
-
+    
                             <div className="register-link">
                                 <p>
                                     Already have an account? <a href="/login">Login</a>
@@ -140,9 +140,11 @@ const Registration = () => {
                     </div>
                 </div>
                 <ToastContainer />
-            </div>
+            </div> */}
+
+            <h1 style={{ textAlign: "center", marginTop: "20px" }}>Coming Soon</h1>
         </>
     );
-};
+}
 
 export default Registration;

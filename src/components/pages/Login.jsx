@@ -52,10 +52,10 @@ const Login = () => {
 
                 if (response.ok) {
                     localStorage.setItem("userId", data.user.id);
-                    localStorage.setItem("token", data.token);                  
+                    localStorage.setItem("token", data.token);
                     toast.success("Login successful!");
                     setTimeout(() => {
-                        navigate('/products'); 
+                        navigate('/products');
                     }, 1000);
                 } else {
                     toast.error(data.message || "Login failed. Please try again.");
@@ -64,78 +64,79 @@ const Login = () => {
                 toast.error("An error occurred. Please try again.");
             }
 
-            setIsButtonDisabled(false); 
-            setLoading(false); 
-        }, 2000); 
+            setIsButtonDisabled(false);
+            setLoading(false);
+        }, 2000);
     };
 
     return (
         <>
-        <Header/>
-        
-        <div className="body">
-            <div className="wrapper">
-                <div className="form-box login">
-                    <form onSubmit={handleSubmit} className="form">
-                        <h1>Login</h1>
-                        <div className="input-box">
-                            <input
-                                type="text"
-                                name="email"
-                                placeholder="Email"
-                                id="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                            <FaUser className="icon" />
-                        </div>
-                        <div className="input-box">
-                            <input
-                                type={isPasswordVisible ? "text" : "password"} // Toggle input type
-                                name="password"
-                                placeholder="Password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                            />
-                            <span
-                                className="icon toggle-password"
-                                onClick={togglePasswordVisibility}
-                            >
-                                {isPasswordVisible ? "Hide" : "Show"} {/* Toggle text */}
-                            </span>
-                        </div>
-                        <div className="remember-forgot">
-                            <div>
-                                <input type="checkbox" id="remember-me-checkbox" />
-                                <span>Remember me</span>
+             <Header/>
+            {/*
+            <div className="body">
+                <div className="wrapper">
+                    <div className="form-box login">
+                        <form onSubmit={handleSubmit} className="form">
+                            <h1>Login</h1>
+                            <div className="input-box">
+                                <input
+                                    type="text"
+                                    name="email"
+                                    placeholder="Email"
+                                    id="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                <FaUser className="icon" />
                             </div>
-                            <a href="#">Forgot Password?</a>
-                        </div>
-                        <button
-                            type="submit"
-                            disabled={isButtonDisabled}
-                            className={loading ? "loading" : ""}
-                        >
-                            {loading ? (
-                                <div className="spinner"></div> // Spinner when loading
-                            ) : (
-                                "Login"
-                            )}
-                        </button>
-                        <div className="register-link" id="register-link">
-                            <p>
-                                Don't have an account? <a href="/registration">Register</a>
-                            </p>
-                        </div>
-                    </form>
+                            <div className="input-box">
+                                <input
+                                    type={isPasswordVisible ? "text" : "password"} // Toggle input type
+                                    name="password"
+                                    placeholder="Password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                <span
+                                    className="icon toggle-password"
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {isPasswordVisible ? "Hide" : "Show"} 
+                                </span>
+                            </div>
+                            <div className="remember-forgot">
+                                <div>
+                                    <input type="checkbox" id="remember-me-checkbox" />
+                                    <span>Remember me</span>
+                                </div>
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={isButtonDisabled}
+                                className={loading ? "loading" : ""}
+                            >
+                                {loading ? (
+                                    <div className="spinner"></div>
+                                ) : (
+                                    "Login"
+                                )}
+                            </button>
+                            <div className="register-link" id="register-link">
+                                <p>
+                                    Don't have an account? <a href="/registration">Register</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <ToastContainer />
-        </div>
+                <ToastContainer />
+            </div> */}
+
+            <h1 style={{ textAlign: "center", marginTop: "20px" }}>Coming Soon</h1>
         </>
     );
-};
-
+}
 export default Login;

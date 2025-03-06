@@ -108,7 +108,7 @@ const Header = () => {
             )}
           </p>
           <p><a href="/news">News</a></p>
-          <p><a href="/contactus">Contact Us</a></p>
+          <p><a href="/contact-us">Contact Us</a></p>
           <p onClick={navigateToLogin}>Login</p>
         </nav>
       </div>
@@ -130,7 +130,7 @@ const Header = () => {
           </p>
 
           <p><a href="/news">News</a></p>
-          <p><a href="contactUs">Contact Us</a></p>
+          <p><a href="/contact-us">Contact Us</a></p>
           <p onClick={navigateToLogin}>Login</p>
         </div>
         <div className="sg">

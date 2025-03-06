@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from '../../config';
 import CartIcon from "./CartIcon";
 
+import NewArrivalAd from '../NewArrivalAd/NewArrivalAd';
 const AccessoriesAndSafetyGear = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -61,6 +62,8 @@ const AccessoriesAndSafetyGear = () => {
     return (
         <div className="building-materials">
             <Header />
+            
+            <NewArrivalAd/>
             <motion.div
                 className="hero-section"
                 initial={{ opacity: 0, y: -50 }}

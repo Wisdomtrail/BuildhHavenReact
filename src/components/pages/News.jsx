@@ -2,12 +2,13 @@ import React from 'react';
 import Header from "../header/Header";
 import Footer from '../footer/Footer';
 import '../../styles/News.css'; // Separate CSS for News Page
+import NewArrivalAd from '../NewArrivalAd/NewArrivalAd';
 
 const News = () => {
     return (
         <div className="news-page-container">
             <Header />
-
+            <NewArrivalAd/>
             <div className="news-banner">
                 <div className="news-overlay">
                     <div className="newsContent">

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import "../../styles/BuildingMaterials.css";
+import NewArrivalAd from '../NewArrivalAd/NewArrivalAd';
 import { FaShoppingCart } from "react-icons/fa";
 import { MdBuild } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -58,6 +59,8 @@ const PrecisionTools = () => {
     return (
         <div className="building-materials">
             <Header />
+            
+            <NewArrivalAd/>
             <motion.div
                 className="hero-section"
                 initial={{ opacity: 0, y: -50 }}

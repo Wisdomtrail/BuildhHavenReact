@@ -6,6 +6,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdConstruction } from "react-icons/md";
 import { motion } from "framer-motion";
 import BASE_URL from '../../config';
+import NewArrivalAd from '../NewArrivalAd/NewArrivalAd';
 import CartIcon from "./CartIcon";
 import { useNavigate } from "react-router-dom";
 
@@ -62,6 +63,8 @@ const Fabrication = () => {
     return (
         <div className="building-materials">
             <Header />
+            
+            <NewArrivalAd/>
             <motion.div
                 className="hero-section"
                 initial={{ opacity: 0, y: -50 }}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import Header from "../header/Header";
 import Footer from '../footer/Footer';
+import NewArrivalAd from '../NewArrivalAd/NewArrivalAd';
 import '../../styles/ContactUs.css'; // Import the custom CSS file
 
 const ContactUs = () => {
@@ -56,6 +57,8 @@ const ContactUs = () => {
     return (
         <div className="contact-us">
             <Header />
+            
+            <NewArrivalAd/>
             <div className="hero-sectionc">
                 <div className="overlay">
                     <div className="content">

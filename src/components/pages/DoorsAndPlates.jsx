@@ -8,6 +8,7 @@ import { MdConstruction } from "react-icons/md";
 import { motion } from "framer-motion";
 import BASE_URL from '../../config';
 import CartIcon from "./CartIcon";
+import NewArrivalAd from '../NewArrivalAd/NewArrivalAd';
 
 const DoorsAndPlates = () => {
     const [products, setProducts] = useState([]);
@@ -62,6 +63,8 @@ const DoorsAndPlates = () => {
     return (
         <div className="building-materials">
             <Header />
+            
+            <NewArrivalAd/>
             <motion.div
                 className="hero-section"
                 initial={{ opacity: 0, y: -50 }}

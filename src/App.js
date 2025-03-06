@@ -49,7 +49,7 @@ function App() {
         <Route path="/view-product/:id" element={<ViewProduct />} />
         <Route path='/aboutUs' element={<AboutUs />} />
         <Route path='/news' element={<News />} />
-        <Route path='/contactUs' element={<ContactUs />} />
+        <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/delivery-options' element={<DeliveryOptions/>}/>
         <Route path="/pickup-confirmation" element={<PickupConfirmation />} />
         <Route path='/paymentPage' element={<Payment/>}/>
@@ -68,7 +68,6 @@ function App() {
         <Route path='/admin/view-users' element ={<ViewUsers/>}/>
         <Route path='/admin/pending-orders' element={<PendingOrder/>}/>
         <Route path='/admin/view-order-details/:orderId' element={<OrderDetails />} />
-
       </Routes>
     </Router>
   );

@@ -15,6 +15,7 @@ import precisionTools from '../../assets/img/precisionTools.png';
 import { useNavigate } from "react-router-dom";
 import emailjs from "emailjs-com";
 import Modal from 'react-modal'
+import NewArrivalAd from "../NewArrivalAd/NewArrivalAd";
 const modalStyles = {
     overlay: {
         backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -119,11 +120,12 @@ const LandingPage = () => {
         navigate('/aboutUs')
     }
     const contactUs = () => {
-        navigate('/contactUs')
+        navigate('/contact-us')
     }
     return (
         <>
             <Header />
+            <NewArrivalAd/>
             <div className="LandingPage-container">
                 <div className="banner">
                     <div className="image-container">

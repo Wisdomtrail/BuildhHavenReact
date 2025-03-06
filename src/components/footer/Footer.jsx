@@ -125,7 +125,7 @@ const Footer = () => {
                 </section><br />
                 <section>
                     <FontAwesomeIcon className="quick-icons" icon={faSquare}/>
-                    <a  href="/contactUs">Contact Us</a>
+                    <a  href="/contact-us">Contact Us</a>
                 </section>
             </div>
 

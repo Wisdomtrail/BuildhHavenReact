@@ -4,6 +4,8 @@ import Header from "../header/Header";
 import Footer from '../footer/Footer';
 import '../../styles/AboutUs.css'; 
 
+import NewArrivalAd from '../NewArrivalAd/NewArrivalAd';
+
 const AboutUs = () => {
     const navigate = useNavigate();
 
@@ -17,6 +19,8 @@ const AboutUs = () => {
     return (
         <div className="about-page-container">
             <Header />
+            
+            <NewArrivalAd/>
             <div className="about-banner">
                 <div className="about-overlay">
                     <div className="aboutUsContent">

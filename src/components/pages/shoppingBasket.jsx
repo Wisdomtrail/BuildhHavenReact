@@ -34,10 +34,24 @@ const ShoppingBasket = () => {
         setCartItems([]);
         setTotalPrice(0);
     };
-
+    
     const proceedToCheckout = () => {
-        navigate("/delivery-options"); // Redirect to checkout page
+        if (cartItems.length === 0) return;
+    
+        // Format the cart items into a WhatsApp message
+        const message = cartItems
+            .map(
+                (item) =>
+                    `*${item.name}* - ₦${item.price.toLocaleString()} (Qty: ${item.quantity})`
+            )
+            .join("\n");
+    
+        const totalMessage = `\n*Total: ₦${totalPrice.toLocaleString()}*`;
+        const encodedMessage = encodeURIComponent(`Hello, I want to order:\n\n${message}${totalMessage}`);
+    
+        window.open(`https://wa.me/2348165385299?text=${encodedMessage}`, "_blank");
     };
+    
 
     return (
         <div className="shopping-basket">
